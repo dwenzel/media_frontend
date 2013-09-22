@@ -45,7 +45,7 @@ class Setting implements \TYPO3\CMS\Core\SingletonInterface {
 	 * @return \Webfox\MediaFrontend\Utility\Setting
 	 */
 	static public function getInstance() {
-		return \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\MediaFrontend\Utility\Setting');
+		return \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Webfox\MediaFrontend\Utility\Setting');
 	}
 
 	/**
