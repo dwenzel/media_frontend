@@ -35,7 +35,7 @@ namespace Webfox\MediaFrontend\Domain\Model;
 class FileCollection extends \TYPO3\CMS\Core\Resource\Collection\StaticFileCollection {
 
 	/**
-	 * frontendUser
+	 * Frontend User who owns this collection
 	 *
 	 * @var \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
 	 * @lazy

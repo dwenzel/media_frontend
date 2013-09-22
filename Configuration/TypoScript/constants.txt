@@ -1,0 +1,14 @@
+plugin.tx_mediafrontend {
+	view {
+		# cat=plugin.tx_mediafrontend/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:media_frontend/Resources/Private/Templates/
+		# cat=plugin.tx_mediafrontend/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:media_frontend/Resources/Private/Partials/
+		# cat=plugin.tx_mediafrontend/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:media_frontend/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_mediafrontend//a; type=string; label=Default storage PID
+		storagePid =
+	}
+}

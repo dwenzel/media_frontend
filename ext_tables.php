@@ -3,6 +3,12 @@ if (!defined('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+	$_EXTKEY,
+	'Media',
+	'Media'
+);
+
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Frontend Media');
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('sys_file', 'EXT:media_frontend/Resources/Private/Language/locallang_csh_sys_file.xlf');
@@ -10,7 +16,7 @@ if (!defined('TYPO3_MODE')) {
 $TCA['sys_file'] = array(
 	'ctrl' => array(
 		'title'	=> 'LLL:EXT:media_frontend/Resources/Private/Language/locallang_db.xlf:sys_file',
-		'label' => 'frontend_user',
+		'label' => 'title',
 		'tstamp' => 'tstamp',
 		'crdate' => 'crdate',
 		'cruser_id' => 'cruser_id',
@@ -28,7 +34,7 @@ $TCA['sys_file'] = array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'searchFields' => 'frontend_user,',
+		'searchFields' => 'title,description,extension,caption,width,height,duration,download_name,frontend_user,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Asset.php',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/sys_file.gif'
 	),

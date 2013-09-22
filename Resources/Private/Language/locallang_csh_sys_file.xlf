@@ -1,9 +1,33 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2013-09-22T10:54:47Z" product-name="media_frontend">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-09-22T12:46:18Z" product-name="media_frontend">
 		<header/>
 		<body>
 
+			<trans-unit id="title.description">
+				<source>title</source>
+			</trans-unit>
+			<trans-unit id="description.description">
+				<source>description</source>
+			</trans-unit>
+			<trans-unit id="extension.description">
+				<source>extension</source>
+			</trans-unit>
+			<trans-unit id="caption.description">
+				<source>caption</source>
+			</trans-unit>
+			<trans-unit id="width.description">
+				<source>width</source>
+			</trans-unit>
+			<trans-unit id="height.description">
+				<source>height</source>
+			</trans-unit>
+			<trans-unit id="duration.description">
+				<source>duration</source>
+			</trans-unit>
+			<trans-unit id="download_name.description">
+				<source>downloadName</source>
+			</trans-unit>
 			<trans-unit id="frontend_user.description">
 				<source>Frontend User who owns this asset</source>
 			</trans-unit>

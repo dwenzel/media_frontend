@@ -12,7 +12,7 @@
 
 $EM_CONF[$_EXTKEY] = array(
 	'title' => 'Frontend Media',
-	'description' => '',
+	'description' => 'Frontend Media allows logged in visitors of the website to manage files through the frontend. They can be added, removed, altered and shared with other users. A plugin allows to show individual files or file collections.',
 	'category' => 'plugin',
 	'author' => 'Dirk Wenzel',
 	'author_email' => 'wenzel@webfox01.de',
@@ -27,7 +27,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'modify_tables' => '',
 	'clearCacheOnLoad' => 0,
 	'lockType' => '',
-	'version' => '',
+	'version' => '0.0.1',
 	'constraints' => array(
 		'depends' => array(
 			'extbase' => '6.0',

@@ -35,6 +35,62 @@ namespace Webfox\MediaFrontend\Domain\Model;
 class Asset extends \TYPO3\CMS\Core\Resource\File {
 
 	/**
+	 * title
+	 *
+	 * @var \string
+	 */
+	protected $title;
+
+	/**
+	 * description
+	 *
+	 * @var \string
+	 */
+	protected $description;
+
+	/**
+	 * extension
+	 *
+	 * @var \string
+	 */
+	protected $extension;
+
+	/**
+	 * caption
+	 *
+	 * @var \string
+	 */
+	protected $caption;
+
+	/**
+	 * width
+	 *
+	 * @var \string
+	 */
+	protected $width;
+
+	/**
+	 * height
+	 *
+	 * @var \string
+	 */
+	protected $height;
+
+	/**
+	 * duration
+	 *
+	 * @var \string
+	 */
+	protected $duration;
+
+	/**
+	 * downloadName
+	 *
+	 * @var \string
+	 */
+	protected $downloadName;
+
+	/**
 	 * Frontend User who owns this asset
 	 *
 	 * @var \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
@@ -59,6 +115,158 @@ class Asset extends \TYPO3\CMS\Core\Resource\File {
 	 */
 	public function setFrontendUser(\TYPO3\CMS\Extbase\Domain\Model\FrontendUser $frontendUser) {
 		$this->frontendUser = $frontendUser;
+	}
+
+	/**
+	 * Returns the title
+	 *
+	 * @return \string $title
+	 */
+	public function getTitle() {
+		return $this->title;
+	}
+
+	/**
+	 * Sets the title
+	 *
+	 * @param \string $title
+	 * @return void
+	 */
+	public function setTitle($title) {
+		$this->title = $title;
+	}
+
+	/**
+	 * Returns the description
+	 *
+	 * @return \string $description
+	 */
+	public function getDescription() {
+		return $this->description;
+	}
+
+	/**
+	 * Sets the description
+	 *
+	 * @param \string $description
+	 * @return void
+	 */
+	public function setDescription($description) {
+		$this->description = $description;
+	}
+
+	/**
+	 * Returns the extension
+	 *
+	 * @return \string $extension
+	 */
+	public function getExtension() {
+		return $this->extension;
+	}
+
+	/**
+	 * Sets the extension
+	 *
+	 * @param \string $extension
+	 * @return void
+	 */
+	public function setExtension($extension) {
+		$this->extension = $extension;
+	}
+
+	/**
+	 * Returns the caption
+	 *
+	 * @return \string $caption
+	 */
+	public function getCaption() {
+		return $this->caption;
+	}
+
+	/**
+	 * Sets the caption
+	 *
+	 * @param \string $caption
+	 * @return void
+	 */
+	public function setCaption($caption) {
+		$this->caption = $caption;
+	}
+
+	/**
+	 * Returns the width
+	 *
+	 * @return \string $width
+	 */
+	public function getWidth() {
+		return $this->width;
+	}
+
+	/**
+	 * Sets the width
+	 *
+	 * @param \string $width
+	 * @return void
+	 */
+	public function setWidth($width) {
+		$this->width = $width;
+	}
+
+	/**
+	 * Returns the height
+	 *
+	 * @return \string $height
+	 */
+	public function getHeight() {
+		return $this->height;
+	}
+
+	/**
+	 * Sets the height
+	 *
+	 * @param \string $height
+	 * @return void
+	 */
+	public function setHeight($height) {
+		$this->height = $height;
+	}
+
+	/**
+	 * Returns the duration
+	 *
+	 * @return \string $duration
+	 */
+	public function getDuration() {
+		return $this->duration;
+	}
+
+	/**
+	 * Sets the duration
+	 *
+	 * @param \string $duration
+	 * @return void
+	 */
+	public function setDuration($duration) {
+		$this->duration = $duration;
+	}
+
+	/**
+	 * Returns the downloadName
+	 *
+	 * @return \string $downloadName
+	 */
+	public function getDownloadName() {
+		return $this->downloadName;
+	}
+
+	/**
+	 * Sets the downloadName
+	 *
+	 * @param \string $downloadName
+	 * @return void
+	 */
+	public function setDownloadName($downloadName) {
+		$this->downloadName = $downloadName;
 	}
 
 }

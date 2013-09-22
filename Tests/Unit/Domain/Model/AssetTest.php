@@ -54,6 +54,142 @@ class AssetTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 	/**
 	 * @test
 	 */
+	public function getTitleReturnsInitialValueForString() { }
+
+	/**
+	 * @test
+	 */
+	public function setTitleForStringSetsTitle() { 
+		$this->fixture->setTitle('Conceived at T3CON10');
+
+		$this->assertSame(
+			'Conceived at T3CON10',
+			$this->fixture->getTitle()
+		);
+	}
+	
+	/**
+	 * @test
+	 */
+	public function getDescriptionReturnsInitialValueForString() { }
+
+	/**
+	 * @test
+	 */
+	public function setDescriptionForStringSetsDescription() { 
+		$this->fixture->setDescription('Conceived at T3CON10');
+
+		$this->assertSame(
+			'Conceived at T3CON10',
+			$this->fixture->getDescription()
+		);
+	}
+	
+	/**
+	 * @test
+	 */
+	public function getExtensionReturnsInitialValueForString() { }
+
+	/**
+	 * @test
+	 */
+	public function setExtensionForStringSetsExtension() { 
+		$this->fixture->setExtension('Conceived at T3CON10');
+
+		$this->assertSame(
+			'Conceived at T3CON10',
+			$this->fixture->getExtension()
+		);
+	}
+	
+	/**
+	 * @test
+	 */
+	public function getCaptionReturnsInitialValueForString() { }
+
+	/**
+	 * @test
+	 */
+	public function setCaptionForStringSetsCaption() { 
+		$this->fixture->setCaption('Conceived at T3CON10');
+
+		$this->assertSame(
+			'Conceived at T3CON10',
+			$this->fixture->getCaption()
+		);
+	}
+	
+	/**
+	 * @test
+	 */
+	public function getWidthReturnsInitialValueForString() { }
+
+	/**
+	 * @test
+	 */
+	public function setWidthForStringSetsWidth() { 
+		$this->fixture->setWidth('Conceived at T3CON10');
+
+		$this->assertSame(
+			'Conceived at T3CON10',
+			$this->fixture->getWidth()
+		);
+	}
+	
+	/**
+	 * @test
+	 */
+	public function getHeightReturnsInitialValueForString() { }
+
+	/**
+	 * @test
+	 */
+	public function setHeightForStringSetsHeight() { 
+		$this->fixture->setHeight('Conceived at T3CON10');
+
+		$this->assertSame(
+			'Conceived at T3CON10',
+			$this->fixture->getHeight()
+		);
+	}
+	
+	/**
+	 * @test
+	 */
+	public function getDurationReturnsInitialValueForString() { }
+
+	/**
+	 * @test
+	 */
+	public function setDurationForStringSetsDuration() { 
+		$this->fixture->setDuration('Conceived at T3CON10');
+
+		$this->assertSame(
+			'Conceived at T3CON10',
+			$this->fixture->getDuration()
+		);
+	}
+	
+	/**
+	 * @test
+	 */
+	public function getDownloadNameReturnsInitialValueForString() { }
+
+	/**
+	 * @test
+	 */
+	public function setDownloadNameForStringSetsDownloadName() { 
+		$this->fixture->setDownloadName('Conceived at T3CON10');
+
+		$this->assertSame(
+			'Conceived at T3CON10',
+			$this->fixture->getDownloadName()
+		);
+	}
+	
+	/**
+	 * @test
+	 */
 	public function getFrontendUserReturnsInitialValueForFrontendUser() { }
 
 	/**

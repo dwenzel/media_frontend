@@ -42,5 +42,82 @@ class FileCollectionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionC
 	 */
 	protected $fileCollectionRepository;
 
+	/**
+	 * action list
+	 *
+	 * @return void
+	 */
+	public function listAction() {
+		$fileCollections = $this->fileCollectionRepository->findAll();
+		$this->view->assign('fileCollections', $fileCollections);
+	}
+
+	/**
+	 * action show
+	 *
+	 * @param \Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection
+	 * @return void
+	 */
+	public function showAction(\Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection) {
+		$this->view->assign('fileCollection', $fileCollection);
+	}
+
+	/**
+	 * action new
+	 *
+	 * @param \Webfox\MediaFrontend\Domain\Model\FileCollection $newFileCollection
+	 * @dontvalidate $newFileCollection
+	 * @return void
+	 */
+	public function newAction(\Webfox\MediaFrontend\Domain\Model\FileCollection $newFileCollection = NULL) {
+		$this->view->assign('newFileCollection', $newFileCollection);
+	}
+
+	/**
+	 * action create
+	 *
+	 * @param \Webfox\MediaFrontend\Domain\Model\FileCollection $newFileCollection
+	 * @return void
+	 */
+	public function createAction(\Webfox\MediaFrontend\Domain\Model\FileCollection $newFileCollection) {
+		$this->fileCollectionRepository->add($newFileCollection);
+		$this->flashMessageContainer->add('Your new FileCollection was created.');
+		$this->redirect('list');
+	}
+
+	/**
+	 * action edit
+	 *
+	 * @param \Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection
+	 * @return void
+	 */
+	public function editAction(\Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection) {
+		$this->view->assign('fileCollection', $fileCollection);
+	}
+
+	/**
+	 * action update
+	 *
+	 * @param \Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection
+	 * @return void
+	 */
+	public function updateAction(\Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection) {
+		$this->fileCollectionRepository->update($fileCollection);
+		$this->flashMessageContainer->add('Your FileCollection was updated.');
+		$this->redirect('list');
+	}
+
+	/**
+	 * action delete
+	 *
+	 * @param \Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection
+	 * @return void
+	 */
+	public function deleteAction(\Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection) {
+		$this->fileCollectionRepository->remove($fileCollection);
+		$this->flashMessageContainer->add('Your FileCollection was removed.');
+		$this->redirect('list');
+	}
+
 }
 ?>

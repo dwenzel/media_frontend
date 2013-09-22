@@ -42,5 +42,100 @@ class AssetController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	 */
 	protected $assetRepository;
 
+	/**
+	 * action list
+	 *
+	 * @return void
+	 */
+	public function listAction() {
+		$assets = $this->assetRepository->findAll();
+		$this->view->assign('assets', $assets);
+	}
+
+	/**
+	 * action show
+	 *
+	 * @param \Webfox\MediaFrontend\Domain\Model\Asset $asset
+	 * @return void
+	 */
+	public function showAction(\Webfox\MediaFrontend\Domain\Model\Asset $asset) {
+		$this->view->assign('asset', $asset);
+	}
+
+	/**
+	 * action new
+	 *
+	 * @param \Webfox\MediaFrontend\Domain\Model\Asset $newAsset
+	 * @dontvalidate $newAsset
+	 * @return void
+	 */
+	public function newAction(\Webfox\MediaFrontend\Domain\Model\Asset $newAsset = NULL) {
+		$this->view->assign('newAsset', $newAsset);
+	}
+
+	/**
+	 * action create
+	 *
+	 * @param \Webfox\MediaFrontend\Domain\Model\Asset $newAsset
+	 * @return void
+	 */
+	public function createAction(\Webfox\MediaFrontend\Domain\Model\Asset $newAsset) {
+		$this->assetRepository->add($newAsset);
+		$this->flashMessageContainer->add('Your new Asset was created.');
+		$this->redirect('list');
+	}
+
+	/**
+	 * action edit
+	 *
+	 * @param \Webfox\MediaFrontend\Domain\Model\Asset $asset
+	 * @return void
+	 */
+	public function editAction(\Webfox\MediaFrontend\Domain\Model\Asset $asset) {
+		$this->view->assign('asset', $asset);
+	}
+
+	/**
+	 * action update
+	 *
+	 * @param \Webfox\MediaFrontend\Domain\Model\Asset $asset
+	 * @return void
+	 */
+	public function updateAction(\Webfox\MediaFrontend\Domain\Model\Asset $asset) {
+		$this->assetRepository->update($asset);
+		$this->flashMessageContainer->add('Your Asset was updated.');
+		$this->redirect('list');
+	}
+
+	/**
+	 * action delete
+	 *
+	 * @param \Webfox\MediaFrontend\Domain\Model\Asset $asset
+	 * @return void
+	 */
+	public function deleteAction(\Webfox\MediaFrontend\Domain\Model\Asset $asset) {
+		$this->assetRepository->remove($asset);
+		$this->flashMessageContainer->add('Your Asset was removed.');
+		$this->redirect('list');
+	}
+
+	/**
+	 * action upload
+	 *
+	 * @return void
+	 */
+	public function uploadAction() {
+
+	}
+
+	/**
+	 * action download
+	 *
+	 * @return void
+	 */
+	public function downloadAction() {
+
+	}
+
 }
 ?>
