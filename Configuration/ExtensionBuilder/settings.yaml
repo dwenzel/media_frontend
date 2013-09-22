@@ -45,7 +45,7 @@ overwriteSettings:
       Repository: merge
 
   Configuration:
-    #TCA: merge
+    TCA: merge
     #TypoScript: keep
 
   Resources:
@@ -59,7 +59,7 @@ overwriteSettings:
 
 #  ext_localconf.php: merge
 
-#  ext_tables.php: merge
+  ext_tables.php: keep 
 
 #  ext_tables.sql: merge
 
