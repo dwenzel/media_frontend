@@ -2,31 +2,31 @@ config.tx_extbase{
     persistence{
         classes{
 
-            TYPO3\CMS\Core\Resource\File {
-                subclasses {
-                    Tx_MediaFrontend_Asset = Webfox\MediaFrontend\Domain\Model\Asset
+#            TYPO3\CMS\Core\Resource\File {
+#                subclasses {
+#                    Tx_MediaFrontend_Asset = Webfox\MediaFrontend\Domain\Model\Asset
+#					
+#          		}
+#            }
+#            TYPO3\CMS\Core\Resource\Collection\StaticFileCollection {
+#                subclasses {
+#                    Tx_MediaFrontend_FileCollection = Webfox\MediaFrontend\Domain\Model\FileCollection
 					
-          		}
-            }
-            TYPO3\CMS\Core\Resource\Collection\StaticFileCollection {
-                subclasses {
-                    Tx_MediaFrontend_FileCollection = Webfox\MediaFrontend\Domain\Model\FileCollection
-					
-          		}
-            }
-            Webfox\MediaFrontend\Domain\Model\Asset {
-                mapping {
-                    tableName = sys_file
-                    recordType = Tx_MediaFrontend_Asset
-                }
-            }
+#          		}
+#            }
+#            Webfox\MediaFrontend\Domain\Model\Asset {
+#                mapping {
+#                    tableName = sys_file
+#                    recordType = Tx_MediaFrontend_Asset
+#                }
+#            }
             
-            Webfox\MediaFrontend\Domain\Model\FileCollection {
-                mapping {
-                    tableName = sys_file_collection
-                    recordType = Tx_MediaFrontend_FileCollection
-                }
-            }
+#            Webfox\MediaFrontend\Domain\Model\FileCollection {
+#                mapping {
+#                    tableName = sys_file_collection
+#                    recordType = Tx_MediaFrontend_FileCollection
+#                }
+#            }
             
     	}
     }
