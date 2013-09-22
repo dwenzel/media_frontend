@@ -148,6 +148,14 @@ $tca = array(
 				'type' => 'passthrough'
 			)
 		),
+		'fileinfo' => array(
+			'l10n_mode' => 'exclude',
+			'config' => array(
+				'type' => 'user',
+				//'userFunc' => 'EXT:media_frontend/Classes/Backend/TceForms.php:Webfox\MediaFrontend\Backend\TceForms->renderFileUpload',
+				'userFunc' => 'typo3/sysext/core/Classes/Resource/Hook/FileInfoHook.php:TYPO3\CMS\Core\Resource\Hook\FileInfoHook->renderFileInfo'
+			),
+		),
 		'starttime' => Array(
 			'exclude' => 1,
 			'l10n_mode' => 'mergeIfNotBlank',
