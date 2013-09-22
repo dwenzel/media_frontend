@@ -11,6 +11,15 @@ if (!defined('TYPO3_MODE')) {
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Frontend Media');
 
+/** 
+ * this is the code created by extension builder. It has been commented out
+ * since it breaks the display of sys_file and sys_file_collection in BE
+ * changes to the TCA will be made in the corresponding file in Configuration/TCA/ instead.
+ * Kept here only for reference.
+ * Please note, that the extension managers configuration was set to keep this
+ * file without changes (in Configuration/ExtensionBuilder/settings.yaml)
+ * */
+/*
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('sys_file', 'EXT:media_frontend/Resources/Private/Language/locallang_csh_sys_file.xlf');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('sys_file');
 $TCA['sys_file'] = array(
@@ -68,5 +77,5 @@ $TCA['sys_file_collection'] = array(
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/sys_file_collection.gif'
 	),
 );
-
+*/
 ?>
