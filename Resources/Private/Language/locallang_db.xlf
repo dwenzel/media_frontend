@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-09-22T10:54:47Z" product-name="media_frontend">
+		<header/>
+		<body>
+
+			<trans-unit id="tx_mediafrontend_domain_model_asset">
+				<source>Asset</source>
+			</trans-unit>
+			<trans-unit id="tx_mediafrontend_domain_model_asset.frontend_user">
+				<source>Frontend User</source>
+			</trans-unit>
+			
+			<trans-unit id="sys_file.tx_extbase_type.Tx_MediaFrontend_Asset">
+				<source>Frontend Media Asset</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_mediafrontend_domain_model_filecollection">
+				<source>File Collection</source>
+			</trans-unit>
+			<trans-unit id="tx_mediafrontend_domain_model_filecollection.frontend_user">
+				<source>Frontend User</source>
+			</trans-unit>
+			
+			<trans-unit id="sys_file_collection.tx_extbase_type.Tx_MediaFrontend_FileCollection">
+				<source>Frontend Media FileCollection</source>
+			</trans-unit>
+			
+		</body>
+	</file>
+</xliff>
