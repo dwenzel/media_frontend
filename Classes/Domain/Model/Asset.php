@@ -99,6 +99,25 @@ class Asset extends \TYPO3\CMS\Core\Resource\File {
 	protected $frontendUser;
 
 	/**
+	 * @var \TYPO3\CMS\Extbase\Object\ObjectManager
+	 */
+	protected $objectManager;
+
+	/** 
+	 * Constructor
+	 *
+	 * @param array $assetData
+	 * @param \TYPO3\CMS\Core\Resource\ResourceStorage $storage
+	 * @return \TYPO3\CMS\Media\Domain\Model\Asset
+	 */
+	public function __construct(array $assetData = array(), $storage = NULL) {
+	    parent::__construct($assetData, $storage);
+
+	    // We are not in Extbase Context
+	    $this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager');
+	}
+
+	/**
 	 * Returns the frontendUser
 	 *
 	 * @return \TYPO3\CMS\Extbase\Domain\Model\FrontendUser $frontendUser
