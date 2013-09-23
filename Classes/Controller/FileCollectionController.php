@@ -48,8 +48,17 @@ class FileCollectionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionC
 	 * @return void
 	 */
 	public function listAction() {
-		$fileCollections = $this->fileCollectionRepository->findAll();
-		$this->view->assign('fileCollections', $fileCollections);
+		$collectionRepository =  \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Resource\\FileCollectionRepository');	
+	   // $fileCollections = $this->fileCollectionRepository->findAll();
+	    //$fileCollections = $collectionRepository->findAll();
+		/*foreach($fileCollections as $collection) {
+		    $collection->loadContents();
+		}*/
+		$collection = $collectionRepository->findByUid(1);
+		$collection->loadContents();
+		//$this->view->assign('fileCollections', $fileCollections);
+		$this->view->assign('fileCollections', $collection);
+		$this->view->assign('files', $collection->getItems());
 	}
 
 	/**
