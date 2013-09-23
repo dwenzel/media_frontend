@@ -51,6 +51,8 @@ $TCA['sys_file'] = array(
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('sys_file_collection', 'EXT:media_frontend/Resources/Private/Language/locallang_csh_sys_file_collection.xlf');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('sys_file_collection');
+*/
+/*
 $TCA['sys_file_collection'] = array(
 	'ctrl' => array(
 		'title'	=> 'LLL:EXT:media_frontend/Resources/Private/Language/locallang_db.xlf:sys_file_collection',
