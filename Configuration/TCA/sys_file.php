@@ -10,7 +10,7 @@ $tca = array(
 		'tstamp' => 'tstamp',
 		//'default_sortby' => 'ORDER BY is_variant ASC, uid DESC',
 		'crdate' => 'crdate',
-		'searchFields' => 'uid,title,extension,name',
+		'searchFields' => 'uid,title,extension,name,frontend_user,',
 		'enablecolumns' => array(
 			'disabled' => 'hidden',
 			'starttime' => 'starttime',
@@ -19,7 +19,7 @@ $tca = array(
 	),
 	'types' => array(
 		TYPO3\CMS\Core\Resource\File::FILETYPE_UNKNOWN => array('showitem' => '
-								fileinfo, sys_language_uid,title, description, caption, download_name,
+								fileinfo, sys_language_uid,title, description, caption, download_name,frontend_user,
 
 								--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
 									--palette--;LLL:EXT:media_frontend/Resources/Private/Language/locallang.xlf:visibility;10;; ,
@@ -30,7 +30,7 @@ $tca = array(
 	'),
 
 		TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => array('showitem' => '
-								fileinfo, sys_language_uid, title, description, caption, download_name,
+								fileinfo, sys_language_uid, title, description, caption, download_name,frontend_user,
 
 								--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
 									--palette--;LLL:EXT:media_frontend/Resources/Private/Language/locallang.xlf:visibility;10;; ,
@@ -43,7 +43,7 @@ $tca = array(
 								--div--;LLL:EXT:media_frontend/Resources/Private/Language/locallang.xlf:variants, variants,'),
 
 		TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => array('showitem' => '
-								fileinfo, sys_language_uid, title, description, caption, download_name,
+								fileinfo, sys_language_uid, title, description, caption, download_name,frontend_user,
 
 								--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
 									--palette--;LLL:EXT:media_frontend/Resources/Private/Language/locallang.xlf:visibility;10;; ,
@@ -61,7 +61,7 @@ $tca = array(
 
 		TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => array('showitem' => '
 
-								fileinfo, sys_language_uid, title, description, caption, download_name,
+								fileinfo, sys_language_uid, title, description, caption, download_name,frontend_user,
 
 								--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
 									--palette--;LLL:EXT:media_frontend/Resources/Private/Language/locallang.xlf:visibility;10;; ,
@@ -79,7 +79,7 @@ $tca = array(
 								--div--;LLL:EXT:media_frontend/Resources/Private/Language/locallang.xlf:variants, variants,'),
 
 		TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => array('showitem' => '
-								fileinfo, sys_language_uid, title, description, caption, download_name,
+								fileinfo, sys_language_uid, title, description, caption, download_name,frontend_user,
 
 								--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
 									--palette--;LLL:EXT:media_frontend/Resources/Private/Language/locallang.xlf:visibility;10;; ,
@@ -96,7 +96,7 @@ $tca = array(
 								--div--;LLL:EXT:media_frontend/Resources/Private/Language/locallang.xlf:variants, variants,'),
 
 		TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => array('showitem' => '
-								fileinfo, sys_language_uid, title, description, caption, download_name,
+								fileinfo, sys_language_uid, title, description, caption, download_name,frontend_user,
 
 								--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
 									--palette--;LLL:EXT:media_frontend/Resources/Private/Language/locallang.xlf:visibility;10;; ,
@@ -156,6 +156,21 @@ $tca = array(
 				'userFunc' => 'typo3/sysext/core/Classes/Resource/Hook/FileInfoHook.php:TYPO3\CMS\Core\Resource\Hook\FileInfoHook->renderFileInfo'
 			),
 		),
+		'frontend_user' => Array(
+			'exclude' => 1,
+			'label' => 'Frontend User',
+			'config' => Array(
+			    'type' => 'select',
+			    'foreign_table' => 'fe_users',
+			    'min_items' => 0,
+			    'max_items' => 1,
+			    'default' => NULL,
+			    'items' => array(
+			    	array('', NULL),
+			     ),
+			),
+		),
+
 		'starttime' => Array(
 			'exclude' => 1,
 			'l10n_mode' => 'mergeIfNotBlank',
