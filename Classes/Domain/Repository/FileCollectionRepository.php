@@ -5,7 +5,7 @@ namespace Webfox\MediaFrontend\Domain\Repository;
  *  Copyright notice
  *
  *  (c) 2013 Dirk Wenzel <wenzel@webfox01.de>, Agentur Webfox
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -32,8 +32,21 @@ namespace Webfox\MediaFrontend\Domain\Repository;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-//class FileCollectionRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 class FileCollectionRepository extends \TYPO3\CMS\Core\Resource\FileCollectionRepository {
-
+	/*
+	 * Create domain object
+	 * We overwrite parent's method because the types (static, folder) are hard coded there.
+	 * @param array $record An array containing record data from DB.
+	 * @return \TYPO3\CMS\Core\Resource\Collection|\Webfox\MediaFrontend\Domain\Model\FileCollection
+	 */
+	protected function createDomainObject(array $record) {
+		$domainObject = NULL;
+		if ($record['type'] == 'feStatic') {
+			$domainObject = \Webfox\MediaFrontend\Domain\Model\FileCollection::create($record);
+		} else {
+			$domainObject = parent::createDomainObject($record);
+		}
+		return $domainObject;
+	}
 }
 ?>
