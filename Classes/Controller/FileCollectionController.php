@@ -49,7 +49,6 @@ class FileCollectionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionC
 	 */
 	public function listAction() {
 	    $fileCollections = $this->fileCollectionRepository->findByType('feStatic');
-		\TYPO3\CMS\Core\Utility\DebugUtility::debug($fileCollections);
 		$collections = Array();
 		foreach($fileCollections as &$collection) {
 			$collection->loadContents();
