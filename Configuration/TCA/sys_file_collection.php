@@ -5,28 +5,19 @@ if (!defined ('TYPO3_MODE')) {
 
 $tca = array(
 	'ctrl' => array(
-		'tstamp' => 'tstamp',
-		'crdate' => 'crdate',
-		'cruser_id' => 'cruser_id',
-		'dividers2tabs' => TRUE,
-
-		'versioningWS' => 2,
-		'versioning_followPages' => TRUE,
-		'origUid' => 't3_origuid',
-		'languageField' => 'sys_language_uid',
-		'transOrigPointerField' => 'l10n_parent',
-		'transOrigDiffSourceField' => 'l10n_diffsource',
-		'delete' => 'deleted',
-		'enablecolumns' => array(
-			'disabled' => 'hidden',
-			'starttime' => 'starttime',
-			'endtime' => 'endtime',
-		),
+		'title' => 'LLL:EXT:media_frontend/Resources/Private/Language/locallang_db.xlf:sys_file_collection.type.Tx_MediaFrontend_FileCollection',
 		'searchFields' => 'title,frontend_user,',
+		'typeicon_classes' => array(
+			'default' => 'apps-filetree-folder-media',
+			'static' => 'apps-clipboard-images',
+			'folder' => 'apps-filetree-folder-media',
+			'feStatic' => 'apps-clipboard-images',
+		),
+		
 	),
 	'palettes' => array (
 		'1' => array('showitem' => 'hidden,
-		    starttime,endtime,frontend_user'),
+		    starttime,endtime'),
 	),
 	'columns' => array (
 		'frontend_user' => Array(
@@ -43,7 +34,26 @@ $tca = array(
 			     ),
 			),
 		),
+		'type' => array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:lang/locallang_tca.xlf:sys_file_collection.type',
+			'config' => array(
+				'type' => 'select',
+				'items' => array(
+					array('Static selection of files', 'static'),
+					array('Folder from Storage', 'folder'),
+					array('Media Frontend: Static selection of files','feStatic'),
+				)
+			)
+		),
 	),
+	'types' => array(
+		'0' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, title;;1, type, files'),
+		'static' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, title;;1, type, files'),
+		'folder' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, title;;1, type, storage, folder'),
+		'feStatic' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, title;;1, type, frontend_user, files')
+	),
+	
 );
 
 return \TYPO3\CMS\Core\Utility\GeneralUtility::array_merge_recursive_overrule($GLOBALS['TCA']['sys_file_collection'], $tca);
