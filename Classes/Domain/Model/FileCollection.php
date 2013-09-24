@@ -33,7 +33,7 @@ namespace Webfox\MediaFrontend\Domain\Model;
  *
  */
 class FileCollection extends \TYPO3\CMS\Core\Resource\Collection\StaticFileCollection {
-
+	static protected $type = 'feStatic';
 	/**
 	 * Frontend User who owns this collection
 	 *
@@ -60,6 +60,42 @@ class FileCollection extends \TYPO3\CMS\Core\Resource\Collection\StaticFileColle
 	public function setFrontendUser(\TYPO3\CMS\Extbase\Domain\Model\FrontendUser $frontendUser) {
 		$this->frontendUser = $frontendUser;
 	}
-
+	
+	/**
+	 * Returns the file collection as an array
+	 * Overwrites parent's method in order to add custom fields.
+	 * 
+	 * @return array 
+	 */
+	public function toArray() {
+		$itemArray = array();
+		foreach ($this->storage as $item) {
+			$itemArray[] = $item;
+		}
+		return array(
+			'uid' => $this -> getIdentifier(), 
+			'title' => $this -> getTitle(), 
+			//'description' => $this -> getDescription(), 
+			//'table_name' => $this -> getItemTableName(),
+			'frontend_user' => $this -> getFrontendUser(), 
+			'items' => $itemArray
+		);
+	}
+	
+	/** 
+	 * Initializes Object from array.
+	 * Overwrites parent's method in oder to add custom fields.
+	 * 
+	 * @param array $array Array containing record data.
+	 * @return void
+	 */ 
+	public function fromArray($array) {
+		$this->uid = $array['uid'];
+		$this->title = $array['title'];
+		//$this->description = $array['description'];
+		//$this->itemTableName = $array['table_name'];
+		$this->frontendUser = $array['frontend_user'];
+	}
 }
 ?>
+
