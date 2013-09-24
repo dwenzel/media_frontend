@@ -21,5 +21,6 @@ CREATE TABLE sys_file (
 CREATE TABLE sys_file_collection (
 
 	frontend_user int(11) unsigned DEFAULT '0',
+	type varchar(9) DEFAULT 'static' NOT NULL,
 
 );
