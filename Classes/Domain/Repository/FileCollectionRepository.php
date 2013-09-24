@@ -48,5 +48,26 @@ class FileCollectionRepository extends \TYPO3\CMS\Core\Resource\FileCollectionRe
 		}
 		return $domainObject;
 	}
+	/**
+	 * Finds an object matching the given identifier.
+	 * @todo replace core exeptions with own
+	 *
+ 	 * @param int $uid The identifier of the  object to find
+ 	 * 
+ 	 * @throws \RuntimeException
+	 * @throws \InvalidArgumentException						 	 
+	 * @return object The matching object
+ 	 */
+	public function findByUid($uid) {
+	    if (!\TYPO3\CMS\Core\Utility\MathUtility::canBeInterpretedAsInteger($uid)) {
+		throw new \InvalidArgumentException('uid has to be integer.', 1316779798);
+	    }
+	    $row = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow('*', $this->table, 'uid=' . intval($uid) . ' AND deleted=0 AND hidden=0');
+	    if (empty($row) || !is_array($row)) {
+		return NULL;
+		//throw new \RuntimeException('Could not find row with uid "' . $uid . '" in table ' . $this->table, 1314354065);
+	    }
+	    return $this->createDomainObject($row);
+	}
 }
 ?>
