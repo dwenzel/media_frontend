@@ -60,18 +60,16 @@ class FileCollectionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionC
 	/**
 	 * action show
 	 *
+	 * @FIXME calling with object as parameter fails due to forbidden type 'mixed' 
+	 * for property itemsCriteria. Using integer in the meantime...
 	 * @param integer $fileCollection
 	 * @return void
 	 */
-	 /**
-	  * @FIXME calling with object as parameter fails due to forbidden type 'mixed' for
-	  *  property itemsCriteria.
-	  * Using integer in the meantime...
-	  */
-//	public function showAction(\Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection) {
 	public function showAction($fileCollection) {
 		$collection = $this->fileCollectionRepository->findByUid($fileCollection);
-		$collection->loadContents();
+		if ($collection != NULL) {
+		    $collection->loadContents();
+		}
 		$this->view->assign('fileCollection', $collection);
 	}
 
