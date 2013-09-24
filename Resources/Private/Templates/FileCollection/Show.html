@@ -15,7 +15,12 @@ Otherwise your changes will be overwritten the next time you save the extension 
 <h1>Single View for FileCollection</h1>
 
 <f:flashMessages />
+<f:debug title="fileCollection">{fileCollection}</f:debug>
 <f:render partial="FileCollection/Properties" arguments="{fileCollection:fileCollection}" />
+<f:for each="{fileCollection.items}" as="file">
+    <f:debug title="file">{file.originalFile}</f:debug>
+    {file.propertiesOfFileReference.title}<br />
+</f:for>
 <f:link.action action="list">Back to list</f:link.action><br />
 <f:link.action action="new">New FileCollection</f:link.action>
 </f:section>

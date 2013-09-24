@@ -9,7 +9,7 @@ if (!defined('TYPO3_MODE')) {
 	array(
 	//	'Asset' => 'list, show, new, create, edit, update, delete, upload, download',
 	//	'FileCollection' => 'list, show, new, create, edit, update, delete',
-		'FileCollection' => 'list',
+		'FileCollection' => 'list, show',
 	),
 	// non-cacheable actions
 	array(
