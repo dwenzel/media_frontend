@@ -52,7 +52,7 @@ overwriteSettings:
     Private:
       Language:
         locallang.xml: merge
-        locallang.xlf: merge
+        #locallang.xlf: merge
       Templates: keep
 
   ext_icon.gif: keep
