@@ -55,7 +55,7 @@ class ObjectFactory implements \TYPO3\CMS\Core\SingletonInterface {
 	 * @return \Webfox\MediaFrontend\ObjectFactory
 	 */
 	static public function getInstance() {
-		return \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\Webfox\\MediaFrontend\\ObjectFactory');
+		return \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Webfox\\MediaFrontend\\ObjectFactory');
 	}
 
 	/**

@@ -12,7 +12,7 @@ CREATE TABLE sys_file (
 	duration varchar(255) DEFAULT '' NOT NULL,
 	download_name varchar(255) DEFAULT '' NOT NULL,
 	frontend_user int(11) unsigned DEFAULT '0',
-
+	hidden tinyint(4) unsigned DEFAULT '0' NOT NULL,
 );
 
 #
@@ -21,5 +21,6 @@ CREATE TABLE sys_file (
 CREATE TABLE sys_file_collection (
 
 	frontend_user int(11) unsigned DEFAULT '0',
+	type varchar(9) DEFAULT 'static' NOT NULL,
 
 );
