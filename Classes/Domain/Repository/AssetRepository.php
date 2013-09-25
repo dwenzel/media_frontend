@@ -35,11 +35,15 @@ namespace Webfox\MediaFrontend\Domain\Repository;
 class AssetRepository extends \TYPO3\CMS\Core\Resource\FileRepository {
 
 	/**
+	 * databaseHandle
+	 *
 	 * @var \TYPO3\CMS\Core\Database\DatabaseConnection
 	 */
 	protected $databaseHandle;
 
 	/**
+	 * objectFactory
+	 *
 	 * @var \Webfox\MediaFrontend\ObjectFactory
 	 */
 	protected $objectFactory;
@@ -52,11 +56,15 @@ class AssetRepository extends \TYPO3\CMS\Core\Resource\FileRepository {
 	protected $rawResult = FALSE;
 
 	/**
+	 * objectType
+	 *
 	 * @var string
 	 */
 	protected $objectType = 'Webfox\MediaFrontend\Domain\Model\Asset';
 
 	/**
+	 * objectTypes
+	 *
 	 * @var array
 	 */
 	protected $objectTypes = array(
@@ -68,12 +76,16 @@ class AssetRepository extends \TYPO3\CMS\Core\Resource\FileRepository {
 	);
 
 	/**
+	 * objectManager
+	 *
 	 * @var \TYPO3\CMS\Extbase\Object\ObjectManager
 	 */
 	protected $objectManager;
 
 	/**
 	 * Constructor
+	 *
+	 * @return
 	 */
 	public function __construct() {
 		$this->databaseHandle = $GLOBALS['TYPO3_DB'];
@@ -120,20 +132,20 @@ class AssetRepository extends \TYPO3\CMS\Core\Resource\FileRepository {
 	 * @return int
 	 */
 	public function addAsset($asset = array()) {
-
-		if (empty($asset['pid'])) {
-			$asset['pid'] = '0';
-		}
-		$key = 'NEW' . rand(100000, 999999);
-		$data['sys_file'][$key] = $asset;
-
-		/** @var $tce \TYPO3\CMS\Core\DataHandling\DataHandler */
-		$tce = $this->objectManager->get('TYPO3\CMS\Core\DataHandling\DataHandler');
-		#$tce->stripslashes_values = 0; #@todo useful setting?
-		$tce->start($data, array());
-		$tce->process_datamap();
-
-		return empty($tce->substNEWwithIDs[$key]) ? 0 : $tce->substNEWwithIDs[$key];
+		
+				if (empty($asset['pid'])) {
+					$asset['pid'] = '0';
+				}
+				$key = 'NEW' . rand(100000, 999999);
+				$data['sys_file'][$key] = $asset;
+		
+				/** @var $tce \TYPO3\CMS\Core\DataHandling\DataHandler */
+				$tce = $this->objectManager->get('TYPO3\CMS\Core\DataHandling\DataHandler');
+				#$tce->stripslashes_values = 0; #@todo useful setting?
+				$tce->start($data, array());
+				$tce->process_datamap();
+		
+				return empty($tce->substNEWwithIDs[$key]) ? 0 : $tce->substNEWwithIDs[$key];
 	}
 
 	/**
@@ -142,11 +154,11 @@ class AssetRepository extends \TYPO3\CMS\Core\Resource\FileRepository {
 	 * @return \Webfox\MediaFrontend\Domain\Model\Asset[]
 	 */
 	public function findAll() {
-
-		$query = $this->createQuery();
-		return $query->setRawResult($this->rawResult)
-			->setObjectType($this->objectType)
-			->execute();
+		
+				$query = $this->createQuery();
+				return $query->setRawResult($this->rawResult)
+					->setObjectType($this->objectType)
+					->execute();
 	}
 
 	/**
@@ -158,20 +170,20 @@ class AssetRepository extends \TYPO3\CMS\Core\Resource\FileRepository {
 	 * @return \Webfox\MediaFrontend\Domain\Model\Asset The matching object
 	 */
 	public function findByUid($uid) {
-
-		$matcher = $this->createMatch()->addMatch('uid', $uid);
-
-		$query = $this->createQuery();
-		$result = $query->setRawResult($this->rawResult)
-			->setObjectType($this->objectType)
-			->setMatcher($matcher)
-			->setFilterVariant(FALSE)
-			->execute();
-
-		if (is_array($result)) {
-			$result = reset($result);
-		}
-		return $result;
+		
+				$matcher = $this->createMatch()->addMatch('uid', $uid);
+		
+				$query = $this->createQuery();
+				$result = $query->setRawResult($this->rawResult)
+					->setObjectType($this->objectType)
+					->setMatcher($matcher)
+					->setFilterVariant(FALSE)
+					->execute();
+		
+				if (is_array($result)) {
+					$result = reset($result);
+				}
+				return $result;
 	}
 
 	/**
@@ -184,25 +196,25 @@ class AssetRepository extends \TYPO3\CMS\Core\Resource\FileRepository {
 	 * @return \Webfox\MediaFrontend\Domain\Model\Asset[]
 	 */
 	public function findBy(\Webfox\MediaFrontend\QueryElement\Matcher $matcher, \Webfox\MediaFrontend\QueryElement\Order $order = NULL, $limit = NULL, $offset = NULL) {
-
-		$query = $this->createQuery()->setMatcher($matcher);
-
-		if ($order) {
-			$query->setOrder($order);
-		}
-
-		if ($offset) {
-			$query->setOffset($offset);
-		}
-
-		if ($limit) {
-			$query->setLimit($limit);
-		}
-
-		return $query
-			->setRawResult($this->rawResult)
-			->setObjectType($this->objectType)
-			->execute();
+		
+				$query = $this->createQuery()->setMatcher($matcher);
+		
+				if ($order) {
+					$query->setOrder($order);
+				}
+		
+				if ($offset) {
+					$query->setOffset($offset);
+				}
+		
+				if ($limit) {
+					$query->setLimit($limit);
+				}
+		
+				return $query
+					->setRawResult($this->rawResult)
+					->setObjectType($this->objectType)
+					->execute();
 	}
 
 	/**
@@ -291,6 +303,8 @@ class AssetRepository extends \TYPO3\CMS\Core\Resource\FileRepository {
 	}
 
 	/**
+	 * getRawResult
+	 *
 	 * @return boolean
 	 */
 	public function getRawResult() {
@@ -298,6 +312,8 @@ class AssetRepository extends \TYPO3\CMS\Core\Resource\FileRepository {
 	}
 
 	/**
+	 * setRawResult
+	 *
 	 * @param boolean $rawResult
 	 * @return \Webfox\MediaFrontend\Domain\Repository\AssetRepository
 	 */
@@ -307,6 +323,8 @@ class AssetRepository extends \TYPO3\CMS\Core\Resource\FileRepository {
 	}
 
 	/**
+	 * getObjectType
+	 *
 	 * @return string
 	 */
 	public function getObjectType() {
@@ -314,6 +332,8 @@ class AssetRepository extends \TYPO3\CMS\Core\Resource\FileRepository {
 	}
 
 	/**
+	 * setObjectType
+	 *
 	 * @param string $objectType
 	 * @return \Webfox\MediaFrontend\Domain\Repository\AssetRepository
 	 */
@@ -323,6 +343,8 @@ class AssetRepository extends \TYPO3\CMS\Core\Resource\FileRepository {
 	}
 
 	/**
+	 * getObjectTypes
+	 *
 	 * @return array
 	 */
 	public function getObjectTypes() {
@@ -330,7 +352,10 @@ class AssetRepository extends \TYPO3\CMS\Core\Resource\FileRepository {
 	}
 
 	/**
+	 * setObjectTypes
+	 *
 	 * @param array $objectTypes
+	 * @return
 	 */
 	public function setObjectTypes($objectTypes) {
 		$this->objectTypes = $objectTypes;
@@ -344,28 +369,28 @@ class AssetRepository extends \TYPO3\CMS\Core\Resource\FileRepository {
 	 * @param string $flag
 	 * @return array
 	 */
-	protected function processMagicCall($field, $value, $flag = '') {
-
-		$matcher = $this->createMatch()->addMatch($field, $value);
-
-		// Add "automatic" file type restriction if method get called from child repository.
-		$fileType = $this->getFileType($this->objectType);
-		if ($fileType > 0) {
-			$matcher->addMatch('type', $fileType);
-		}
-
-		$query = $this->createQuery();
-		$query->setRawResult($this->rawResult)
-			->setObjectType($this->objectType)
-			->setMatcher($matcher);
-
-		if ($flag == 'count') {
-			$result = $query->count();
-		} else {
-			$result = $query->execute();
-		}
-
-		return $flag == 'one' && !empty($result) ? reset($result) : $result;
+	protected function processMagicCall($field, $value, $flag = "") {
+		
+				$matcher = $this->createMatch()->addMatch($field, $value);
+		
+				// Add "automatic" file type restriction if method get called from child repository.
+				$fileType = $this->getFileType($this->objectType);
+				if ($fileType > 0) {
+					$matcher->addMatch('type', $fileType);
+				}
+		
+				$query = $this->createQuery();
+				$query->setRawResult($this->rawResult)
+					->setObjectType($this->objectType)
+					->setMatcher($matcher);
+		
+				if ($flag == 'count') {
+					$result = $query->count();
+				} else {
+					$result = $query->execute();
+				}
+		
+				return $flag == 'one' && !empty($result) ? reset($result) : $result;
 	}
 
 	/**
@@ -378,6 +403,7 @@ class AssetRepository extends \TYPO3\CMS\Core\Resource\FileRepository {
 		$key = array_search($objectType, $this->objectTypes);
 		return $key === FALSE ? 0 : $key;
 	}
+
 }
 
 ?>
