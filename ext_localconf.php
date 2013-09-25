@@ -7,13 +7,13 @@ if (!defined('TYPO3_MODE')) {
 	'Webfox.' . $_EXTKEY,
 	'Collection',
 	array(
-		'Asset' => 'list, show, new, create, edit, update, delete, upload, download',
+	//	'Asset' => 'list, show, new, create, edit, update, delete, upload, download',
 		'FileCollection' => 'list, show, new, create, edit, update, delete',
 		
 	),
 	// non-cacheable actions
 	array(
-		'Asset' => 'create, update, delete, ',
+	//	'Asset' => 'create, update, delete, ',
 		'FileCollection' => 'create, update, delete',
 		
 	)
