@@ -33,7 +33,14 @@ namespace Webfox\MediaFrontend\Domain\Model;
  *
  */
 class FileCollection extends \TYPO3\CMS\Core\Resource\Collection\StaticFileCollection {
+
+	/**
+	 * type
+	 *
+	 * @static string
+	 */
 	static protected $type = 'feStatic';
+
 	/**
 	 * Frontend User who owns this collection
 	 *
@@ -60,12 +67,12 @@ class FileCollection extends \TYPO3\CMS\Core\Resource\Collection\StaticFileColle
 	public function setFrontendUser(\TYPO3\CMS\Extbase\Domain\Model\FrontendUser $frontendUser) {
 		$this->frontendUser = $frontendUser;
 	}
-	
+
 	/**
 	 * Returns the file collection as an array
 	 * Overwrites parent's method in order to add custom fields.
-	 * 
-	 * @return array 
+	 *
+	 * @return array
 	 */
 	public function toArray() {
 		$itemArray = array();
@@ -81,14 +88,14 @@ class FileCollection extends \TYPO3\CMS\Core\Resource\Collection\StaticFileColle
 			'items' => $itemArray
 		);
 	}
-	
-	/** 
+
+	/**
 	 * Initializes Object from array.
 	 * Overwrites parent's method in oder to add custom fields.
-	 * 
+	 *
 	 * @param array $array Array containing record data.
 	 * @return void
-	 */ 
+	 */
 	public function fromArray($array) {
 		$this->uid = $array['uid'];
 		$this->title = $array['title'];
@@ -96,6 +103,7 @@ class FileCollection extends \TYPO3\CMS\Core\Resource\Collection\StaticFileColle
 		//$this->itemTableName = $array['table_name'];
 		$this->frontendUser = $array['frontend_user'];
 	}
-}
-?>
 
+}
+
+?>
