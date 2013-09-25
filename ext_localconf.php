@@ -8,6 +8,7 @@ if (!defined('TYPO3_MODE')) {
 	'Media',
 	array(
 	//	'Asset' => 'list, show, new, create, edit, update, delete, upload, download',
+		'Asset' => 'list, show',
 	//	'FileCollection' => 'list, show, new, create, edit, update, delete',
 		'FileCollection' => 'list, show',
 	),
