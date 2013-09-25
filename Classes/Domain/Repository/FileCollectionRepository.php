@@ -33,9 +33,10 @@ namespace Webfox\MediaFrontend\Domain\Repository;
  *
  */
 class FileCollectionRepository extends \TYPO3\CMS\Core\Resource\FileCollectionRepository {
-	/*
+	/**
 	 * Create domain object
 	 * We overwrite parent's method because the types (static, folder) are hard coded there.
+	 *
 	 * @param array $record An array containing record data from DB.
 	 * @return \TYPO3\CMS\Core\Resource\Collection|\Webfox\MediaFrontend\Domain\Model\FileCollection
 	 */
@@ -48,12 +49,12 @@ class FileCollectionRepository extends \TYPO3\CMS\Core\Resource\FileCollectionRe
 		}
 		return $domainObject;
 	}
+
 	/**
 	 * Finds an object matching the given identifier.
-	 * @todo replace core exeptions with own
 	 *
+	 * @todo replace core exeptions with own
  	 * @param int $uid The identifier of the  object to find
- 	 * 
  	 * @throws \RuntimeException
 	 * @throws \InvalidArgumentException						 	 
 	 * @return object The matching object
@@ -69,5 +70,7 @@ class FileCollectionRepository extends \TYPO3\CMS\Core\Resource\FileCollectionRe
 	    }
 	    return $this->createDomainObject($row);
 	}
+
 }
 ?>
+
