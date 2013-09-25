@@ -42,6 +42,17 @@ class FileCollection extends \TYPO3\CMS\Core\Resource\Collection\StaticFileColle
 	static protected $type = 'feStatic';
 
 	/**
+	 * itemsCriteria
+	 * @fixme Variable is defined as mixed type in prarent class
+	 * AbstractFileCollection. Extbase Reflexion Service fails with invalid
+	 * element type for property.
+	 * I don't know whether array is right or not - so give it a try.
+	 *
+	 * @var array
+	 */
+	protected $itemsCriteria;
+
+	/**
 	 * Frontend User who owns this collection
 	 *
 	 * @var \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
