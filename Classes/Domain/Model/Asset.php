@@ -35,6 +35,13 @@ namespace Webfox\MediaFrontend\Domain\Model;
 class Asset extends \TYPO3\CMS\Core\Resource\File {
 
 	/**
+	 * objectManager
+	 *
+	 * @var \TYPO3\CMS\Extbase\Object\ObjectManager
+	 */
+	protected $objectManager;
+
+	/**
 	 * title
 	 *
 	 * @var \string
@@ -99,11 +106,6 @@ class Asset extends \TYPO3\CMS\Core\Resource\File {
 	protected $frontendUser;
 
 	/**
-	 * @var \TYPO3\CMS\Extbase\Object\ObjectManager
-	 */
-	protected $objectManager;
-
-	/** 
 	 * Constructor
 	 *
 	 * @param array $assetData
@@ -111,10 +113,10 @@ class Asset extends \TYPO3\CMS\Core\Resource\File {
 	 * @return \TYPO3\CMS\Media\Domain\Model\Asset
 	 */
 	public function __construct(array $assetData = array(), $storage = NULL) {
-	    parent::__construct($assetData, $storage);
-
-	    // We are not in Extbase Context
-	    $this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager');
+			    parent::__construct($assetData, $storage);
+		
+			    // We are not in Extbase Context
+			    $this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager');
 	}
 
 	/**
@@ -289,4 +291,5 @@ class Asset extends \TYPO3\CMS\Core\Resource\File {
 	}
 
 }
+
 ?>
