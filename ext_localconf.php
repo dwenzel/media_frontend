@@ -7,9 +7,9 @@ if (!defined('TYPO3_MODE')) {
 	'Webfox.' . $_EXTKEY,
 	'Media',
 	array(
-		'Asset' => 'list, show, new, create, edit, update, delete, upload, download',
-		'FileCollection' => 'list, show, new, create, edit, update, delete',
-		
+	//	'Asset' => 'list, show, new, create, edit, update, delete, upload, download',
+	//	'FileCollection' => 'list, show, new, create, edit, update, delete',
+		'FileCollection' => 'list, show',
 	),
 	// non-cacheable actions
 	array(
