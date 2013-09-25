@@ -81,7 +81,9 @@ class FileCollectionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionC
 	 * @return void
 	 */
 	public function newAction(\Webfox\MediaFrontend\Domain\Model\FileCollection $newFileCollection = NULL) {
-		$this->view->assign('newFileCollection', $newFileCollection);
+			$newFileCollection = new \Webfox\MediaFrontend\Domain\Model\FileCollection();
+			\TYPO3\CMS\Core\Utility\DebugUtility::debug($newFileCollection);
+			$this->view->assign('newFileCollection', $newFileCollection);
 	}
 
 	/**
