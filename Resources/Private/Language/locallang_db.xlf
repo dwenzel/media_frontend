@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2013-09-22T14:20:56Z" product-name="media_frontend">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-09-26T16:48:54Z" product-name="media_frontend">
 		<header/>
 		<body>
 
@@ -9,6 +9,9 @@
 			</trans-unit>
 			<trans-unit id="tx_mediafrontend_domain_model_asset.title">
 				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_mediafrontend_domain_model_asset.file">
+				<source>File</source>
 			</trans-unit>
 			<trans-unit id="tx_mediafrontend_domain_model_asset.description">
 				<source>Description</source>
@@ -34,22 +37,17 @@
 			<trans-unit id="tx_mediafrontend_domain_model_asset.frontend_user">
 				<source>Frontend User</source>
 			</trans-unit>
-			
-			<trans-unit id="sys_file.tx_extbase_type.Tx_MediaFrontend_Asset">
-				<source>Frontend Media Asset</source>
-			</trans-unit>
-			
+
 			<trans-unit id="tx_mediafrontend_domain_model_filecollection">
 				<source>File Collection</source>
 			</trans-unit>
 			<trans-unit id="tx_mediafrontend_domain_model_filecollection.frontend_user">
 				<source>Frontend User</source>
 			</trans-unit>
-			
-			<trans-unit id="sys_file_collection.type.Tx_MediaFrontend_FileCollection">
-				<source>Frontend Media File Collection</source>
+			<trans-unit id="tx_mediafrontend_domain_model_filecollection.assets">
+				<source>Assets</source>
 			</trans-unit>
-			
+
 		</body>
 	</file>
 </xliff>

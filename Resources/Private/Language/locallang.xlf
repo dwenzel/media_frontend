@@ -1,49 +1,53 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2013-09-24T14:48:32Z">
-		<header>
-			<generator>LFEditor</generator>
-		</header>
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-09-26T16:48:54Z" product-name="media_frontend">
+		<header/>
 		<body>
-		<trans-unit id="tx_mediafrontend_domain_model_asset" xml:space="preserve">
-			<source>Frontend Asset</source>
-		</trans-unit>
-		<trans-unit id="tx_mediafrontend_domain_model_asset.caption" xml:space="preserve">
-			<source>caption</source>
-		</trans-unit>
-		<trans-unit id="tx_mediafrontend_domain_model_asset.description" xml:space="preserve">
-			<source>description</source>
-		</trans-unit>
-		<trans-unit id="tx_mediafrontend_domain_model_asset.download_name" xml:space="preserve">
-			<source>downloadName</source>
-		</trans-unit>
-		<trans-unit id="tx_mediafrontend_domain_model_asset.duration" xml:space="preserve">
-			<source>duration</source>
-		</trans-unit>
-		<trans-unit id="tx_mediafrontend_domain_model_asset.extension" xml:space="preserve">
-			<source>extension</source>
-		</trans-unit>
-		<trans-unit id="tx_mediafrontend_domain_model_asset.frontend_user" xml:space="preserve">
-			<source>Frontend User who owns this asset</source>
-		</trans-unit>
-		<trans-unit id="tx_mediafrontend_domain_model_asset.height" xml:space="preserve">
-			<source>height</source>
-		</trans-unit>
-		<trans-unit id="tx_mediafrontend_domain_model_asset.title" xml:space="preserve">
-			<source>title</source>
-		</trans-unit>
-		<trans-unit id="tx_mediafrontend_domain_model_asset.width" xml:space="preserve">
-			<source>width</source>
-		</trans-unit>
-		<trans-unit id="tx_mediafrontend_domain_model_filecollection" xml:space="preserve">
-			<source>Collection of Frontend Files.</source>
-		</trans-unit>
-		<trans-unit id="tx_mediafrontend_domain_model_filecollection.frontend_user" xml:space="preserve">
-			<source>Frontend User who owns this collection</source>
-		</trans-unit>
-		<trans-unit id="tx_mediafrontend_domain_model_filecollection.title" xml:space="preserve">
-			<source>Title</source>
-		</trans-unit>
+
+			<trans-unit id="tx_mediafrontend_domain_model_asset">
+				<source>Frontend Asset</source>
+			</trans-unit>
+			<trans-unit id="tx_mediafrontend_domain_model_asset.title">
+				<source>title</source>
+			</trans-unit>
+			<trans-unit id="tx_mediafrontend_domain_model_asset.file">
+				<source>file</source>
+			</trans-unit>
+			<trans-unit id="tx_mediafrontend_domain_model_asset.description">
+				<source>description</source>
+			</trans-unit>
+			<trans-unit id="tx_mediafrontend_domain_model_asset.extension">
+				<source>extension</source>
+			</trans-unit>
+			<trans-unit id="tx_mediafrontend_domain_model_asset.caption">
+				<source>caption</source>
+			</trans-unit>
+			<trans-unit id="tx_mediafrontend_domain_model_asset.width">
+				<source>width</source>
+			</trans-unit>
+			<trans-unit id="tx_mediafrontend_domain_model_asset.height">
+				<source>height</source>
+			</trans-unit>
+			<trans-unit id="tx_mediafrontend_domain_model_asset.duration">
+				<source>duration</source>
+			</trans-unit>
+			<trans-unit id="tx_mediafrontend_domain_model_asset.download_name">
+				<source>downloadName</source>
+			</trans-unit>
+			<trans-unit id="tx_mediafrontend_domain_model_asset.frontend_user">
+				<source>Frontend User who owns this asset</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_mediafrontend_domain_model_filecollection">
+				<source>Collection of Frontend Files.</source>
+			</trans-unit>
+			<trans-unit id="tx_mediafrontend_domain_model_filecollection.frontend_user">
+				<source>Frontend User who owns this collection</source>
+			</trans-unit>
+			<trans-unit id="tx_mediafrontend_domain_model_filecollection.assets">
+				<source>Assets</source>
+			</trans-unit>
+			
 		</body>
 	</file>
 </xliff>

@@ -32,25 +32,7 @@ namespace Webfox\MediaFrontend\Domain\Model;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class FileCollection extends \TYPO3\CMS\Core\Resource\Collection\StaticFileCollection {
-
-	/**
-	 * type
-	 *
-	 * @static string
-	 */
-	static protected $type = 'feStatic';
-
-	/**
-	 * itemsCriteria
-	 * @fixme Variable is defined as mixed type in prarent class
-	 * AbstractFileCollection. Extbase Reflexion Service fails with invalid
-	 * element type for property.
-	 * I don't know whether array is right or not - so give it a try.
-	 *
-	 * @var array
-	 */
-	protected $itemsCriteria;
+class FileCollection extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Frontend User who owns this collection
@@ -59,6 +41,14 @@ class FileCollection extends \TYPO3\CMS\Core\Resource\Collection\StaticFileColle
 	 * @lazy
 	 */
 	protected $frontendUser;
+
+	/**
+	 * Assets
+	 *
+	 * @var \Webfox\MediaFrontend\Domain\Model\Asset
+	 * @lazy
+	 */
+	protected $assets;
 
 	/**
 	 * Returns the frontendUser
@@ -80,41 +70,23 @@ class FileCollection extends \TYPO3\CMS\Core\Resource\Collection\StaticFileColle
 	}
 
 	/**
-	 * Returns the file collection as an array
-	 * Overwrites parent's method in order to add custom fields.
+	 * Returns the assets
 	 *
-	 * @return array
+	 * @return \Webfox\MediaFrontend\Domain\Model\Asset $assets
 	 */
-	public function toArray() {
-		$itemArray = array();
-		foreach ($this->storage as $item) {
-			$itemArray[] = $item;
-		}
-		return array(
-			'uid' => $this -> getIdentifier(), 
-			'title' => $this -> getTitle(), 
-			//'description' => $this -> getDescription(), 
-			//'table_name' => $this -> getItemTableName(),
-			'frontend_user' => $this -> getFrontendUser(), 
-			'items' => $itemArray
-		);
+	public function getAssets() {
+		return $this->assets;
 	}
 
 	/**
-	 * Initializes Object from array.
-	 * Overwrites parent's method in oder to add custom fields.
+	 * Sets the assets
 	 *
-	 * @param array $array Array containing record data.
+	 * @param \Webfox\MediaFrontend\Domain\Model\Asset $assets
 	 * @return void
 	 */
-	public function fromArray($array) {
-		$this->uid = $array['uid'];
-		$this->title = $array['title'];
-		//$this->description = $array['description'];
-		//$this->itemTableName = $array['table_name'];
-		$this->frontendUser = $array['frontend_user'];
+	public function setAssets(\Webfox\MediaFrontend\Domain\Model\Asset $assets) {
+		$this->assets = $assets;
 	}
 
 }
-
 ?>

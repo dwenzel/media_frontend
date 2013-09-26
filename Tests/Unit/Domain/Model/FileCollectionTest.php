@@ -61,5 +61,15 @@ class FileCollectionTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 	 */
 	public function setFrontendUserForFrontendUserSetsFrontendUser() { }
 	
+	/**
+	 * @test
+	 */
+	public function getAssetsReturnsInitialValueForAsset() { }
+
+	/**
+	 * @test
+	 */
+	public function setAssetsForAssetSetsAssets() { }
+	
 }
 ?>

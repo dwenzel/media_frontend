@@ -17,8 +17,8 @@ Extension Name
 :Description: manuals covering TYPO3 extension "Frontend Media"
 :Language: en
 :Author: Dirk Wenzel
-:Creation: 2013-09-25
-:Generation: 09:14
+:Creation: 2013-09-26
+:Generation: 16:48
 :Licence: Open Content License available from `www.opencontent.org/opl.shtml <http://www.opencontent.org/opl.shtml>`_
 
 The content of this document is related to TYPO3, a GNU/GPL CMS/Framework available from `www.typo3.org

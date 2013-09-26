@@ -41,27 +41,27 @@ overwriteSettings:
   Classes:
     Controller: merge
     Domain:
-      Model: merge
-      Repository: merge
+     # Model: merge
+     # Repository: merge
 
   Configuration:
-    TCA: merge
+    #TCA: merge
     #TypoScript: keep
 
   Resources:
     Private:
       Language:
-        locallang.xml: merge
+        #locallang.xml: merge
         #locallang.xlf: merge
-      Templates: keep
+      #Templates: keep
 
   ext_icon.gif: keep
 
-  ext_localconf.php: merge
+  #ext_localconf.php: merge
 
-  ext_tables.php: keep 
+  #ext_tables.php: keep 
 
-  ext_tables.sql: merge
+  #ext_tables.sql: merge
 
 ## ext_autoload.php is only needed in special cases ##
 createAutoloadRegistry: false
