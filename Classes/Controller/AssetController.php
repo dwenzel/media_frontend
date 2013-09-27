@@ -43,6 +43,15 @@ class AssetController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	protected $assetRepository;
 
 	/**
+	 * initialize
+	 */
+	public function initializeAction() {
+		if ($this->arguments->hasArgument('newAsset')) {
+		    $this->arguments->getArgument('newAsset')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('file',
+			    'array');
+		}
+	}
+	/**
 	 * action list
 	 *
 	 * @return void
@@ -80,19 +89,22 @@ class AssetController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	 * @return void
 	 */
 	public function createAction(\Webfox\MediaFrontend\Domain\Model\Asset $newAsset) {
-		$this->assetRepository->add($newAsset);
 		//
-		$persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(‘Tx_Extbase_Persistence_Manager’);
+		\TYPO3\CMS\Core\Utility\DebugUtility::debug($_FILES, 'create: _FILES');
+		$newAsset->setFile(0);
+		$this->assetRepository->add($newAsset);
+		$persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
+		\TYPO3\CMS\Core\Utility\DebugUtility::debug($newAsset, 'create: newAsset');
 		$persistenceManager->persistAll();
 		$uidNew = $newAsset->getUid();
-
-		if ($_FILES['tx_mediafrontend_domain_model_asset']) {
-			for ($i = 0; $i < count($_FILES['tx_mediafrontend_domain_model_asset']['name']['myfiles']);	$i++) {
+		
+		if ($_FILES['tx_mediafrontend_media']) {
+			for ($i = 0; $i < count($_FILES['tx_mediafrontend_media']['name']['newAsset']);	$i++) {
 				$file = array();
-				$file['name'] = $_FILES['tx_mediafrontend_domain_model_asset']['name']['myfiles'][$i];
-				$file['type'] = $_FILES['tx_mediafrontend_domain_model_asset']['type']['myfiles'][$i];
-				$file['tmp_name'] = $_FILES['tx_mediafrontend_domain_model_asset']['tmp_name']['myfiles'][$i];
-				$file['size'] = $_FILES['tx_mediafrontend_domain_model_asset']['size']['myfiles'][$i];
+				$file['name'] = $_FILES['tx_mediafrontend_media']['name']['newAsset'][$i];
+				$file['type'] = $_FILES['tx_mediafrontend_media']['type']['newAsset'][$i];
+				$file['tmp_name'] = $_FILES['tx_mediafrontend_media']['tmp_name']['newAsset'][$i];
+				$file['size'] = $_FILES['tx_mediafrontend_media']['size']['newAsset'][$i];
 			
 				if ($file['name']) {
 					$files = $this->uploadFile($file['name'], $file['type'], $file['tmp_name'],
