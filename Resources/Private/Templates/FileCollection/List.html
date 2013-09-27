@@ -18,12 +18,20 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 <table  class="tx_mediafrontend" >
 	<tr>
+		<th><f:translate key="tx_mediafrontend_domain_model_filecollection.title" /></th>
+		<th><f:translate key="tx_mediafrontend_domain_model_filecollection.status" /></th>
+		<th><f:translate key="tx_mediafrontend_domain_model_filecollection.image" /></th>
+		<th><f:translate key="tx_mediafrontend_domain_model_filecollection.description" /></th>
 		<th> </th>
 		<th> </th>
 	</tr>
 
 	<f:for each="{fileCollections}" as="fileCollection">
 		<tr>
+			<td><f:link.action action="show" arguments="{fileCollection : fileCollection}"> {fileCollection.title}</f:link.action></td>
+			<td><f:link.action action="show" arguments="{fileCollection : fileCollection}"> {fileCollection.status}</f:link.action></td>
+			<td><f:link.action action="show" arguments="{fileCollection : fileCollection}"> {fileCollection.image}</f:link.action></td>
+			<td><f:link.action action="show" arguments="{fileCollection : fileCollection}"> {fileCollection.description}</f:link.action></td>
 			<td><f:link.action action="edit" arguments="{fileCollection : fileCollection}">Edit</f:link.action></td>
 			<td><f:link.action action="delete" arguments="{fileCollection : fileCollection}">Delete</f:link.action></td>
 		</tr>

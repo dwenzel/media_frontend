@@ -42,9 +42,16 @@ class Asset extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $title;
 
 	/**
-	 * file
+	 * status
 	 *
 	 * @var \string
+	 */
+	protected $status;
+
+	/**
+	 * file
+	 *
+	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
 	 */
 	protected $file;
 
@@ -125,9 +132,28 @@ class Asset extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	}
 
 	/**
+	 * Returns the status
+	 *
+	 * @return \string $status
+	 */
+	public function getStatus() {
+		return $this->status;
+	}
+
+	/**
+	 * Sets the status
+	 *
+	 * @param \string $status
+	 * @return void
+	 */
+	public function setStatus($status) {
+		$this->status = $status;
+	}
+
+	/**
 	 * Returns the file
 	 *
-	 * @return \string $file
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference> $file
 	 */
 	public function getFile() {
 		return $this->file;
@@ -136,7 +162,7 @@ class Asset extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Sets the file
 	 *
-	 * @param \string $file
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference> $file
 	 * @return void
 	 */
 	public function setFile($file) {

@@ -11,4 +11,21 @@ plugin.tx_mediafrontend {
 		# cat=plugin.tx_mediafrontend//a; type=string; label=Default storage PID
 		storagePid =
 	}
+	settings {
+		assets {
+			list {
+				image {
+					width = 200m
+					height = 200m
+				}
+			}
+			detail {
+				image {
+					width = 400m
+					height = 400m
+				}
+			}
+		}
+	}
 }
+

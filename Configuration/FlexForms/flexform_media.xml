@@ -27,7 +27,7 @@
 									</numIndex>
 									<numIndex index="3">
 										<numIndex index="0">Edit Assets</numIndex>
-										<numIndex index="1">Asset->new;Asset->create;Asset->edit;Asset->update</numIndex>
+										<numIndex index="1">Asset->list;Asset->new;Asset->create;Asset->edit;Asset->update</numIndex>
 									</numIndex>
 								</items>
 							</config>

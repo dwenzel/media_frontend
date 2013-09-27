@@ -71,6 +71,23 @@ class AssetTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 	/**
 	 * @test
 	 */
+	public function getStatusReturnsInitialValueForString() { }
+
+	/**
+	 * @test
+	 */
+	public function setStatusForStringSetsStatus() { 
+		$this->fixture->setStatus('Conceived at T3CON10');
+
+		$this->assertSame(
+			'Conceived at T3CON10',
+			$this->fixture->getStatus()
+		);
+	}
+	
+	/**
+	 * @test
+	 */
 	public function getFileReturnsInitialValueForString() { }
 
 	/**

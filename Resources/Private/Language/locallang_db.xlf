@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2013-09-26T16:48:54Z" product-name="media_frontend">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-09-27T07:54:20Z" product-name="media_frontend">
 		<header/>
 		<body>
 
+			<trans-unit id="tx_mediafrontend_status.0">
+				<source>new</source>
+			</trans-unit>
+			<trans-unit id="tx_mediafrontend_status.1">
+				<source>uploaded</source>
+			</trans-unit>
+			<trans-unit id="tx_mediafrontend_status.2">
+				<source>public</source>
+			</trans-unit>
+			<trans-unit id="tx_mediafrontend_status.3">
+				<source>private</source>
+			</trans-unit>
 			<trans-unit id="tx_mediafrontend_domain_model_asset">
 				<source>Asset</source>
 			</trans-unit>
 			<trans-unit id="tx_mediafrontend_domain_model_asset.title">
 				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_mediafrontend_domain_model_asset.status">
+				<source>Status</source>
 			</trans-unit>
 			<trans-unit id="tx_mediafrontend_domain_model_asset.file">
 				<source>File</source>
@@ -40,6 +55,18 @@
 
 			<trans-unit id="tx_mediafrontend_domain_model_filecollection">
 				<source>File Collection</source>
+			</trans-unit>
+			<trans-unit id="tx_mediafrontend_domain_model_filecollection.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_mediafrontend_domain_model_filecollection.status">
+				<source>Status</source>
+			</trans-unit>
+			<trans-unit id="tx_mediafrontend_domain_model_filecollection.image">
+				<source>Image</source>
+			</trans-unit>
+			<trans-unit id="tx_mediafrontend_domain_model_filecollection.description">
+				<source>Description</source>
 			</trans-unit>
 			<trans-unit id="tx_mediafrontend_domain_model_filecollection.frontend_user">
 				<source>Frontend User</source>

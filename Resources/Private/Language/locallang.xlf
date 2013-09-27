@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2013-09-26T16:48:54Z" product-name="media_frontend">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-09-27T07:54:20Z" product-name="media_frontend">
 		<header/>
 		<body>
 
@@ -9,6 +9,9 @@
 			</trans-unit>
 			<trans-unit id="tx_mediafrontend_domain_model_asset.title">
 				<source>title</source>
+			</trans-unit>
+			<trans-unit id="tx_mediafrontend_domain_model_asset.status">
+				<source>status</source>
 			</trans-unit>
 			<trans-unit id="tx_mediafrontend_domain_model_asset.file">
 				<source>file</source>
@@ -40,6 +43,18 @@
 			
 			<trans-unit id="tx_mediafrontend_domain_model_filecollection">
 				<source>Collection of Frontend Files.</source>
+			</trans-unit>
+			<trans-unit id="tx_mediafrontend_domain_model_filecollection.title">
+				<source>title</source>
+			</trans-unit>
+			<trans-unit id="tx_mediafrontend_domain_model_filecollection.status">
+				<source>status</source>
+			</trans-unit>
+			<trans-unit id="tx_mediafrontend_domain_model_filecollection.image">
+				<source>image</source>
+			</trans-unit>
+			<trans-unit id="tx_mediafrontend_domain_model_filecollection.description">
+				<source>description</source>
 			</trans-unit>
 			<trans-unit id="tx_mediafrontend_domain_model_filecollection.frontend_user">
 				<source>Frontend User who owns this collection</source>

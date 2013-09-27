@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $TCA['tx_mediafrontend_domain_model_asset'] = array(
 	'ctrl' => $TCA['tx_mediafrontend_domain_model_asset']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, file, description, extension, caption, width, height, duration, download_name, frontend_user',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, status, file, description, extension, caption, width, height, duration, download_name, frontend_user',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, file, description, extension, caption, width, height, duration, download_name, frontend_user,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, status, file, description, extension, caption, width, height, duration, download_name, frontend_user,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -102,18 +102,32 @@ $TCA['tx_mediafrontend_domain_model_asset'] = array(
 				'eval' => 'trim'
 			),
 		),
-		'file' => array(
+		'status' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:media_frontend/Resources/Private/Language/locallang_db.xlf:tx_mediafrontend_domain_model_asset.file',
-			'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig('files',
-			    array( 
-				'appearance' => array(
-					'createNewRelationLinkTitle' => 'LLL:EXT:cms/locallang_ttc.xlf:images.addFileReference'
-				 ),			      
-			    ),
-			    $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
+			'label' => 'LLL:EXT:media_frontend/Resources/Private/Language/locallang_db.xlf:tx_mediafrontend_domain_model_asset.status',
+			'config' => array(
+				'type' => 'select',
+				'items' => array (
+						array( 'LLL:EXT:media_frontend/Resources/Private/Language/locallang_db.xlf:tx_mediafrontend_status.0',0), 
+						array( 'LLL:EXT:media_frontend/Resources/Private/Language/locallang_db.xlf:tx_mediafrontend_status.1',1), 
+						array( 'LLL:EXT:media_frontend/Resources/Private/Language/locallang_db.xlf:tx_mediafrontend_status.2',2), 
+						array( 'LLL:EXT:media_frontend/Resources/Private/Language/locallang_db.xlf:tx_mediafrontend_status.3',3),
+				),
 			),
 		),
+		#
+		'file' => array(
+		    'exclude' => 0,
+		    'label'	=> 'LLL:EXT:media_frontend/Resources/Private/Language/locallang_db.xlf:tx_mediafrontend_domain_model_asset.file',
+			'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig('files', array( 	
+					'appearance' => array(
+						'createNewRelationLinkTitle' => 'LLL:EXT:cms/locallang_ttc.xlf:multimedia_formlabel'																			 	),
+					'minitems' => 1,
+					'maxitems' => 1,
+				),'gif,jpg,jpeg,tif,tiff,bmp,pcx,tga,png,pdf,ai,mov,mp4,wmv,mp3,mpg,mpeg,avi'
+			),
+		),
+		#
 		'description' => array(
 			'exclude' => 0,
 			'label' => 'LLL:EXT:media_frontend/Resources/Private/Language/locallang_db.xlf:tx_mediafrontend_domain_model_asset.description',
@@ -186,6 +200,8 @@ $TCA['tx_mediafrontend_domain_model_asset'] = array(
 				'foreign_table' => 'fe_users',
 				'minitems' => 0,
 				'maxitems' => 1,
+				'default' => NULL,
+				'items' => array(array('',NULL)),
 			),
 		),
 	),

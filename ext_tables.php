@@ -38,7 +38,7 @@ $TCA['tx_mediafrontend_domain_model_asset'] = array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'searchFields' => 'title,file,description,extension,caption,width,height,duration,download_name,frontend_user,',
+		'searchFields' => 'title,status,file,description,extension,caption,width,height,duration,download_name,frontend_user,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Asset.php',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_mediafrontend_domain_model_asset.gif'
 	),
@@ -49,7 +49,7 @@ $TCA['tx_mediafrontend_domain_model_asset'] = array(
 $TCA['tx_mediafrontend_domain_model_filecollection'] = array(
 	'ctrl' => array(
 		'title'	=> 'LLL:EXT:media_frontend/Resources/Private/Language/locallang_db.xlf:tx_mediafrontend_domain_model_filecollection',
-		'label' => 'frontend_user',
+		'label' => 'title',
 		'tstamp' => 'tstamp',
 		'crdate' => 'crdate',
 		'cruser_id' => 'cruser_id',
@@ -67,7 +67,7 @@ $TCA['tx_mediafrontend_domain_model_filecollection'] = array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'searchFields' => 'frontend_user,assets,',
+		'searchFields' => 'title,status,image,description,frontend_user,assets,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/FileCollection.php',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_mediafrontend_domain_model_filecollection.gif'
 	),

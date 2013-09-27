@@ -54,6 +54,79 @@ class FileCollectionTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 	/**
 	 * @test
 	 */
+	public function getTitleReturnsInitialValueForString() { }
+
+	/**
+	 * @test
+	 */
+	public function setTitleForStringSetsTitle() { 
+		$this->fixture->setTitle('Conceived at T3CON10');
+
+		$this->assertSame(
+			'Conceived at T3CON10',
+			$this->fixture->getTitle()
+		);
+	}
+	
+	/**
+	 * @test
+	 */
+	public function getStatusReturnsInitialValueForInteger() { 
+		$this->assertSame(
+			0,
+			$this->fixture->getStatus()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function setStatusForIntegerSetsStatus() { 
+		$this->fixture->setStatus(12);
+
+		$this->assertSame(
+			12,
+			$this->fixture->getStatus()
+		);
+	}
+	
+	/**
+	 * @test
+	 */
+	public function getImageReturnsInitialValueForString() { }
+
+	/**
+	 * @test
+	 */
+	public function setImageForStringSetsImage() { 
+		$this->fixture->setImage('Conceived at T3CON10');
+
+		$this->assertSame(
+			'Conceived at T3CON10',
+			$this->fixture->getImage()
+		);
+	}
+	
+	/**
+	 * @test
+	 */
+	public function getDescriptionReturnsInitialValueForString() { }
+
+	/**
+	 * @test
+	 */
+	public function setDescriptionForStringSetsDescription() { 
+		$this->fixture->setDescription('Conceived at T3CON10');
+
+		$this->assertSame(
+			'Conceived at T3CON10',
+			$this->fixture->getDescription()
+		);
+	}
+	
+	/**
+	 * @test
+	 */
 	public function getFrontendUserReturnsInitialValueForFrontendUser() { }
 
 	/**
@@ -64,12 +137,60 @@ class FileCollectionTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 	/**
 	 * @test
 	 */
-	public function getAssetsReturnsInitialValueForAsset() { }
+	public function getAssetsReturnsInitialValueForAsset() { 
+		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
+		$this->assertEquals(
+			$newObjectStorage,
+			$this->fixture->getAssets()
+		);
+	}
 
 	/**
 	 * @test
 	 */
-	public function setAssetsForAssetSetsAssets() { }
+	public function setAssetsForObjectStorageContainingAssetSetsAssets() { 
+		$asset = new \Webfox\MediaFrontend\Domain\Model\Asset();
+		$objectStorageHoldingExactlyOneAssets = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
+		$objectStorageHoldingExactlyOneAssets->attach($asset);
+		$this->fixture->setAssets($objectStorageHoldingExactlyOneAssets);
+
+		$this->assertSame(
+			$objectStorageHoldingExactlyOneAssets,
+			$this->fixture->getAssets()
+		);
+	}
+	
+	/**
+	 * @test
+	 */
+	public function addAssetToObjectStorageHoldingAssets() {
+		$asset = new \Webfox\MediaFrontend\Domain\Model\Asset();
+		$objectStorageHoldingExactlyOneAsset = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
+		$objectStorageHoldingExactlyOneAsset->attach($asset);
+		$this->fixture->addAsset($asset);
+
+		$this->assertEquals(
+			$objectStorageHoldingExactlyOneAsset,
+			$this->fixture->getAssets()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function removeAssetFromObjectStorageHoldingAssets() {
+		$asset = new \Webfox\MediaFrontend\Domain\Model\Asset();
+		$localObjectStorage = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
+		$localObjectStorage->attach($asset);
+		$localObjectStorage->detach($asset);
+		$this->fixture->addAsset($asset);
+		$this->fixture->removeAsset($asset);
+
+		$this->assertEquals(
+			$localObjectStorage,
+			$this->fixture->getAssets()
+		);
+	}
 	
 }
 ?>
