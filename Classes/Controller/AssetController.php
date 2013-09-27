@@ -99,20 +99,34 @@ class AssetController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		$uidNew = $newAsset->getUid();
 		
 		if ($_FILES['tx_mediafrontend_media']) {
-			for ($i = 0; $i < count($_FILES['tx_mediafrontend_media']['name']['newAsset']);	$i++) {
+			/*for ($i = 0; $i < count($_FILES['tx_mediafrontend_media']['name']['newAsset']);	$i++) {
 				$file = array();
 				$file['name'] = $_FILES['tx_mediafrontend_media']['name']['newAsset'][$i];
 				$file['type'] = $_FILES['tx_mediafrontend_media']['type']['newAsset'][$i];
 				$file['tmp_name'] = $_FILES['tx_mediafrontend_media']['tmp_name']['newAsset'][$i];
 				$file['size'] = $_FILES['tx_mediafrontend_media']['size']['newAsset'][$i];
 			
+				\TYPO3\CMS\Core\Utility\DebugUtility::debug($file, 'create: file');
 				if ($file['name']) {
 					$files = $this->uploadFile($file['name'], $file['type'], $file['tmp_name'],
 					$file['size']);
 					$sysFileCreate = $this->assetRepository->myFileOperationsFal($files,
 					$file['type'], $file['size'], $uidNew);
 				}
-			}
+			}*/
+				$file = array();
+				$file['name'] = $_FILES['tx_mediafrontend_media']['name']['newAsset'];
+				$file['type'] = $_FILES['tx_mediafrontend_media']['type']['newAsset'];
+				$file['tmp_name'] = $_FILES['tx_mediafrontend_media']['tmp_name']['newAsset'];
+				$file['size'] = $_FILES['tx_mediafrontend_media']['size']['newAsset'];
+			
+				\TYPO3\CMS\Core\Utility\DebugUtility::debug($file, 'create: file');
+				if ($file['name']) {
+					$files = $this->uploadFile($file['name'], $file['type'], $file['tmp_name'],
+					$file['size']);
+					$sysFileCreate = $this->assetRepository->myFileOperationsFal($files,
+					$file['type'], $file['size'], $uidNew);
+				}
 		}
 
 		//
@@ -182,10 +196,10 @@ class AssetController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
  	 */  
 	protected function uploadFile($name, $type, $temp, $size) {
 		if($size > 0) {
-			$basicFileFunctions = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(‘t3lib_basicFileFunctions’);
+			$basicFileFunctions = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('t3lib_basicFileFunctions');
 
 			$name = $basicFileFunctions->cleanFileName($name);
-			$uploadPath = $basicFileFunctions->cleanDirectoryName(‘fileadmin/user_upload/’);
+			$uploadPath = $basicFileFunctions->cleanDirectoryName('fileadmin/user_upload/');
 			$uniqueFileName = $basicFileFunctions->getUniqueName($name, $uploadPath);
 			$fileStored = move_uploaded_file($temp, $uniqueFileName);
 
