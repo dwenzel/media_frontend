@@ -51,12 +51,12 @@ class AssetRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 		$uid_local = $GLOBALS['TYPO3_DB']->sql_insert_id($newSysRes);
 		$newRefFields = array(
-				'pid' => 15,
+				'pid' => 17,
 				'tablenames' => 'tx_mediafrontend_domain_model_asset',
 				'uid_foreign' => $uidNew,
 				'uid_local' => $uid_local,
 				'table_local' => 'sys_file',
-				'fieldname' => 'files',
+				'fieldname' => 'file',
 				'crdate' => $GLOBALS['EXEC_TIME'],
 				'tstamp' => $GLOBALS['EXEC_TIME']
 		);
