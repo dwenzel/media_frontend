@@ -131,7 +131,7 @@ class AssetController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		}
 		//
 		$this->flashMessageContainer->add('Your new Asset was created.');
-		//$this->redirect('list');
+		$this->redirect('list');
 	}
 
 	/**
