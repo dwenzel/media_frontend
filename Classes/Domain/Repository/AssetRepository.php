@@ -34,35 +34,35 @@ namespace Webfox\MediaFrontend\Domain\Repository;
  */
 class AssetRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
-		public function myFileOperationsFal($filename, $filetype, $filesize, $uidNew){
+    public function myFileOperationsFal($filename, $filetype, $filesize, $uidNew){
 
-		$newSysFields = array(
-				'pid' => 0,
-				'identifier' =>'/user_upload/'.$filename,
-				'mime_type' => $filetype,
-				'name' => $filename,
-				'size' => $filesize,
-				'storage' => 1,
-				'crdate' => $GLOBALS['EXEC_TIME'],
-				'tstamp' => $GLOBALS['EXEC_TIME']
-		);
+	$newSysFields = array(
+	    'pid' => 0,
+	    'identifier' =>'/user_upload/'.$filename,
+	    'mime_type' => $filetype,
+	    'name' => $filename,
+	    'size' => $filesize,
+	    'storage' => 1,
+	    'crdate' => $GLOBALS['EXEC_TIME'],
+	    'tstamp' => $GLOBALS['EXEC_TIME']
+	);
 
-		$newSysRes = $GLOBALS['TYPO3_DB']->exec_INSERTquery('sys_file', $newSysFields);
+	$newSysRes = $GLOBALS['TYPO3_DB']->exec_INSERTquery('sys_file', $newSysFields);
 
-		$uid_local = $GLOBALS['TYPO3_DB']->sql_insert_id($newSysRes);
-		$newRefFields = array(
-				'pid' => 17,
-				'tablenames' => 'tx_mediafrontend_domain_model_asset',
-				'uid_foreign' => $uidNew,
-				'uid_local' => $uid_local,
-				'table_local' => 'sys_file',
-				'fieldname' => 'files',
-				'crdate' => $GLOBALS['EXEC_TIME'],
-				'tstamp' => $GLOBALS['EXEC_TIME']
-		);
+	$uid_local = $GLOBALS['TYPO3_DB']->sql_insert_id($newSysRes);
+	$newRefFields = array(
+	    'pid' => 17,
+	    'tablenames' => 'tx_mediafrontend_domain_model_asset',
+	    'uid_foreign' => $uidNew,
+	    'uid_local' => $uid_local,
+	    'table_local' => 'sys_file',
+	    'fieldname' => 'files',
+	    'crdate' => $GLOBALS['EXEC_TIME'],
+	    'tstamp' => $GLOBALS['EXEC_TIME']
+	);
 
-		$GLOBALS['TYPO3_DB']->exec_INSERTquery('sys_file_reference', $newRefFields);
-		}
+	$GLOBALS['TYPO3_DB']->exec_INSERTquery('sys_file_reference', $newRefFields);
+    }
 
 }
 ?>
