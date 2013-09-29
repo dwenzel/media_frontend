@@ -56,7 +56,7 @@ class AssetRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 				'uid_foreign' => $uidNew,
 				'uid_local' => $uid_local,
 				'table_local' => 'sys_file',
-				'fieldname' => 'file',
+				'fieldname' => 'files',
 				'crdate' => $GLOBALS['EXEC_TIME'],
 				'tstamp' => $GLOBALS['EXEC_TIME']
 		);

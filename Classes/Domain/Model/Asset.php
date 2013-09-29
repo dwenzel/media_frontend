@@ -111,7 +111,7 @@ class Asset extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @lazy
 	 */
 	protected $frontendUser;
-
+	
 	/**
 	 * Returns the title
 	 *
