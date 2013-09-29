@@ -90,46 +90,22 @@ class AssetController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	 */
 	public function createAction(\Webfox\MediaFrontend\Domain\Model\Asset $newAsset) {
 		$tempFile = $newAsset->getFile();
-		\TYPO3\CMS\Core\Utility\DebugUtility::debug($_FILES, 'create: _FILES');
-		\TYPO3\CMS\Core\Utility\DebugUtility::debug($_FILES, 'create: tempFile');
+		//\TYPO3\CMS\Core\Utility\DebugUtility::debug($_FILES, 'create: _FILES');
+		//\TYPO3\CMS\Core\Utility\DebugUtility::debug($_FILES, 'create: tempFile');
 		$newAsset->setFile(1);
 		$this->assetRepository->add($newAsset);
 		$persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
-		\TYPO3\CMS\Core\Utility\DebugUtility::debug($newAsset, 'create: newAsset');
+		//\TYPO3\CMS\Core\Utility\DebugUtility::debug($newAsset, 'create: newAsset');
 		$persistenceManager->persistAll();
 		$uidNew = $newAsset->getUid();
 		
 		if (is_array($tempFile) AND $tempFile['error'] == 0) {
-			/*for ($i = 0; $i < count($_FILES['tx_mediafrontend_media']['name']['newAsset']);	$i++) {
-				$file = array();
-				$file['name'] = $_FILES['tx_mediafrontend_media']['name']['newAsset'][$i];
-				$file['type'] = $_FILES['tx_mediafrontend_media']['type']['newAsset'][$i];
-				$file['tmp_name'] = $_FILES['tx_mediafrontend_media']['tmp_name']['newAsset'][$i];
-				$file['size'] = $_FILES['tx_mediafrontend_media']['size']['newAsset'][$i];
-			
-				\TYPO3\CMS\Core\Utility\DebugUtility::debug($file, 'create: file');
-				if ($file['name']) {
-					$files = $this->uploadFile($file['name'], $file['type'], $file['tmp_name'],
-					$file['size']);
-					$sysFileCreate = $this->assetRepository->myFileOperationsFal($files,
-					$file['type'], $file['size'], $uidNew);
-				}
-			}*/
-				/*
-				$file = array();
-				$file['name'] = $_FILES['tx_mediafrontend_media']['name']['newAsset'];
-				$file['type'] = $_FILES['tx_mediafrontend_media']['type']['newAsset'];
-				$file['tmp_name'] = $_FILES['tx_mediafrontend_media']['tmp_name']['newAsset'];
-				$file['size'] = $_FILES['tx_mediafrontend_media']['size']['newAsset'];
-			
-				\TYPO3\CMS\Core\Utility\DebugUtility::debug($file, 'create: file');
-				if ($file['name']) {*/
 			$uploadedFile = $this->uploadFile($tempFile['name'], $tempFile['type'], $tempFile['tmp_name'], $tempFile['size']);
-			\TYPO3\CMS\Core\Utility\DebugUtility::debug($uploadedFile, 'create: uploadedFile');
+			//\TYPO3\CMS\Core\Utility\DebugUtility::debug($uploadedFile, 'create: uploadedFile');
 			$sysFileCreate = $this->assetRepository->myFileOperationsFal($uploadedFile, $tempFile['type'], $tempFile['size'], $uidNew);
-			\TYPO3\CMS\Core\Utility\DebugUtility::debug($sysFileCreate, 'create: sysFileCreate');
+			//\TYPO3\CMS\Core\Utility\DebugUtility::debug($sysFileCreate, 'create: sysFileCreate');
 		}
-		//
+		
 		$this->flashMessageContainer->add('Your new Asset was created.');
 		$this->redirect('list');
 	}
