@@ -100,22 +100,23 @@ class AssetController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		$tempFile = $newAsset->getFile();
 		//\TYPO3\CMS\Core\Utility\DebugUtility::debug($tempFile, 'create: tempFile');
 		
-		// set the number of files to 1
-		$newAsset->setFile(1);
-		$this->assetRepository->add($newAsset);
-		//\TYPO3\CMS\Core\Utility\DebugUtility::debug($newAsset, 'create: newAsset');
-		$this->persistenceManager->persistAll();
-		$uidNew = $newAsset->getUid();
-		
 		if (is_array($tempFile) AND $tempFile['error'] == 0) {
-			$uploadedFile = $this->uploadFile($tempFile['name'], $tempFile['type'], $tempFile['tmp_name'], $tempFile['size']);
-			//\TYPO3\CMS\Core\Utility\DebugUtility::debug($uploadedFile, 'create: uploadedFile');
-			$sysFileCreate = $this->assetRepository->myFileOperationsFal($uploadedFile, $tempFile['type'], $tempFile['size'], $uidNew);
-			//\TYPO3\CMS\Core\Utility\DebugUtility::debug($sysFileCreate, 'create: sysFileCreate');
-		}
+			$tempFile['name'] = $this->uploadFile($tempFile);
 		
-		$this->flashMessageContainer->add('Your new Asset was created.');
-		$this->redirect('list');
+			// set the number of files to 1
+			$newAsset->setFile(0);
+			$this->assetRepository->add($newAsset);
+			$this->persistenceManager->persistAll();
+			$this->assetRepository->createFileReferences($newAsset, $tempFile);
+			
+			$this->flashMessageContainer->add('Your new Asset was created.');
+			$this->redirect('list');
+		}elseif (is_array($tempFile) AND $tempFile['error'] != 0) {
+			//@todo return localized error messages (would be probably best
+			//implemented in upload manager class
+		}
+		$this->redirect('new');
+
 	}
 
 	/**
@@ -153,39 +154,20 @@ class AssetController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	}
 
 	/**
-	 * action upload
-	 *
-	 * @return void
-	 */
-	public function uploadAction() {
-
-	}
-
-	/**
-	 * action download
-	 *
-	 * @return void
-	 */
-	public function downloadAction() {
-
-	}
-
-	/**
  	 * upload function
  	 * 
- 	 * @param \string $name file name
- 	 * @param \int $type file type
- 	 * @param \string $temp temp file name
- 	 * @param \int $size file size
+ 	 * @param \array $file An array containing values for newly uploaded file
+	 * @return \string File name
  	 */  
-	protected function uploadFile($name, $type, $temp, $size) {
-		if($size > 0) {
+	protected function uploadFile($file) {
+		\TYPO3\CMS\Core\Utility\DebugUtility::debug($tempFile, 'upload: file');
+		if($file['size'] > 0 AND $file['error'] == 0) {
 			$basicFileFunctions = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('t3lib_basicFileFunctions');
 
-			$name = $basicFileFunctions->cleanFileName($name);
+			$name = $basicFileFunctions->cleanFileName($file['name']);
 			$uploadPath = $basicFileFunctions->cleanDirectoryName('fileadmin/user_upload/');
-			$uniqueFileName = $basicFileFunctions->getUniqueName($name, $uploadPath);
-			$fileStored = move_uploaded_file($temp, $uniqueFileName);
+			$uniqueFileName = $basicFileFunctions->getUniqueName($file['name'], $uploadPath);
+			$fileStored = move_uploaded_file($file['tmp_name'], $uniqueFileName);
 
 			$returnValue = basename($uniqueFileName);
 		}

@@ -7,7 +7,7 @@ if (!defined('TYPO3_MODE')) {
 	'Webfox.' . $_EXTKEY,
 	'Media',
 	array(
-		'Asset' => 'list, show, new, create, edit, update, delete, upload, download',
+		'Asset' => 'list, show, new, create, edit, update, delete',
 		'FileCollection' => 'list, show, new, create, edit, update, delete',
 		
 	),
