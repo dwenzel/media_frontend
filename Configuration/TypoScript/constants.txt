@@ -15,6 +15,9 @@ plugin.tx_mediafrontend {
 		# cat=plugin.tx_mediafrontend//a; type=string; label=Upload folder (Enter with trailing slash
 		uploadFolder = user_upload/
 		
+		# cat=plugin.tx_mediafrontend//a; type=integer; label= File Storage (uid)
+		storage = 1
+
 		assets {
 			list {
 				image {

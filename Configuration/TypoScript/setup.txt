@@ -13,6 +13,7 @@ plugin.tx_mediafrontend {
 	}
 	settings {
 		uploadFolder = {$plugin.tx_mediafrontend.settings.uploadFolder}
+		storage = {$plugin.tx_mediafrontend.settings.storage}
 		assets {
 			list {
 				image {
