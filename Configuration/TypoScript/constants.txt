@@ -9,9 +9,12 @@ plugin.tx_mediafrontend {
 	}
 	persistence {
 		# cat=plugin.tx_mediafrontend//a; type=string; label=Default storage PID
-		storagePid =
+		storagePid = 0
 	}
 	settings {
+		# cat=plugin.tx_mediafrontend//a; type=string; label=Upload folder (Enter with trailing slash
+		uploadFolder = user_upload/
+		
 		assets {
 			list {
 				image {

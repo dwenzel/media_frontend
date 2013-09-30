@@ -12,6 +12,7 @@ plugin.tx_mediafrontend {
 		# rewrittenPropertyMapper = 1
 	}
 	settings {
+		uploadFolder = {$plugin.tx_mediafrontend.persistence.uploadFolder}
 		assets {
 			list {
 				image {
