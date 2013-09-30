@@ -160,7 +160,14 @@ class AssetController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	 * @return \string File name
  	 */  
 	protected function uploadFile($file) {
-		//\TYPO3\CMS\Core\Utility\DebugUtility::debug($tempFile, 'upload: file');
+	    $storageRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Resource\\StorageRepository');
+	    // create instance to storage repository
+	    // @todo add setting for storage in TS
+	    // should return \TYPO3\CMS\Core\Resource\ResourceStorage
+	    $storage = $storageRepository->findByUid($this->settings['storage']);
+	    // @todo get BasePath and use it for storing. Alternativly use
+	    // methods of storage! (addUploadedFile?)
+		\TYPO3\CMS\Core\Utility\DebugUtility::debug($this->settings, 'upload: settings');
 		if($file['size'] > 0 AND $file['error'] == 0) {
 			$basicFileFunctions = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('t3lib_basicFileFunctions');
 
