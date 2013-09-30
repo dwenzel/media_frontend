@@ -43,9 +43,17 @@ class AssetController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	protected $assetRepository;
 
 	/**
+	 * Persistence Manager
+	 *
+	 * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager 
+	 */
+	protected $persitenceManager;
+
+	/**
 	 * initialize
 	 */
-	public function initializeAction() {
+	public function initializeCreateAction() {
+		$this->persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
 		if ($this->arguments->hasArgument('newAsset')) {
 		    $this->arguments->getArgument('newAsset')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('file',
 			    'array');
@@ -90,13 +98,13 @@ class AssetController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	 */
 	public function createAction(\Webfox\MediaFrontend\Domain\Model\Asset $newAsset) {
 		$tempFile = $newAsset->getFile();
-		//\TYPO3\CMS\Core\Utility\DebugUtility::debug($_FILES, 'create: _FILES');
-		//\TYPO3\CMS\Core\Utility\DebugUtility::debug($_FILES, 'create: tempFile');
+		//\TYPO3\CMS\Core\Utility\DebugUtility::debug($tempFile, 'create: tempFile');
+		
+		// set the number of files to 1
 		$newAsset->setFile(1);
 		$this->assetRepository->add($newAsset);
-		$persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
 		//\TYPO3\CMS\Core\Utility\DebugUtility::debug($newAsset, 'create: newAsset');
-		$persistenceManager->persistAll();
+		$this->persistenceManager->persistAll();
 		$uidNew = $newAsset->getUid();
 		
 		if (is_array($tempFile) AND $tempFile['error'] == 0) {
