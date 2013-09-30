@@ -160,7 +160,7 @@ class AssetController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	 * @return \string File name
  	 */  
 	protected function uploadFile($file) {
-		\TYPO3\CMS\Core\Utility\DebugUtility::debug($tempFile, 'upload: file');
+		//\TYPO3\CMS\Core\Utility\DebugUtility::debug($tempFile, 'upload: file');
 		if($file['size'] > 0 AND $file['error'] == 0) {
 			$basicFileFunctions = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('t3lib_basicFileFunctions');
 
