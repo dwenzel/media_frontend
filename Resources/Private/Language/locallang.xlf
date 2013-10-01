@@ -8,34 +8,34 @@
 				<source>Frontend Asset</source>
 			</trans-unit>
 			<trans-unit id="tx_mediafrontend_domain_model_asset.title">
-				<source>title</source>
+				<source>Title</source>
 			</trans-unit>
 			<trans-unit id="tx_mediafrontend_domain_model_asset.status">
-				<source>status</source>
+				<source>Status</source>
 			</trans-unit>
 			<trans-unit id="tx_mediafrontend_domain_model_asset.file">
-				<source>file</source>
+				<source>File</source>
 			</trans-unit>
 			<trans-unit id="tx_mediafrontend_domain_model_asset.description">
-				<source>description</source>
+				<source>Description</source>
 			</trans-unit>
 			<trans-unit id="tx_mediafrontend_domain_model_asset.extension">
-				<source>extension</source>
+				<source>Extension</source>
 			</trans-unit>
 			<trans-unit id="tx_mediafrontend_domain_model_asset.caption">
-				<source>caption</source>
+				<source>Caption</source>
 			</trans-unit>
 			<trans-unit id="tx_mediafrontend_domain_model_asset.width">
-				<source>width</source>
+				<source>Width</source>
 			</trans-unit>
 			<trans-unit id="tx_mediafrontend_domain_model_asset.height">
-				<source>height</source>
+				<source>Height</source>
 			</trans-unit>
 			<trans-unit id="tx_mediafrontend_domain_model_asset.duration">
-				<source>duration</source>
+				<source>Duration</source>
 			</trans-unit>
 			<trans-unit id="tx_mediafrontend_domain_model_asset.download_name">
-				<source>downloadName</source>
+				<source>Download Name</source>
 			</trans-unit>
 			<trans-unit id="tx_mediafrontend_domain_model_asset.frontend_user">
 				<source>Frontend User who owns this asset</source>
