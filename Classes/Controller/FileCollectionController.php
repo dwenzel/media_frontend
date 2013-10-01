@@ -43,6 +43,13 @@ class FileCollectionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionC
 	protected $fileCollectionRepository;
 
 	/**
+	 * Asset Repository
+	 * @var \Webfox\MediaFrontend\Domain\Repository\AssetRepository
+	 * @inject
+	 */
+	protected $assetRepository;
+
+	/**
 	 * action list
 	 *
 	 * @return void
