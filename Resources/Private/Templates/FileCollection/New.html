@@ -18,7 +18,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 <f:render partial="FormErrors" arguments="{object:FileCollection}"/>
 
-<f:form action="create"  name="newFileCollection" object="{newFileCollection}">
+<f:form action="create"  enctype="multipart/form-data"  name="newFileCollection" object="{newFileCollection}">
 <f:render partial="FileCollection/FormFields" />
 	<f:form.submit value="Create new" />
 </f:form>

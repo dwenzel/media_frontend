@@ -11,8 +11,26 @@ plugin.tx_mediafrontend {
 		# uncomment the following line to enable the new Property Mapper.
 		# rewrittenPropertyMapper = 1
 	}
-}
+	settings {
+		uploadFolder = {$plugin.tx_mediafrontend.settings.uploadFolder}
+		storage = {$plugin.tx_mediafrontend.settings.storage}
+		assets {
+			list {
+				image {
+					width =	{$plugin.tx_mediafrontend.settings.assets.list.image.width}
+					height = {$plugin.tx_mediafrontend.settings.assets.list.image.height} 
 
+				}
+			}
+			detail {
+				image {
+					width = {$plugin.tx_mediafrontend.settings.assets.detail.image.width}
+
+					height = {$plugin.tx_mediafrontend.settings.assets.detail.image.height}
+				}
+			}
+		}
+	}
 plugin.tx_mediafrontend._CSS_DEFAULT_STYLE (
 	textarea.f3-form-error {
 		background-color:#FF9F9F;
