@@ -35,6 +35,24 @@ namespace Webfox\MediaFrontend\Domain\Model;
 class FileCollection extends \TYPO3\CMS\Core\Resource\Collection\StaticFileCollection {
 
 	/**
+	 * type
+	 *
+	 * @static string
+	 */
+	static protected $type = 'feStatic';
+
+	/**
+	 * itemsCriteria
+	 * @fixme Variable is defined as mixed type in prarent class
+	 * AbstractFileCollection. Extbase Reflexion Service fails with invalid
+	 * element type for property.
+	 * I don't know whether array is right or not - so give it a try.
+	 *
+	 * @var array
+	 */
+	protected $itemsCriteria;
+
+	/**
 	 * Frontend User who owns this collection
 	 *
 	 * @var \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
@@ -61,5 +79,42 @@ class FileCollection extends \TYPO3\CMS\Core\Resource\Collection\StaticFileColle
 		$this->frontendUser = $frontendUser;
 	}
 
+	/**
+	 * Returns the file collection as an array
+	 * Overwrites parent's method in order to add custom fields.
+	 *
+	 * @return array
+	 */
+	public function toArray() {
+		$itemArray = array();
+		foreach ($this->storage as $item) {
+			$itemArray[] = $item;
+		}
+		return array(
+			'uid' => $this -> getIdentifier(), 
+			'title' => $this -> getTitle(), 
+			//'description' => $this -> getDescription(), 
+			//'table_name' => $this -> getItemTableName(),
+			'frontend_user' => $this -> getFrontendUser(), 
+			'items' => $itemArray
+		);
+	}
+
+	/**
+	 * Initializes Object from array.
+	 * Overwrites parent's method in oder to add custom fields.
+	 *
+	 * @param array $array Array containing record data.
+	 * @return void
+	 */
+	public function fromArray($array) {
+		$this->uid = $array['uid'];
+		$this->title = $array['title'];
+		//$this->description = $array['description'];
+		//$this->itemTableName = $array['table_name'];
+		$this->frontendUser = $array['frontend_user'];
+	}
+
 }
+
 ?>

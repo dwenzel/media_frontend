@@ -46,8 +46,8 @@
 				<source>Frontend User</source>
 			</trans-unit>
 			
-			<trans-unit id="sys_file_collection.tx_extbase_type.Tx_MediaFrontend_FileCollection">
-				<source>Frontend Media FileCollection</source>
+			<trans-unit id="sys_file_collection.type.Tx_MediaFrontend_FileCollection">
+				<source>Frontend Media File Collection</source>
 			</trans-unit>
 			
 		</body>
