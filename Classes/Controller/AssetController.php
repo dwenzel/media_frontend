@@ -43,6 +43,14 @@ class AssetController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	protected $assetRepository;
 
 	/**
+	 * Frontend User Repository
+	 *
+	 * @var \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository
+	 * @inject
+	 */
+	protected $frontendUserRepository;
+
+	/**
 	 * Persistence Manager
 	 *
 	 * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager 
@@ -97,6 +105,12 @@ class AssetController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	 * @return void
 	 */
 	public function createAction(\Webfox\MediaFrontend\Domain\Model\Asset $newAsset) {
+		// get frontend user
+	    	$user = $GLOBALS['TSFE']->fe_user->user;
+		$feUser = $this->frontendUserRepository->findByUid($user['uid']);
+		if ($feUser){
+		    $newAsset->setFrontendUser($feUser);
+		}
 		$storedFile = $this->uploadFile($newAsset->getFile());
 		if ($storedFile) {
 			// set the number of files to 0
