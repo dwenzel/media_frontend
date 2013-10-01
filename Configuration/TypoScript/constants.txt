@@ -9,6 +9,29 @@ plugin.tx_mediafrontend {
 	}
 	persistence {
 		# cat=plugin.tx_mediafrontend//a; type=string; label=Default storage PID
-		storagePid =
+		storagePid = 0
+	}
+	settings {
+		# cat=plugin.tx_mediafrontend//a; type=string; label=Upload folder (Enter with trailing slash
+		uploadFolder = user_upload/
+		
+		# cat=plugin.tx_mediafrontend//a; type=integer; label= File Storage (uid)
+		storage = 1
+
+		assets {
+			list {
+				image {
+					width = 200m
+					height = 200m
+				}
+			}
+			detail {
+				image {
+					width = 400m
+					height = 400m
+				}
+			}
+		}
 	}
 }
+

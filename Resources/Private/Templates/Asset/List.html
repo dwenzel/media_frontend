@@ -15,10 +15,13 @@ Otherwise your changes will be overwritten the next time you save the extension 
 <h1>Listing for Asset</h1>
 
 <f:flashMessages />
-
+<f:debug title="assets">{assets}</f:debug>
+<f:debug title="settings">{settings}</f:debug>
 <table  class="tx_mediafrontend" >
 	<tr>
 		<th><f:translate key="tx_mediafrontend_domain_model_asset.title" /></th>
+		<th><f:translate key="tx_mediafrontend_domain_model_asset.status" /></th>
+		<th><f:translate key="tx_mediafrontend_domain_model_asset.file" /></th>
 		<th><f:translate key="tx_mediafrontend_domain_model_asset.description" /></th>
 		<th><f:translate key="tx_mediafrontend_domain_model_asset.extension" /></th>
 		<th><f:translate key="tx_mediafrontend_domain_model_asset.caption" /></th>
@@ -33,6 +36,22 @@ Otherwise your changes will be overwritten the next time you save the extension 
 	<f:for each="{assets}" as="asset">
 		<tr>
 			<td><f:link.action action="show" arguments="{asset : asset}"> {asset.title}</f:link.action></td>
+			<td><f:link.action action="show" arguments="{asset : asset}"> {asset.status}</f:link.action></td>
+			<td>
+				<f:link.action action="show" arguments="{asset : asset}"> 
+					<f:image 
+						src="{asset.file.originalResource.uid}" 
+						width="{settings.assets.list.image.width}"
+						height="{settings.assets.list.image.height}"
+						treatIdAsReference="TRUE" 
+						alt=""
+					/>
+				</f:link.action>
+				originalResource.uid: {asset.file.originalResource.uid}<br />
+				local file title: {asset.file.originalResource.title}<br />
+				original file name: {asset.file.originalResource.originalFile.name}
+			<f:comment><f:debug title="orginalFile">{asset.file.originalResource}</f:debug></f:comment>
+			</td>
 			<td><f:link.action action="show" arguments="{asset : asset}"> {asset.description}</f:link.action></td>
 			<td><f:link.action action="show" arguments="{asset : asset}"> {asset.extension}</f:link.action></td>
 			<td><f:link.action action="show" arguments="{asset : asset}"> {asset.caption}</f:link.action></td>

@@ -43,6 +43,40 @@ class AssetController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	protected $assetRepository;
 
 	/**
+	 * Frontend User Repository
+	 *
+	 * @var \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository
+	 * @inject
+	 */
+	protected $frontendUserRepository;
+
+	/**
+	 * Persistence Manager
+	 *
+	 * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager 
+	 */
+	protected $persitenceManager;
+
+	/**
+	 * Initialize Create Action
+	 */
+	public function initializeCreateAction() {
+		$this->persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
+		if ($this->arguments->hasArgument('newAsset')) {
+		    $this->arguments->getArgument('newAsset')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('file',
+			    'array');
+		}
+	}
+
+	/**
+	 * Initialize Update Action
+	 */
+	public function initializeUpdateAction() {
+	    if ($this->arguments->hasArgument('asset')) {
+		$this->arguments->getArgument('asset')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('file', 'array');
+	    }
+	}
+	/**
 	 * action list
 	 *
 	 * @return void
@@ -80,9 +114,28 @@ class AssetController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	 * @return void
 	 */
 	public function createAction(\Webfox\MediaFrontend\Domain\Model\Asset $newAsset) {
-		$this->assetRepository->add($newAsset);
-		$this->flashMessageContainer->add('Your new Asset was created.');
-		$this->redirect('list');
+		// get frontend user
+	    	$user = $GLOBALS['TSFE']->fe_user->user;
+		$feUser = $this->frontendUserRepository->findByUid($user['uid']);
+		if ($feUser){
+		    $newAsset->setFrontendUser($feUser);
+		}
+		$storedFile = $this->uploadFile($newAsset->getFile());
+		if ($storedFile) {
+			$newAsset->setFile($storedFile);
+			$newAsset->updateMetaData();
+			$this->assetRepository->add($newAsset);
+			$this->persistenceManager->persistAll();
+			$this->assetRepository->createFileReferences($newAsset, $storedFile);
+			
+			$this->flashMessageContainer->add('Your new Asset was created.');
+			$this->redirect('list');
+		}
+		//@todo return localized error messages (would be probably best
+		//implemented in upload manager class
+		
+		$this->redirect('new');
+
 	}
 
 	/**
@@ -102,6 +155,13 @@ class AssetController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	 * @return void
 	 */
 	public function updateAction(\Webfox\MediaFrontend\Domain\Model\Asset $asset) {
+		$storedFile = $this->uploadFile($asset->getFile);
+		if($storedFile){
+		    $asset->setFile($storedFile);
+		    $this->assetRepository->createFileReferences($newAsset, $storedFile);
+		} else {
+		    $asset->setFile(0);
+		}
 		$this->assetRepository->update($asset);
 		$this->flashMessageContainer->add('Your Asset was updated.');
 		$this->redirect('list');
@@ -120,22 +180,24 @@ class AssetController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	}
 
 	/**
-	 * action upload
-	 *
-	 * @return void
-	 */
-	public function uploadAction() {
-
-	}
-
-	/**
-	 * action download
-	 *
-	 * @return void
-	 */
-	public function downloadAction() {
-
+ 	 * upload function
+ 	 * 
+ 	 * @param \array $file An array containing values for newly uploaded file
+	 * @return \string File name
+ 	 */  
+	protected function uploadFile($file) {
+		$storageRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Resource\\StorageRepository');
+		$storage = $storageRepository->findByUid($this->settings['storage']);
+		if($file['size'] > 0 AND $file['error'] == 0) {
+		    $storedFile = $storage->addUploadedFile($file, NULL, NULL, 'changeName');
+		    $fileRepository =  \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Resource\\FileRepository');
+		    $fileRepository->add($storedFile);
+		    //\TYPO3\CMS\Core\Utility\DebugUtility::debug($storedFile->toArray(), 'upload: storedFile');
+		    return $storedFile;
+		}
+		return;
 	}
 
 }
 ?>
+
