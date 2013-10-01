@@ -42,39 +42,21 @@ class AssetRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
  	* @param \array $tempFile An array containing values for newly uploaded file
  	*/
     public function createFileReferences($asset, $tempFile){
-		if (is_array($tempFile)){
+	$newRefFields = array(
+		'pid' => $asset->getPid(),
+		'tablenames' => 'tx_mediafrontend_domain_model_asset',
+		'uid_foreign' => $asset->getUid(),
+		'uid_local' => $tempFile->getUid(),
+		'table_local' => 'sys_file',
+		'fieldname' => 'files',
+		'crdate' => $GLOBALS['EXEC_TIME'],
+		'tstamp' => $GLOBALS['EXEC_TIME']
+	);
 
-			$newSysFields = array(
-				'pid' => 0,
-				'identifier' =>'/user_upload/'.$tempFile['name'],
-				'mime_type' => $tempFile['type'],
-				'name' => $tempFile['name'],
-				'size' => $tempFile['size'],
-				'storage' => 1,
-				'crdate' => $GLOBALS['EXEC_TIME'],
-				'tstamp' => $GLOBALS['EXEC_TIME']
-			);
-
-			$newSysRes = $GLOBALS['TYPO3_DB']->exec_INSERTquery('sys_file', $newSysFields);
-
-			$uid_local = $GLOBALS['TYPO3_DB']->sql_insert_id($newSysRes);
-			$newRefFields = array(
-				'pid' => 17,
-				'tablenames' => 'tx_mediafrontend_domain_model_asset',
-				'uid_foreign' => $asset->getUid(),
-				'uid_local' => $uid_local,
-				'table_local' => 'sys_file',
-				'fieldname' => 'files',
-				'crdate' => $GLOBALS['EXEC_TIME'],
-				'tstamp' => $GLOBALS['EXEC_TIME']
-			);
-
-			$GLOBALS['TYPO3_DB']->exec_INSERTquery('sys_file_reference', $newRefFields);
-		//@todo validate new reference
-		$asset->setFile(1);
-		$this->persistenceManager->update($asset);
-		$this->persistenceManager->persistAll();
-		}
+	$GLOBALS['TYPO3_DB']->exec_INSERTquery('sys_file_reference', $newRefFields);
+	//@todo validate new reference
+	$asset->setFile(1);
+	$this->persistenceManager->update($asset);
     }
 
 }

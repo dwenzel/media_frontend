@@ -97,24 +97,25 @@ class AssetController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	 * @return void
 	 */
 	public function createAction(\Webfox\MediaFrontend\Domain\Model\Asset $newAsset) {
-		$tempFile = $newAsset->getFile();
-		//\TYPO3\CMS\Core\Utility\DebugUtility::debug($tempFile, 'create: tempFile');
-		
-		if (is_array($tempFile) AND $tempFile['error'] == 0) {
-			$tempFile['name'] = $this->uploadFile($tempFile);
-		
-			// set the number of files to 1
+		$storedFile = $this->uploadFile($newAsset->getFile());
+		if ($storedFile) {
+			// set the number of files to 0
 			$newAsset->setFile(0);
+			$properties = $storedFile->getProperties();
+			//\TYPO3\CMS\Core\Utility\DebugUtility::debug($storedFile->toArray(), 'create: storedFile');
+			$newAsset->setExtension($storedFile->getExtension());
+			$newAsset->setWidth($properties['width']);
+			$newAsset->setHeight($properties['height']);
 			$this->assetRepository->add($newAsset);
 			$this->persistenceManager->persistAll();
-			$this->assetRepository->createFileReferences($newAsset, $tempFile);
+			$this->assetRepository->createFileReferences($newAsset, $storedFile);
 			
 			$this->flashMessageContainer->add('Your new Asset was created.');
 			$this->redirect('list');
-		}elseif (is_array($tempFile) AND $tempFile['error'] != 0) {
-			//@todo return localized error messages (would be probably best
-			//implemented in upload manager class
 		}
+		//@todo return localized error messages (would be probably best
+		//implemented in upload manager class
+		
 		$this->redirect('new');
 
 	}
@@ -160,25 +161,16 @@ class AssetController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	 * @return \string File name
  	 */  
 	protected function uploadFile($file) {
-	    $storageRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Resource\\StorageRepository');
-	    // create instance to storage repository
-	    // @todo add setting for storage in TS
-	    // should return \TYPO3\CMS\Core\Resource\ResourceStorage
-	    $storage = $storageRepository->findByUid($this->settings['storage']);
-	    // @todo get BasePath and use it for storing. Alternativly use
-	    // methods of storage! (addUploadedFile?)
-		\TYPO3\CMS\Core\Utility\DebugUtility::debug($this->settings, 'upload: settings');
+		$storageRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Resource\\StorageRepository');
+		$storage = $storageRepository->findByUid($this->settings['storage']);
 		if($file['size'] > 0 AND $file['error'] == 0) {
-			$basicFileFunctions = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('t3lib_basicFileFunctions');
-
-			$name = $basicFileFunctions->cleanFileName($file['name']);
-			$uploadPath = $basicFileFunctions->cleanDirectoryName('fileadmin/user_upload/');
-			$uniqueFileName = $basicFileFunctions->getUniqueName($file['name'], $uploadPath);
-			$fileStored = move_uploaded_file($file['tmp_name'], $uniqueFileName);
-
-			$returnValue = basename($uniqueFileName);
+		    $storedFile = $storage->addUploadedFile($file, NULL, NULL, 'changeName');
+		    $fileRepository =  \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Resource\\FileRepository');
+		    $fileRepository->add($storedFile);
+		    //\TYPO3\CMS\Core\Utility\DebugUtility::debug($storedFile->toArray(), 'upload: storedFile');
+		    return $storedFile;
 		}
-		return $returnValue;
+		return;
 	}
 
 }
