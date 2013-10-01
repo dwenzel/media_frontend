@@ -117,9 +117,13 @@ class AssetController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 			$newAsset->setFile(0);
 			$properties = $storedFile->getProperties();
 			//\TYPO3\CMS\Core\Utility\DebugUtility::debug($storedFile->toArray(), 'create: storedFile');
+			if ($newAsset->getTitle() == ''){
+			    $newAsset->setTitle($properties['name']);
+			}
 			$newAsset->setExtension($storedFile->getExtension());
 			$newAsset->setWidth($properties['width']);
 			$newAsset->setHeight($properties['height']);
+			
 			$this->assetRepository->add($newAsset);
 			$this->persistenceManager->persistAll();
 			$this->assetRepository->createFileReferences($newAsset, $storedFile);
