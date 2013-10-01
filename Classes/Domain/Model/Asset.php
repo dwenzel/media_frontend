@@ -321,5 +321,23 @@ class Asset extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		$this->frontendUser = $frontendUser;
 	}
 
+	/**
+	 * Update Meta Data of File
+	 */
+	public function updateMetaData() {
+	    if ($this->file) {
+		$properties = $this->file->getProperties();
+		$this->extension = $properties['extension'];
+		$this->width = $properties['width'];
+		$this->height = $properties['height'];
+		if ($this->title == '') {
+		    $this->title = $properties['name'];
+		}
+	    } else {
+		$this->extension = '';
+		$this->width = '';
+		$this->height = '';
+	    }
+	}
 }
 ?>
