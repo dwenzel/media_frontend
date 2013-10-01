@@ -122,7 +122,6 @@ class AssetController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		}
 		$storedFile = $this->uploadFile($newAsset->getFile());
 		if ($storedFile) {
-			// set the number of files to 0
 			$newAsset->setFile($storedFile);
 			$newAsset->updateMetaData();
 			$this->assetRepository->add($newAsset);
