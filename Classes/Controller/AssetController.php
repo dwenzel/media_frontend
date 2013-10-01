@@ -58,7 +58,7 @@ class AssetController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	protected $persitenceManager;
 
 	/**
-	 * initialize
+	 * Initialize Create Action
 	 */
 	public function initializeCreateAction() {
 		$this->persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
@@ -66,6 +66,15 @@ class AssetController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		    $this->arguments->getArgument('newAsset')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('file',
 			    'array');
 		}
+	}
+
+	/**
+	 * Initialize Update Action
+	 */
+	public function initializeUpdateAction() {
+	    if ($this->arguments->hasArgument('asset')) {
+		$this->arguments->getArgument('asset')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('file', 'array');
+	    }
 	}
 	/**
 	 * action list
@@ -114,16 +123,8 @@ class AssetController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		$storedFile = $this->uploadFile($newAsset->getFile());
 		if ($storedFile) {
 			// set the number of files to 0
-			$newAsset->setFile(0);
-			$properties = $storedFile->getProperties();
-			//\TYPO3\CMS\Core\Utility\DebugUtility::debug($storedFile->toArray(), 'create: storedFile');
-			if ($newAsset->getTitle() == ''){
-			    $newAsset->setTitle($properties['name']);
-			}
-			$newAsset->setExtension($storedFile->getExtension());
-			$newAsset->setWidth($properties['width']);
-			$newAsset->setHeight($properties['height']);
-			
+			$newAsset->setFile($storedFile);
+			$newAsset->updateMetaData();
 			$this->assetRepository->add($newAsset);
 			$this->persistenceManager->persistAll();
 			$this->assetRepository->createFileReferences($newAsset, $storedFile);
@@ -155,6 +156,13 @@ class AssetController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	 * @return void
 	 */
 	public function updateAction(\Webfox\MediaFrontend\Domain\Model\Asset $asset) {
+		$storedFile = $this->uploadFile($asset->getFile);
+		if($storedFile){
+		    $asset->setFile($storedFile);
+		    $this->assetRepository->createFileReferences($newAsset, $storedFile);
+		} else {
+		    $asset->setFile(0);
+		}
 		$this->assetRepository->update($asset);
 		$this->flashMessageContainer->add('Your Asset was updated.');
 		$this->redirect('list');
