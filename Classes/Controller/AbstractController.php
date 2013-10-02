@@ -82,10 +82,10 @@ class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 		$this->arguments->getArgument('asset')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('file', 'array');
 	    }
 	    if ($this->arguments->hasArgument('newFileCollection')) {
-		$this->arguments->getArgument('newFileCollection')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('image', 'array');
+		$this->arguments->getArgument('newFileCollection')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('file', 'array');
 	    }
 	    if ($this->arguments->hasArgument('fileCollection')) {
-		$this->arguments->getArgument('fileCollection')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('image', 'array');
+		$this->arguments->getArgument('fileCollection')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('file', 'array');
 	    }
 	}
 
