@@ -103,7 +103,7 @@ class FileCollectionController extends AbstractController {
 	 * @param \Webfox\MediaFrontend\Domain\Model\Asset $newAsset
 	 * @return void
 	 */
-	public function updateAction(\Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection, \Webfox\MediaFrontend\Domain\Model\Asset $newAsset) {
+	public function updateAction(\Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection, \Webfox\MediaFrontend\Domain\Model\Asset $newAsset = NULL) {
 		if($newAsset) {
 			$storedFile = $this->uploadFile($newAsset->getFile());
 			if ($storedFile) {
