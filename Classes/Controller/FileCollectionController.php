@@ -32,22 +32,7 @@ namespace Webfox\MediaFrontend\Controller;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class FileCollectionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
-
-	/**
-	 * fileCollectionRepository
-	 *
-	 * @var \Webfox\MediaFrontend\Domain\Repository\FileCollectionRepository
-	 * @inject
-	 */
-	protected $fileCollectionRepository;
-
-	/**
-	 * Asset Repository
-	 * @var \Webfox\MediaFrontend\Domain\Repository\AssetRepository
-	 * @inject
-	 */
-	protected $assetRepository;
+class FileCollectionController extends AbstractController {
 
 	/**
 	 * action list
@@ -98,17 +83,32 @@ class FileCollectionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionC
 	 * @param \Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection
 	 * @return void
 	 */
-	public function editAction(\Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection) {
+	public function editAction(\Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection, \Webfox\MediaFrontend\Domain\Model\Asset $newAsset = NULL) {
 		$this->view->assign('fileCollection', $fileCollection);
+		$this->view->assign('newAsset', $newAsset);
 	}
 
 	/**
 	 * action update
 	 *
 	 * @param \Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection
+	 * @param \Webfox\MediaFrontend\Domain\Model\Asset $newAsset
 	 * @return void
 	 */
-	public function updateAction(\Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection) {
+	public function updateAction(\Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection, \Webfox\MediaFrontend\Domain\Model\Asset $newAsset) {
+		if($newAsset) {
+			$storedFile = $this->uploadFile($newAsset->getFile());
+			if ($storedFile) {
+				$newAsset->setFile($storedFile);
+				$newAsset->updateMetaData();
+				$this->assetRepository->add($newAsset);
+				$this->persistenceManager->persistAll();
+				$this->assetRepository->createFileReferences($newAsset,
+				$storedFile);
+			}
+			$fileCollection->addAsset($newAsset);
+		}
+
 		$this->fileCollectionRepository->update($fileCollection);
 		$this->flashMessageContainer->add('Your FileCollection was updated.');
 		$this->redirect('list');
