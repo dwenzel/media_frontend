@@ -86,6 +86,12 @@ class FileCollectionController extends AbstractController {
 	    if ($this->frontendUser) {
 		$newFileCollection->setFrontendUser($this->frontendUser);
 	    }
+	    $storedFile = $this->uploadFile($newFileCollection->getImage());
+	    if (storedFile) {
+		$newFileCollection->setImage($storedFile);
+	    } else {
+		$newFileCollection->setImage(NULL);
+	    }
 	    $this->fileCollectionRepository->add($newFileCollection);
 	    $this->flashMessageContainer->add('Your new FileCollection was created.');
 	    $this->redirect('list');
@@ -98,8 +104,8 @@ class FileCollectionController extends AbstractController {
 	 * @return void
 	 */
 	public function editAction(\Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection, \Webfox\MediaFrontend\Domain\Model\Asset $newAsset = NULL) {
-		$this->view->assign('fileCollection', $fileCollection);
-		$this->view->assign('newAsset', $newAsset);
+	    $this->view->assign('fileCollection', $fileCollection);
+	    $this->view->assign('newAsset', $newAsset);
 	}
 
 	/**
@@ -108,7 +114,11 @@ class FileCollectionController extends AbstractController {
 	 * @param \Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection
 	 */
 	public function updateAction(\Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection) {
-		$this->fileCollectionRepository->update($fileCollection);
+	    $storedFile = $this->uploadFile($fileCollection->getImage());
+	    if ($storedFile) {
+		$fileCollection->setImage($storedFile);
+	    }
+	    $this->fileCollectionRepository->update($fileCollection);
 		$this->flashMessageContainer->add('Your FileCollection was updated.');
 		$this->redirect('list');
 	}
