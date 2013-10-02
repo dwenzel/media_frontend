@@ -83,9 +83,12 @@ class FileCollectionController extends AbstractController {
 	 * @return void
 	 */
 	public function createAction(\Webfox\MediaFrontend\Domain\Model\FileCollection $newFileCollection) {
-		$this->fileCollectionRepository->add($newFileCollection);
-		$this->flashMessageContainer->add('Your new FileCollection was created.');
-		$this->redirect('list');
+	    if ($this->frontendUser) {
+		$newFileCollection->setFrontendUser($this->frontendUser);
+	    }
+	    $this->fileCollectionRepository->add($newFileCollection);
+	    $this->flashMessageContainer->add('Your new FileCollection was created.');
+	    $this->redirect('list');
 	}
 
 	/**
@@ -132,17 +135,20 @@ class FileCollectionController extends AbstractController {
 	 */
 	public function createAssetAction(\Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection, \Webfox\MediaFrontend\Domain\Model\Asset $newAsset = NULL) {
 		if($newAsset) {
-			$storedFile = $this->uploadFile($newAsset->getFile());
-			if ($storedFile) {
-				$newAsset->setFile($storedFile);
-				$newAsset->updateMetaData();
-				$this->assetRepository->add($newAsset);
-				$this->persistenceManager->persistAll();
-				$this->assetRepository->createFileReferences($newAsset,
-				$storedFile);
-			}
-			$fileCollection->addAsset($newAsset);
-			$this->flashMessageContainer->add('Your Asset was added');
+		    if ($this->frontendUser) {
+			$newAsset->setFrontendUser($this->frontendUser);
+		    }
+		    $storedFile = $this->uploadFile($newAsset->getFile());
+		    if ($storedFile) {
+			$newAsset->setFile($storedFile);
+			$newAsset->updateMetaData();
+			$this->assetRepository->add($newAsset);
+			$this->persistenceManager->persistAll();
+			$this->assetRepository->createFileReferences($newAsset,
+			$storedFile);
+		    }
+		    $fileCollection->addAsset($newAsset);
+		    $this->flashMessageContainer->add('Your Asset was added');
 		}
 
 		$this->fileCollectionRepository->update($fileCollection);
