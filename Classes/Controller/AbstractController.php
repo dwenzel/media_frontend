@@ -51,6 +51,13 @@ class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	protected $frontendUserRepository;
 
 	/**
+	 * Frontend User
+	 *
+	 * @var \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
+	 */
+	protected $frontendUser;
+
+	/**
 	 * Persistence Manager
 	 *
 	 * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager 
@@ -61,13 +68,24 @@ class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	 * Initialize Action
 	 */
 	public function initializeAction() {
-		$this->persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
-		if ($this->arguments->hasArgument('newAsset')) {
-		    $this->arguments->getArgument('newAsset')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('file',
-			    'array');
-		}
+	    // get frontend user
+	    $user = $GLOBALS['TSFE']->fe_user->user;
+	    if ($user) {
+		    $this->frontendUser = $this->frontendUserRepository->findByUid($user['uid']);
+	    }
+	    $this->persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
+	    if ($this->arguments->hasArgument('newAsset')) {
+		$this->arguments->getArgument('newAsset')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('file',
+			'array');
+	    }
 	    if ($this->arguments->hasArgument('asset')) {
 		$this->arguments->getArgument('asset')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('file', 'array');
+	    }
+	    if ($this->arguments->hasArgument('newFileCollection')) {
+		$this->arguments->getArgument('newFileCollection')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('image', 'array');
+	    }
+	    if ($this->arguments->hasArgument('fileCollection')) {
+		$this->arguments->getArgument('fileCollection')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('image', 'array');
 	    }
 	}
 
