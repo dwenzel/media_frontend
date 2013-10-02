@@ -56,10 +56,13 @@ class FileCollectionController extends AbstractController {
 	 * action show
 	 *
 	 * @param \Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection
+	 * @param \Webfox\MediaFrontend\Domain\Model\Asset $newAsset
 	 * @return void
+	 * @dontvalidate $newAsset
 	 */
-	public function showAction(\Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection) {
+	public function showAction(\Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection, \Webfox\MediaFrontend\Domain\Model\Asset $newAsset = NULL) {
 		$this->view->assign('fileCollection', $fileCollection);
+		$this->view->assign('newAsset', $newAsset);
 	}
 
 	/**
@@ -100,10 +103,34 @@ class FileCollectionController extends AbstractController {
 	 * action update
 	 *
 	 * @param \Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection
+	 */
+	public function updateAction(\Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection) {
+		$this->fileCollectionRepository->update($fileCollection);
+		$this->flashMessageContainer->add('Your FileCollection was updated.');
+		$this->redirect('list');
+	}
+
+	/**
+	 * action new asset
+	 *
+	 * @param \Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection
+	 * @param \Webfox\MediaFrontend\Domain\Model\Asset $newAsset
+	 * @dontvalidate $newAsset
+	 * @return void
+	 */
+	public function newAssetAction(\Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection, \Webfox\MediaFrontend\Domain\Model\Asset $newAsset = NULL) {
+		$this->view->assign('fileCollection', $fileCollection);
+		$this->view->assign('newAsset', $newAsset);
+	}
+	
+	/**
+	 * action create asset
+	 *
+	 * @param \Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection
 	 * @param \Webfox\MediaFrontend\Domain\Model\Asset $newAsset
 	 * @return void
 	 */
-	public function updateAction(\Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection, \Webfox\MediaFrontend\Domain\Model\Asset $newAsset = NULL) {
+	public function createAssetAction(\Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection, \Webfox\MediaFrontend\Domain\Model\Asset $newAsset = NULL) {
 		if($newAsset) {
 			$storedFile = $this->uploadFile($newAsset->getFile());
 			if ($storedFile) {
@@ -115,11 +142,12 @@ class FileCollectionController extends AbstractController {
 				$storedFile);
 			}
 			$fileCollection->addAsset($newAsset);
+			$this->flashMessageContainer->add('Your Asset was added');
 		}
 
 		$this->fileCollectionRepository->update($fileCollection);
-		$this->flashMessageContainer->add('Your FileCollection was updated.');
-		$this->redirect('list');
+		$this->redirect('show', NULL, NULL,
+			array('fileCollection'=>$fileCollection));
 	}
 
 	/**

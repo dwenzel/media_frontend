@@ -13,8 +13,9 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 <f:section name="main">
 <h1>Single View for FileCollection</h1>
-<f:debug title="fileCollection">{fileCollection}</f:debug>
-
+<f:if condition="{settings.debug}">
+	<f:debug title="fileCollection">{fileCollection}</f:debug>
+</f:if>
 <f:flashMessages />
 <f:render partial="FileCollection/Properties" arguments="{fileCollection:fileCollection}" />
 <f:for each="{fileCollection.assets}" as="asset" >
@@ -22,4 +23,5 @@ Otherwise your changes will be overwritten the next time you save the extension 
 </f:for>
 <f:link.action action="list">Back to list</f:link.action><br />
 <f:link.action action="new">New FileCollection</f:link.action>
+<f:link.action action="newAsset" arguments="{fileCollection:fileCollection}">New Asset</f:link.action>
 </f:section>
