@@ -35,6 +35,14 @@ namespace Webfox\MediaFrontend\Controller;
 class FileCollectionController extends AbstractController {
 
 	/**
+	 * fileCollectionRepository
+	 *
+	 * @var \Webfox\MediaFrontend\Domain\Repository\FileCollectionRepository
+	 * @inject
+	 */
+	protected $fileCollectionRepository;
+
+	/**
 	 * action list
 	 *
 	 * @return void
