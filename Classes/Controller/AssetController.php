@@ -119,7 +119,7 @@ class AssetController extends AbstractController {
 		    $asset->setFile($storedFile);
 		    $this->assetRepository->createFileReferences($newAsset, $storedFile);
 		} else {
-		    $asset->setFile(0);
+		    $asset->setFile(1);
 		}
 		$this->assetRepository->update($asset);
 		$this->flashMessageContainer->add('Your Asset was updated.');
