@@ -48,7 +48,7 @@ class FileCollectionRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 			'uid_foreign' => $fileCollection->getUid(),
 			'uid_local' => $tempFile->getUid(),
 			'table_local' => 'sys_file',
-			'fieldname' => 'files',
+			'fieldname' => 'image',
 			'crdate' => $GLOBALS['EXEC_TIME'],
 			'tstamp' => $GLOBALS['EXEC_TIME']
 		);
