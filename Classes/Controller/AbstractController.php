@@ -79,16 +79,42 @@ class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 			'array');
 	    }
 	    if ($this->arguments->hasArgument('asset')) {
-		$this->arguments->getArgument('asset')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('file', 'array');
+		//$this->arguments->getArgument('asset')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('file', 'array');
 	    }
 	    if ($this->arguments->hasArgument('newFileCollection')) {
-		$this->arguments->getArgument('newFileCollection')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('file', 'array');
+		$this->arguments->getArgument('newFileCollection')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('image', 'array');
 	    }
 	    if ($this->arguments->hasArgument('fileCollection')) {
-		$this->arguments->getArgument('fileCollection')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('file', 'array');
+		$this->arguments->getArgument('fileCollection')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('image', 'array');
 	    }
 	}
 
+	/**
+	 * Initialize Update Action
+	 */
+	public function initializeUpdateAction() {
+	    if ($this->arguments->hasArgument('asset')) {
+		$this->arguments->getArgument('asset')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('file', 'array');
+		$this->arguments->getArgument('asset')->getPropertyMappingConfiguration()->allowCreationForSubProperty('file');
+		$this->arguments->getArgument('asset')->getPropertyMappingConfiguration()->allowModificationForSubProperty('file');
+	    }
+	    if ($this->arguments->hasArgument('fileCollection')) {
+		$this->arguments->getArgument('fileCollection')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('image', 'array');
+	    }
+	}
+
+
+	/**
+	 * Initialize Edint Action
+	 */
+	public function initializeEditAction() {
+	    if ($this->arguments->hasArgument('asset')) {
+		$this->arguments->getArgument('asset')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('file', 'array');
+	    }
+	    if ($this->arguments->hasArgument('fileCollection')) {
+		$this->arguments->getArgument('fileCollection')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('image', 'array');
+	    }
+	}
 	/**
  	 * upload function
  	 * 
@@ -102,7 +128,6 @@ class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 		    $storedFile = $storage->addUploadedFile($file, NULL, NULL, 'changeName');
 		    $fileRepository =  \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Resource\\FileRepository');
 		    $fileRepository->add($storedFile);
-		    //\TYPO3\CMS\Core\Utility\DebugUtility::debug($storedFile->toArray(), 'upload: storedFile');
 		    return $storedFile;
 		}
 		return;
