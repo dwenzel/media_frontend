@@ -143,7 +143,7 @@ class FileCollection extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Returns the image
 	 *
-	 * @return \string $image
+	 * @return \TYPO3\Exbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
 	 */
 	public function getImage() {
 		return $this->image;
@@ -152,7 +152,7 @@ class FileCollection extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Sets the image
 	 *
-	 * @param \string $image
+	 * @param \TYPO3\Exbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference> $image
 	 * @return void
 	 */
 	public function setImage($image) {
