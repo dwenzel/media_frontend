@@ -49,9 +49,9 @@ class FileCollection extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $status;
 
 	/**
-	 * image
+	 * Image
 	 *
-	 * @var \string
+	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
 	 */
 	protected $image;
 

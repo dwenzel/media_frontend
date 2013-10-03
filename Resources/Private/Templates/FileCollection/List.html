@@ -12,6 +12,10 @@ in /Configuration/ExtensionBuilder/settings.yaml:
 Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
 <f:section name="main">
+<f:if condition="{settings.debug}">
+	<f:debug title="File Collections">{fileCollections}</f:debug>
+	<f:debug title="Settings">{settings}</f:debug>
+</f:if>
 <h1>Listing for FileCollection</h1>
 
 <f:flashMessages />
@@ -30,7 +34,17 @@ Otherwise your changes will be overwritten the next time you save the extension 
 		<tr>
 			<td><f:link.action action="show" arguments="{fileCollection : fileCollection}"> {fileCollection.title}</f:link.action></td>
 			<td><f:link.action action="show" arguments="{fileCollection : fileCollection}"> {fileCollection.status}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{fileCollection : fileCollection}"> {fileCollection.image}</f:link.action></td>
+			<td>
+				<f:link.action action="show" arguments="{fileCollection : fileCollection}"> 
+					<f:image 
+						src="{fileCollection.image.uid}"
+						alt="{fileCollection.title}" 
+						treatIdAsReference="TRUE"
+						width="{settings.fileCollections.list.image.width}"
+						height="{settings.fileCollections.list.image.height}" 
+					/>
+				</f:link.action>
+			</td>
 			<td><f:link.action action="show" arguments="{fileCollection : fileCollection}"> {fileCollection.description}</f:link.action></td>
 			<td><f:link.action action="edit" arguments="{fileCollection : fileCollection}">Edit</f:link.action></td>
 			<td><f:link.action action="delete" arguments="{fileCollection : fileCollection}">Delete</f:link.action></td>

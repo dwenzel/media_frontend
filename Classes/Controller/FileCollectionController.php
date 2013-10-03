@@ -87,12 +87,16 @@ class FileCollectionController extends AbstractController {
 		$newFileCollection->setFrontendUser($this->frontendUser);
 	    }
 	    $storedFile = $this->uploadFile($newFileCollection->getImage());
-	    if (storedFile) {
+	    if ($storedFile) {
 		$newFileCollection->setImage($storedFile);
+		$this->fileCollectionRepository->add($newFileCollection);
+		$this->persistenceManager->persistAll();
+		$this->fileCollectionRepository->createFileReferences($newFileCollection,
+		$storedFile);
 	    } else {
 		$newFileCollection->setImage(NULL);
+		$this->fileCollectionRepository->add($newFileCollection);
 	    }
-	    $this->fileCollectionRepository->add($newFileCollection);
 	    $this->flashMessageContainer->add('Your new FileCollection was created.');
 	    $this->redirect('list');
 	}
