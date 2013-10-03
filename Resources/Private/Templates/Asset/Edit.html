@@ -13,7 +13,9 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 <f:section name="main">
 <h1>Edit Asset</h1>
-
+<f:if condition="{settings.debug}">
+	<f:debug title="Asset">{asset}</f:debug>
+</f:if>
 <f:flashMessages />
 
 <f:render partial="FormErrors" arguments="{object:Asset}"/>
