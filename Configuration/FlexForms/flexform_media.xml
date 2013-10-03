@@ -19,7 +19,7 @@
 									</numIndex>
 									<numIndex index="1">
 										<numIndex index="0">Edit Collections</numIndex>
-										<numIndex index="1">FileCollection->list;FileCollection->show;FileCollection->new;FileCollection->create;FileCollection->edit;FileCollection->update;FileCollection->newAsset;FileCollection->createAsset</numIndex>
+										<numIndex index="1">FileCollection->list;FileCollection->show;FileCollection->new;FileCollection->create;FileCollection->edit;FileCollection->update;FileCollection->delete;FileCollection->newAsset;FileCollection->createAsset</numIndex>
 									</numIndex>
 									<numIndex index="2">
 										<numIndex index="0">Display Assets</numIndex>
