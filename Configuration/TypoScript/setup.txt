@@ -19,13 +19,26 @@ plugin.tx_mediafrontend {
 				image {
 					width =	{$plugin.tx_mediafrontend.settings.assets.list.image.width}
 					height = {$plugin.tx_mediafrontend.settings.assets.list.image.height} 
-
 				}
 			}
 			detail {
 				image {
 					width = {$plugin.tx_mediafrontend.settings.assets.detail.image.width}
 
+					height = {$plugin.tx_mediafrontend.settings.assets.detail.image.height}
+				}
+			}
+		}
+		fileCollections {
+			list {
+				image {
+					width =	{$plugin.tx_mediafrontend.settings.fileCollections.list.image.width}
+					height = {$plugin.tx_mediafrontend.settings.fileCollections.list.image.height} 
+				}
+			}
+			detail {
+				image {
+					width = {$plugin.tx_mediafrontend.settings.assets.detail.image.width}
 					height = {$plugin.tx_mediafrontend.settings.assets.detail.image.height}
 				}
 			}

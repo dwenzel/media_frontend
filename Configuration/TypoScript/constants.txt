@@ -32,6 +32,20 @@ plugin.tx_mediafrontend {
 				}
 			}
 		}
+		fileCollections {
+			list {
+				image {
+					width = 100m
+					height = 100m
+				}
+			}
+			detail {
+				image {
+					width = 200m
+					height = 400m
+				}
+			}
+		}
 	}
 }
 

@@ -121,14 +121,13 @@ $TCA['tx_mediafrontend_domain_model_filecollection'] = array(
 		'image' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:media_frontend/Resources/Private/Language/locallang_db.xlf:tx_mediafrontend_domain_model_filecollection.image',
-			'config' => array(
-				'type' => 'group',
-				'internal_type' => 'file',
-				'uploadfolder' => 'uploads/tx_mediafrontend',
-				'show_thumbs' => 1,
-				'size' => 5,
-				'allowed' => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
-				'disallowed' => '',
+			'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig('image', array(
+				'appearance' => array (
+				    'createNewRelationLinkTitle' => 'LLL:EXT:cms/locallang_ttc.xlf:images.addFileReference'
+				    ),
+				'minitems' => 0,
+				'maxitems' => 1,
+				), $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
 			),
 		),
 		'description' => array(
