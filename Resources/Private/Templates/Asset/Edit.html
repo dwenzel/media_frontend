@@ -20,7 +20,12 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 <f:render partial="FormErrors" arguments="{object:Asset}"/>
 
-<f:form action="update" name="asset" object="{asset}" >
+<f:form 
+	action="update" 
+	enctype="multipart/form-data"
+	name="asset" object="{asset}" 
+	object="{asset}"
+>
 <f:render partial="Asset/FormFields" arguments="{asset:asset}" />
 	<f:form.submit value="Save" />
 </f:form>
