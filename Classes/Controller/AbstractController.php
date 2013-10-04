@@ -62,7 +62,7 @@ class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	 *
 	 * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager 
 	 */
-	protected $persitenceManager;
+	protected $persistenceManager;
 
 	/**
 	 * Initialize Action
@@ -79,7 +79,7 @@ class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 			'array');
 	    }
 	    if ($this->arguments->hasArgument('asset')) {
-		//$this->arguments->getArgument('asset')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('file', 'array');
+		$this->arguments->getArgument('asset')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('file', 'array');
 	    }
 	    if ($this->arguments->hasArgument('newFileCollection')) {
 		$this->arguments->getArgument('newFileCollection')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('image', 'array');
