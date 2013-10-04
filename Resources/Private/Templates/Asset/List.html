@@ -59,11 +59,15 @@ Otherwise your changes will be overwritten the next time you save the extension 
 			<td><f:link.action action="show" arguments="{asset : asset}"> {asset.height}</f:link.action></td>
 			<td><f:link.action action="show" arguments="{asset : asset}"> {asset.duration}</f:link.action></td>
 			<td><f:link.action action="show" arguments="{asset : asset}"> {asset.downloadName}</f:link.action></td>
-			<td><f:link.action action="edit" arguments="{asset : asset}">Edit</f:link.action></td>
-			<td><f:link.action action="delete" arguments="{asset : asset}">Delete</f:link.action></td>
+			<f:security.ifHasRole role="{settings.security.editorGroup}">
+				<td><f:link.action action="edit" arguments="{asset : asset}">Edit</f:link.action></td>
+				<td><f:link.action action="delete" arguments="{asset : asset}">Delete</f:link.action></td>
+			</f:security.ifHasRole>
 		</tr>
 	</f:for>
 </table>
 
-<f:link.action action="new">New Asset</f:link.action>
+<f:security.ifHasRole role="{settings.security.editorGroup}">
+	<f:link.action action="new">New Asset</f:link.action>
+</f:security.ifHasRole>
 </f:section>
