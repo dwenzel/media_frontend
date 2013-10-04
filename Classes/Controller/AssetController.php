@@ -74,7 +74,7 @@ class AssetController extends AbstractController {
 	 */
 	public function createAction(\Webfox\MediaFrontend\Domain\Model\Asset $newAsset) {
 		// get frontend user
-	    	$user = $GLOBALS['TSFE']->fe_user->user;
+		$user = $GLOBALS['TSFE']->fe_user->user;
 		$feUser = $this->frontendUserRepository->findByUid($user['uid']);
 		if ($feUser){
 		    $newAsset->setFrontendUser($feUser);
@@ -114,10 +114,12 @@ class AssetController extends AbstractController {
 	 * @return void
 	 */
 	public function updateAction(\Webfox\MediaFrontend\Domain\Model\Asset $asset) {
-		$storedFile = $this->uploadFile($asset->getFile);
+		$storedFile = $this->uploadFile($asset->getFile());
+	 	//\TYPO3\CMS\Core\Utility\DebugUtility::debugInPopupWindow($storedFile->toArray(), 'update:	storedFile');
 		if($storedFile){
 		    $asset->setFile($storedFile);
-		    $this->assetRepository->createFileReferences($newAsset, $storedFile);
+		    $this->assetRepository->createFileReferences($asset, $storedFile);
+			//$this->assetRepository->updateFileReference($storedFile,'tx_mediafrontend_domain_model_asset', 'files', $asset->getUid());
 		} else {
 		    $asset->setFile(1);
 		}
