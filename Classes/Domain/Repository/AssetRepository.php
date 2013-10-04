@@ -59,6 +59,28 @@ class AssetRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	$this->persistenceManager->update($asset);
     }
 
+	/**
+	 * Update File Reference
+	 *
+	 * @param \TYPO3\CMS\Core\Resource\File $file
+	 * @param \string $tableName
+	 * @param \string $fieldName
+	 * @param \integer $recordUid
+	 */
+	public function updateFileReference($file, $tableName, $fieldName,
+					$recordUid) {
+		$fileRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Resource\\FileRepository');
+		$fileObjects = $fileRepository->findByRelation($tableName, $fieldName,
+						$recordUid);
+		//$fileObjects = $fileRepository->findAll();
+		// get Imageobject information
+		$files = array();	
+		foreach ($fileObjects as $key => $value) {
+			$files[$key]['reference'] = $value->getReferenceProperties();
+			$files[$key]['original'] = $value->getOriginalFile()->getProperties();
+		}
+	 	//\TYPO3\CMS\Core\Utility\DebugUtility::debug($files, 'updateFileReference:');
+	}
 }
 ?>
 
