@@ -28,9 +28,14 @@
 				treatIdAsReference="TRUE" 
 				alt=""
 			/><br />
-			originalResource.uid: {asset.file.originalResource.uid}<br />
-			local file title: {asset.file.originalResource.title}<br />
-			original file name: {asset.file.originalResource.originalFile.name}
+			<f:if condition="{settings.debug}">
+				<f:debug title="original Resource">{asset.file.originalResource}</f:debug>
+				<f:debug title="original File">{asset.file.originalResource.originalFile}</f:debug>
+				originalResource.uid: {asset.file.originalResource.uid}<br />
+				local file title: {asset.file.originalResource.title}<br />
+				original file name: {asset.file.originalResource.originalFile.name}<br />
+				original file type: {asset.file.originalResource.originalFile.type}<br />
+			</f:if>
 	</tr>
 	<tr>
 		<td>
