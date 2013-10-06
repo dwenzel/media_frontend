@@ -12,12 +12,13 @@ in /Configuration/ExtensionBuilder/settings.yaml:
 Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
 <f:section name="main">
-<h1>Single View for FileCollection</h1>
+<h3>Single View for FileCollection</h3>
 <f:if condition="{settings.debug}">
 	<f:debug title="fileCollection">{fileCollection}</f:debug>
 </f:if>
 <f:flashMessages />
 <f:render partial="FileCollection/Properties" arguments="{fileCollection:fileCollection}" />
+<h4>Assets in this File Collection</h4>
 <f:for each="{fileCollection.assets}" as="asset" >
 	<f:render partial="Asset/Properties" arguments="{asset:asset}" />
 </f:for>
