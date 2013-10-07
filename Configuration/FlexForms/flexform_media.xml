@@ -14,19 +14,15 @@
 								<type>select</type>
 								<items>
 									<numIndex index="0">
-										<numIndex index="0">Display Collections</numIndex>
-										<numIndex index="1">FileCollection->list;FileCollection->show</numIndex>
-									</numIndex>
-									<numIndex index="1">
-										<numIndex index="0">Edit Collections</numIndex>
+										<numIndex index="0">Collections</numIndex>
 										<numIndex index="1">FileCollection->list;FileCollection->show;FileCollection->new;FileCollection->create;FileCollection->edit;FileCollection->update;FileCollection->delete;FileCollection->newAsset;FileCollection->createAsset</numIndex>
 									</numIndex>
-									<numIndex index="2">
-										<numIndex index="0">Display Assets</numIndex>
-										<numIndex index="1">Asset->list;Asset->show</numIndex>
+									<numIndex index="1">
+										<numIndex index="0">User Collections</numIndex>
+										<numIndex index="1">FileCollection->listFeUser;FileCollection->show;FileCollection->new;FileCollection->create;FileCollection->edit;FileCollection->update;FileCollection->delete;FileCollection->newAsset;FileCollection->createAsset</numIndex>
 									</numIndex>
-									<numIndex index="3">
-										<numIndex index="0">Edit Assets</numIndex>
+									<numIndex index="2">
+										<numIndex index="0">Assets</numIndex>
 										<numIndex index="1">Asset->list;Asset->show;Asset->new;Asset->create;Asset->delete;Asset->edit;Asset->update</numIndex>
 									</numIndex>
 								</items>
