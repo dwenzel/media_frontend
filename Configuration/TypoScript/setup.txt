@@ -36,6 +36,16 @@ plugin.tx_mediafrontend {
 					height = {$plugin.tx_mediafrontend.settings.fileCollections.list.image.height} 
 				}
 			}
+			
+			# settings for frontend user variant of plugin
+			listFeUser {
+				# display only the first collection of current user
+				firstOnly = 0
+				
+						# redirect to show action when displaying only the first
+				# collections of current user
+				redirectFirst = 0
+			}
 			detail {
 				image {
 					width = {$plugin.tx_mediafrontend.settings.assets.detail.image.width}
