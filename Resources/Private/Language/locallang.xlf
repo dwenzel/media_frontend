@@ -63,6 +63,22 @@
 				<source>Assets</source>
 			</trans-unit>
 			
+			<trans-unit
+			id="tx_mediafrontend_controller_filecollection.message_log_in_to_see_collections">
+				<source>You must be logged in order to see your collections</source>
+			</trans-unit>
+			<trans-unit id="tx_mediafrontend_controller_filecollection.message_new_collection_created">
+				<source>Your new File Collection was created</source>
+			</trans-unit>
+			<trans-unit id="tx_mediafrontend_controller_filecollection.message_collection_updated">
+				<source>Your File Collection was updated</source>
+			</trans-unit>
+			<trans-unit id="tx_mediafrontend_controller_filecollection.message_asset_added">
+				<source>Your Asset was added</source>
+			</trans-unit>
+			<trans-unit id="tx_mediafrontend_controller_filecollection.message_filecollection_removed">
+				<source>Your File Collection was removed</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

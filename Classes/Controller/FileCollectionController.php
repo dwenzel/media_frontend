@@ -71,8 +71,7 @@ class FileCollectionController extends AbstractController {
 			}
 			$this->view->assign('fileCollections', $fileCollections);
 		} else {
-	    	$this->flashMessageContainer->add('You must be logged in to see your
-					Collections.');
+			$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_mediafrontend_controller_filecollection.message_log_in_to_see_collections', 'media_frontend'));
 		}
 	}
 
@@ -122,7 +121,7 @@ class FileCollectionController extends AbstractController {
 		$newFileCollection->setImage(NULL);
 		$this->fileCollectionRepository->add($newFileCollection);
 	    }
-	    $this->flashMessageContainer->add('Your new FileCollection was created.');
+		$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_mediafrontend_controller_filecollection.message_new_collection_created', 'media_frontend'));
 	    $this->redirect('list');
 	}
 
@@ -148,7 +147,7 @@ class FileCollectionController extends AbstractController {
 		$fileCollection->setImage($storedFile);
 	    }
 	    $this->fileCollectionRepository->update($fileCollection);
-		$this->flashMessageContainer->add('Your FileCollection was updated.');
+		$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_mediafrontend_controller_filecollection.message_collection_updated', 'media_frontend'));
 		$this->redirect('list');
 	}
 
@@ -187,7 +186,7 @@ class FileCollectionController extends AbstractController {
 			$storedFile);
 		    }
 		    $fileCollection->addAsset($newAsset);
-		    $this->flashMessageContainer->add('Your Asset was added');
+			$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_mediafrontend_controller_filecollection.message_asset_added', 'media_frontend'));
 		}
 
 		$this->fileCollectionRepository->update($fileCollection);
@@ -203,7 +202,7 @@ class FileCollectionController extends AbstractController {
 	 */
 	public function deleteAction(\Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection) {
 		$this->fileCollectionRepository->remove($fileCollection);
-		$this->flashMessageContainer->add('Your FileCollection was removed.');
+		$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_mediafrontend_controller_filecollection.message_filecollection_removed', 'media_frontend'));
 		$this->redirect('list');
 	}
 
