@@ -8,7 +8,7 @@ if (!defined('TYPO3_MODE')) {
 	'Media',
 	array(
 		'Asset' => 'list, show, new, create, edit, update',
-		'FileCollection' => 'list, show, new, create, edit, update, delete, newAsset, createAsset',
+		'FileCollection' => 'list, show, new, create, edit, update, delete, newAsset, createAsset, listFeUser',
 		
 	),
 	// non-cacheable actions

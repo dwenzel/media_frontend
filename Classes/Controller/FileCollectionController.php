@@ -53,6 +53,31 @@ class FileCollectionController extends AbstractController {
 	}
 
 	/**
+	 * List File Collections of current Frontend user
+	 *
+	 * @return void
+	 */
+	public function listFeUserAction() {
+		if($this->frontendUser) {
+			if($this->settings['listFeUser']['firstOnly']){
+				$fileCollections= array(
+					'fileCollection' => $this->fileCollectionRepository->findOneByFrontendUser($this->frontendUser),
+				);
+				if($this->settings['listFeUser']['redirectFirst']) {
+					$this->forward('show', NULL, NULL, $fileCollections);
+				}
+			} else {		
+			$fileCollections = $this->fileCollectionRepository->findByFrontendUser($this->frontendUser);
+			}
+			$this->view->assign('fileCollections', $fileCollections);
+		} else {
+	    	$this->flashMessageContainer->add('You must be logged in to see your
+					Collections.');
+		}
+	}
+
+
+	/**
 	 * action show
 	 *
 	 * @param \Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection
