@@ -1,3 +1,4 @@
+{namespace t3r=Tx_T3rating_ViewHelpers}
 <f:layout name="Default" />
 
 This Template is responsible for displaying a single view for a domain object
@@ -19,6 +20,19 @@ Otherwise your changes will be overwritten the next time you save the extension 
 <f:flashMessages />
 <f:render partial="FileCollection/Properties" arguments="{fileCollection:fileCollection}" />
 <h4>Assets in this File Collection</h4>
+<t3r:if.isChoice 
+	tableName="tx_mediafrontend_domain_model_filecollection"
+	recordUid="{fileCollection.uid}"
+	votingUid="1">
+	<f:then>
+		is choice!
+		<f:comment><t3r:if.canUserVote /></f:comment> 
+		
+	</f:then>
+	<f:else>
+		is not choice!
+	</f:else>
+</t3r:if.isChoice>
 <f:for each="{fileCollection.assets}" as="asset" >
 	<f:render partial="Asset/Properties" arguments="{asset:asset}" />
 </f:for>
