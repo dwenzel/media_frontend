@@ -26,7 +26,13 @@ Otherwise your changes will be overwritten the next time you save the extension 
 	votingUid="1">
 	<f:then>
 		is choice!
-		<f:comment><t3r:if.canUserVote /></f:comment> 
+		<f:debug title="choice">{t3r:choice(tableName: 'tx_mediafrontend_domain_model_filecollection', recordUid:'{fileCollection.uid}')}</f:debug>
+		<t3r:if.canUserVote 
+			choice="{t3r:choice(tableName: 'tx_mediafrontend_domain_model_filecollection', recordUid:'{fileCollection.uid}')}"
+			votingUid="1"
+		>
+			user can vote
+		</t3r:if.canUserVote> 
 		
 	</f:then>
 	<f:else>
