@@ -59,18 +59,26 @@ class FileCollectionController extends AbstractController {
 	 */
 	public function listFeUserAction() {
 		if($this->frontendUser) {
+			// show only first collection if configured
 			if($this->settings['listFeUser']['firstOnly']){
 				$fileCollections= array(
 					'fileCollection' => $this->fileCollectionRepository->findOneByFrontendUser($this->frontendUser),
 				);
 				if($this->settings['listFeUser']['redirectFirst']) {
-					$this->forward('show', NULL, NULL, $fileCollections);
+					if ($fileCollections['fileCollection']) {
+						$this->forward('show', NULL, NULL, $fileCollections);
+					} else {
+						// redirect to create if no file collection found
+						$this->forward('new');
+					}
 				}
 			} else {		
-			$fileCollections = $this->fileCollectionRepository->findByFrontendUser($this->frontendUser);
+				// find all collections of current user and show them
+				$fileCollections = $this->fileCollectionRepository->findByFrontendUser($this->frontendUser);
 			}
-			$this->view->assign('fileCollections', $fileCollections);
+				$this->view->assign('fileCollections', $fileCollections);
 		} else {
+			// no frontend user found: display error message
 			$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_mediafrontend_controller_filecollection.message_log_in_to_see_collections', 'media_frontend'));
 		}
 	}
