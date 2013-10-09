@@ -101,7 +101,6 @@ class FileCollectionController extends AbstractController {
 				foreach($fileCollection->getAssets() as $asset) {
 					if($asset->getStatus() ==
 									$this->settings['assets']['status']['public']) {
-						echo('status 0, asset: '. $asset->getUid());
 						$selectedAsset = $asset;
 						break;
 					}
