@@ -19,6 +19,8 @@ plugin.tx_mediafrontend {
 		storage = 1
 
 		assets {
+			# cat=plugin.tx_mediafrontend//a; type=integer; label= Public Status of Assets
+			status.public = 2
 			list {
 				image {
 					width = 200m
@@ -33,6 +35,8 @@ plugin.tx_mediafrontend {
 			}
 		}
 		fileCollections {
+			# cat=plugin.tx_mediafrontend//a; type=integer; label= Public Status of File Collections
+			status.public = 2
 			list {
 				image {
 					width = 100m
