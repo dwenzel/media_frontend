@@ -81,12 +81,28 @@ class FileCollectionController extends AbstractController {
 	 *
 	 * @param \Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection
 	 * @param \Webfox\MediaFrontend\Domain\Model\Asset $newAsset
+	 * @param \Webfox\MediaFrontend\Domain\Model\Asset $selectedAsset
 	 * @return void
 	 * @dontvalidate $newAsset
 	 */
-	public function showAction(\Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection, \Webfox\MediaFrontend\Domain\Model\Asset $newAsset = NULL) {
+	public function showAction(\Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection, \Webfox\MediaFrontend\Domain\Model\Asset $newAsset = NULL, \Webfox\MediaFrontend\Domain\Model\Asset $selectedAsset = NULL) {
+		if ($selectedAsset == NULL) {
+			if($this->settings['detail']['selectRandomAsset']) {
+				// select random asset from file collection
+			} else {
+				foreach($fileCollection->getAssets() as $asset) {
+					if($asset->getStatus() ==
+									$this->settings['assets']['status']['public']) {
+						echo('status 0, asset: '. $asset->getUid());
+						$selectedAsset = $asset;
+						break;
+					}
+				}
+			}
+		}
 		$this->view->assign('fileCollection', $fileCollection);
 		$this->view->assign('newAsset', $newAsset);
+		$this->view->assign('selectedAsset', $selectedAsset);
 	}
 
 	/**

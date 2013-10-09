@@ -16,9 +16,13 @@ Otherwise your changes will be overwritten the next time you save the extension 
 <h3>Single View for FileCollection</h3>
 <f:if condition="{settings.debug}">
 	<f:debug title="fileCollection">{fileCollection}</f:debug>
+	<f:debug title="selectedAsset">{selectedAsset}</f:debug>
 </f:if>
 <f:flashMessages />
 <f:render partial="FileCollection/Properties" arguments="{fileCollection:fileCollection}" />
+<f:if condition="{selectedAsset}">
+	<f:render partial="Asset/Properties" arguments="{asset: selectedAsset}" />
+</f:if>
 <h4>Assets in this File Collection</h4>
 <t3r:if.isChoice 
 	tableName="tx_mediafrontend_domain_model_filecollection"
@@ -38,10 +42,8 @@ Otherwise your changes will be overwritten the next time you save the extension 
 	<f:else>
 		is not choice!
 	</f:else>
-</t3r:if.isChoice>
-<f:for each="{fileCollection.assets}" as="asset" >
-	<f:render partial="Asset/Properties" arguments="{asset:asset}" />
-</f:for>
+</t3r:if.isChoice>	
+<f:render partial="FileCollection/AssetList" arguments="{fileCollection: fileCollection, selectedAsset: selectedAsset}" />
 <f:link.action action="list">Back to list</f:link.action><br />
 <f:link.action action="new">New FileCollection</f:link.action>
 <f:link.action action="newAsset" arguments="{fileCollection:fileCollection}">New Asset</f:link.action>
