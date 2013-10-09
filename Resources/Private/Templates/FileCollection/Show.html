@@ -1,4 +1,4 @@
-{namespace t3r=Tx_T3rating_ViewHelpers}
+{namespace t3r=Webfox\T3rating\ViewHelpers}
 <f:layout name="Default" />
 
 This Template is responsible for displaying a single view for a domain object
@@ -19,30 +19,45 @@ Otherwise your changes will be overwritten the next time you save the extension 
 	<f:debug title="selectedAsset">{selectedAsset}</f:debug>
 </f:if>
 <f:flashMessages />
-<f:render partial="FileCollection/Properties" arguments="{fileCollection:fileCollection}" />
-<f:if condition="{selectedAsset}">
-	<f:render partial="Asset/Properties" arguments="{asset: selectedAsset}" />
-</f:if>
-<h4>Assets in this File Collection</h4>
-<t3r:if.isChoice 
+<t3r:ifIsChoice 
 	tableName="tx_mediafrontend_domain_model_filecollection"
 	recordUid="{fileCollection.uid}"
-	votingUid="1">
+	votingUid="{settings.votingUid}">
 	<f:then>
 		is choice!
 		<f:debug title="choice">{t3r:choice(tableName: 'tx_mediafrontend_domain_model_filecollection', recordUid:'{fileCollection.uid}')}</f:debug>
-		<t3r:if.canUserVote 
+		<t3r:ifCanUserVote 
 			choice="{t3r:choice(tableName: 'tx_mediafrontend_domain_model_filecollection', recordUid:'{fileCollection.uid}')}"
-			votingUid="1"
+			votingUid="{settings.votingUid}"
 		>
-			user can vote
-		</t3r:if.canUserVote> 
+			<f:then>
+				user can vote
+				<f:link.action 
+					extensionName="t3rating"
+					pluginName="Vote"
+					controller="Voting"
+					action="vote"
+					arguments="{
+					voting: '{t3r:voting(uid: \'{settings.votingUid}\')}', 
+					choice: '{t3r:choice(tableName: \'tx_mediafrontend_domain_model_filecollection\', recordUid:\'{fileCollection.uid}\')}' }"
+				>vote
+				</f:link.action>
+            </f:then>
+			<f:else>
+				user can not vote
+            </f:else>
+		</t3r:ifCanUserVote> 
 		
 	</f:then>
 	<f:else>
 		is not choice!
 	</f:else>
-</t3r:if.isChoice>	
+</t3r:ifIsChoice>	
+<f:render partial="FileCollection/Properties" arguments="{fileCollection:fileCollection}" />
+<f:if condition="{selectedAsset}">
+	<f:render partial="Asset/Properties" arguments="{asset: selectedAsset}" />
+</f:if>
+<h4>Assets in this File Collection</h4>
 <f:render partial="FileCollection/AssetList" arguments="{fileCollection: fileCollection, selectedAsset: selectedAsset}" />
 <f:link.action action="list">Back to list</f:link.action><br />
 <f:link.action action="new">New FileCollection</f:link.action>
