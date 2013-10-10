@@ -32,5 +32,97 @@
 				</el>
 			</ROOT>
 		</sDEF>
+<!--
+			################################
+			  SHEET Additional
+			################################
+		-->
+		<additional>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:media_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_tab.additional</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+
+
+					<!-- PID Single Page -->
+					<settings.detailPid>
+						<TCEforms>
+							<label>LLL:EXT:media_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_additional.detailPid</label>
+							<config>
+								<type>group</type>
+								<internal_type>db</internal_type>
+								<allowed>pages</allowed>
+								<size>1</size>
+								<maxitems>1</maxitems>
+								<minitems>0</minitems>
+								<show_thumbs>1</show_thumbs>
+								<wizards>
+									<suggest>
+										<type>suggest</type>
+									</suggest>
+								</wizards>
+							</config>
+						</TCEforms>
+					</settings.detailPid>
+
+					<!-- PID Single Page -->
+					<settings.listPid>
+						<TCEforms>
+							<label>LLL:EXT:media_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_additional.listPid</label>
+							<config>
+								<type>group</type>
+								<internal_type>db</internal_type>
+								<allowed>pages</allowed>
+								<size>1</size>
+								<maxitems>1</maxitems>
+								<minitems>0</minitems>
+								<show_thumbs>1</show_thumbs>
+								<wizards>
+									<suggest>
+										<type>suggest</type>
+									</suggest>
+								</wizards>
+							</config>
+						</TCEforms>
+					</settings.listPid>
+
+					<!-- PID Back -->
+					<settings.backPid>
+						<TCEforms>
+							<label>LLL:EXT:media_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_additional.backPid</label>
+							<config>
+								<type>group</type>
+								<internal_type>db</internal_type>
+								<allowed>pages</allowed>
+								<size>1</size>
+								<maxitems>1</maxitems>
+								<minitems>0</minitems>
+								<show_thumbs>1</show_thumbs>
+								<wizards>
+									<suggest>
+										<type>suggest</type>
+									</suggest>
+								</wizards>
+							</config>
+						</TCEforms>
+					</settings.backPid>
+
+					<!-- Limit Start -->
+					<settings.limit>
+						<TCEforms>
+							<label>LLL:EXT:media_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_additional.limit</label>
+							<config>
+								<type>input</type>
+								<size>5</size>
+								<eval>num</eval>
+							</config>
+						</TCEforms>
+					</settings.limit>
+
+				</el>
+			</ROOT>
+		</additional>
 	</sheets>
 </T3DataStructure>
