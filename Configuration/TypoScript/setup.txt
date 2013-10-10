@@ -31,7 +31,7 @@ plugin.tx_mediafrontend {
 			}
 		}
 		fileCollections {
-			status.public = {$plugin.tx_mediafrontend.settings.fileCollection.status.public}
+			status.public = {$plugin.tx_mediafrontend.settings.fileCollections.status.public}
 			list {
 				image {
 					width =	{$plugin.tx_mediafrontend.settings.fileCollections.list.image.width}
