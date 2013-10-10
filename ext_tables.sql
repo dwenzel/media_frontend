@@ -59,7 +59,7 @@ CREATE TABLE tx_mediafrontend_domain_model_filecollection (
 	title varchar(255) DEFAULT '' NOT NULL,
 	status int(11) DEFAULT '0' NOT NULL,
 	image text NOT NULL,
-	description varchar(255) DEFAULT '' NOT NULL,
+	description text NOT NULL,
 	frontend_user int(11) unsigned DEFAULT '0',
 	assets int(11) unsigned DEFAULT '0' NOT NULL,
 
