@@ -213,8 +213,10 @@ class FileCollectionController extends AbstractController {
 		}
 
 		$this->fileCollectionRepository->update($fileCollection);
+		
+		$pageUid = ($this->settings['detailPid'])? $this->settings['detailPid'] : NULL;
 		$this->redirect('show', NULL, NULL,
-			array('fileCollection'=>$fileCollection));
+			array('fileCollection'=>$fileCollection), $pageUid);
 	}
 
 	/**
