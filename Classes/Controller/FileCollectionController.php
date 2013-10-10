@@ -66,7 +66,8 @@ class FileCollectionController extends AbstractController {
 				);
 				if($this->settings['listFeUser']['redirectFirst']) {
 					if ($fileCollections['fileCollection']) {
-						$this->forward('show', NULL, NULL, $fileCollections);
+						//$this->forward('show', NULL, NULL, $fileCollections);
+						$this->forward('edit', NULL, NULL, $fileCollections);
 					} else {
 						// redirect to create if no file collection found
 						$this->forward('new');
@@ -153,9 +154,25 @@ class FileCollectionController extends AbstractController {
 	 * action edit
 	 *
 	 * @param \Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection
+	 * @param \Webfox\MediaFrontend\Domain\Model\Asset $selectedAsset
+	 * @param \Webfox\MediaFrontend\Domain\Model\Asset $newAsset
 	 * @return void
 	 */
-	public function editAction(\Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection, \Webfox\MediaFrontend\Domain\Model\Asset $newAsset = NULL) {
+	public function editAction(\Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection, \Webfox\MediaFrontend\Domain\Model\Asset $newAsset = NULL,  \Webfox\MediaFrontend\Domain\Model\Asset $selectedAsset = NULL) {
+	    if ($selectedAsset == NULL) {
+		if($this->settings['detail']['selectRandomAsset']) {
+		    // select random asset from file collection
+		} else {
+		    foreach($fileCollection->getAssets() as $asset) {
+			if($asset->getFile()) {
+			    $selectedAsset = $asset;
+			    break;
+			}
+		    }
+		}
+	    }
+	    $this->view->assign('frontendUser', $this->frontendUser);
+	    $this->view->assign('selectedAsset', $selectedAsset);
 	    $this->view->assign('fileCollection', $fileCollection);
 	    $this->view->assign('newAsset', $newAsset);
 	}
@@ -172,7 +189,10 @@ class FileCollectionController extends AbstractController {
 	    }
 	    $this->fileCollectionRepository->update($fileCollection);
 		$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_mediafrontend_controller_filecollection.message_collection_updated', 'media_frontend'));
-		$this->redirect('list');
+	    if($this->settings['listFeUser']['firstOnly'] AND $this->settings['listFeUser']['redirectFirst']) {
+		$this->forward('edit', NULL, NULL, array('fileCollection'=>$fileCollection));
+	    }	
+	    $this->redirect('list');
 	}
 
 	/**
