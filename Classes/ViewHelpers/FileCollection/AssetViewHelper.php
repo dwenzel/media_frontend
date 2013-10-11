@@ -65,10 +65,12 @@ class AssetViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelpe
 		$type = $this->arguments['type'];
 		$random = $this->arguments['random'];
 
+		//var_dump('type: ' . $type . ' random: ' . $random . '<br />');
 		if ($random OR $type) {
 			$assetsArray = $fileCollection->getAssets()->toArray();
 			$assetCount = count($assetsArray);
-			if (!assetCount) return NULL;
+			//var_dump('assetCount: ' . $assetCount);
+			if (!$assetCount) return NULL;
 		}
 
 		if($type) {
@@ -94,7 +96,7 @@ class AssetViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelpe
 					break;
 			}
 			
-			if ($requestedType > 0 AND $assetCount) {
+			if ($requestedType >= 0 AND $assetCount) {
 				$tempArray = array();
 				foreach ($assetsArray as $asset) {
 					if ($asset->getFile() AND
@@ -104,14 +106,15 @@ class AssetViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelpe
 					}
 				}
 				$assetsArray = $tempArray;
-				$assetsCount = count($assetsArray);
+				$assetCount = count($assetsArray);
 			}
 		}
 
-		if ($assetCount = 1) return $assetsArray[0];
+		if ($assetCount == 1) return $assetsArray[0];
 		
 		if($this->arguments['random'] AND $assetCount > 1) {
-			$rand = mt_rand(0, $assetCount);
+			$rand = mt_rand(0, $assetCount - 1);
+			//var_dump('rand:  ' .  $rand);
 			$asset = $assetsArray[$rand];
 		}
 	    return $asset;
