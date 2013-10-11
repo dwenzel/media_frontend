@@ -135,16 +135,17 @@ class FileCollectionController extends AbstractController {
 	    if ($this->frontendUser) {
 		$newFileCollection->setFrontendUser($this->frontendUser);
 	    }
-	    $storedFile = $this->uploadFile($newFileCollection->getImage());
+	    if (is_array($newFileCollection->getImage())) {
+			$storedFile = $this->uploadFile($newFileCollection->getImage());
+		}
 	    if ($storedFile) {
-		$newFileCollection->setImage($storedFile);
-		$this->fileCollectionRepository->add($newFileCollection);
-		$this->persistenceManager->persistAll();
-		$this->fileCollectionRepository->createFileReferences($newFileCollection,
-		$storedFile);
+			$newFileCollection->setImage($storedFile);
+			$this->fileCollectionRepository->add($newFileCollection);
+			$this->persistenceManager->persistAll();
+			$this->fileCollectionRepository->createFileReferences($newFileCollection, $storedFile);
 	    } else {
-		$newFileCollection->setImage(NULL);
-		$this->fileCollectionRepository->add($newFileCollection);
+			$newFileCollection->setImage(NULL);
+			$this->fileCollectionRepository->add($newFileCollection);
 	    }
 		$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_mediafrontend_controller_filecollection.message_new_collection_created', 'media_frontend'));
 	    $this->redirect('list');
@@ -183,7 +184,9 @@ class FileCollectionController extends AbstractController {
 	 * @param \Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection
 	 */
 	public function updateAction(\Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection) {
-	    $storedFile = $this->uploadFile($fileCollection->getImage());
+	    if (is_array($fileCollection->getImage())) {
+			$storedFile = $this->uploadFile($fileCollection->getImage());
+		}
 	    if ($storedFile) {
 		$fileCollection->setImage($storedFile);
 	    }
@@ -236,6 +239,9 @@ class FileCollectionController extends AbstractController {
 		$this->fileCollectionRepository->update($fileCollection);
 		
 		$pageUid = ($this->settings['detailPid'])? $this->settings['detailPid'] : NULL;
+	    if($this->settings['listFeUser']['firstOnly'] AND $this->settings['listFeUser']['redirectFirst']) {
+			$this->forward('edit', NULL, NULL, array('fileCollection'=>$fileCollection));
+	    }
 		$this->redirect('show', NULL, NULL,
 			array('fileCollection'=>$fileCollection), $pageUid);
 	}

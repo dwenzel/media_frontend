@@ -98,21 +98,23 @@ class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 		$this->arguments->getArgument('asset')->getPropertyMappingConfiguration()->allowCreationForSubProperty('file');
 		$this->arguments->getArgument('asset')->getPropertyMappingConfiguration()->allowModificationForSubProperty('file');
 	    }
-	    if ($this->arguments->hasArgument('fileCollection')) {
-		$this->arguments->getArgument('fileCollection')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('image', 'array');
+	    if ($this->arguments->hasArgument('fileCollection') AND
+			is_array($this->arguments->getArgument('fileCollection'))) {
+			$this->arguments->getArgument('fileCollection')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('image', 'array');
 	    }
 	}
 
 
 	/**
-	 * Initialize Edint Action
+	 * Initialize Edit Action
 	 */
 	public function initializeEditAction() {
 	    if ($this->arguments->hasArgument('asset')) {
 		$this->arguments->getArgument('asset')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('file', 'array');
 	    }
-	    if ($this->arguments->hasArgument('fileCollection')) {
-		$this->arguments->getArgument('fileCollection')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('image', 'array');
+	    if ($this->arguments->hasArgument('fileCollection') AND
+			is_array($this->arguments->getArgument('fileCollection'))) {
+			$this->arguments->getArgument('fileCollection')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('image', 'array');
 	    }
 	}
 	/**
@@ -124,7 +126,7 @@ class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	protected function uploadFile($file) {
 		$storageRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Resource\\StorageRepository');
 		$storage = $storageRepository->findByUid($this->settings['storage']);
-		if($file['size'] > 0 AND $file['error'] == 0) {
+		if( $file['size'] > 0 AND $file['error'] == 0) {
 		    $storedFile = $storage->addUploadedFile($file, NULL, NULL, 'changeName');
 		    $fileRepository =  \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Resource\\FileRepository');
 		    $fileRepository->add($storedFile);
