@@ -242,13 +242,13 @@ class FileCollectionController extends AbstractController {
 		}
 
 		$this->fileCollectionRepository->update($fileCollection);
+		$this->persistenceManager->persistAll();
 		
 		$pageUid = ($this->settings['detailPid'])? $this->settings['detailPid'] : NULL;
 	    if($this->settings['listFeUser']['firstOnly'] AND $this->settings['listFeUser']['redirectFirst']) {
-			$this->forward('edit', NULL, NULL, array('fileCollection'=>$fileCollection));
+			$this->redirect('edit', NULL, NULL, array('fileCollection'=>$fileCollection));
 	    }
-		$this->redirect('show', NULL, NULL,
-			array('fileCollection'=>$fileCollection), $pageUid);
+		$this->redirect('show', NULL, NULL, array('fileCollection'=>$fileCollection), $pageUid);
 	}
 
 	/**
