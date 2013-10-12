@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-09-27T07:54:20Z" product-name="media_frontend">
+		<header/>
+		<body>
+
+			<trans-unit id="title.description" approved="yes">
+				<source>title</source> <target state="translated">Titel</target></trans-unit>
+			<trans-unit id="status.description" approved="yes">
+				<source>status</source> <target state="translated">Status</target></trans-unit>
+			<trans-unit id="file.description" approved="yes">
+				<source>file</source> <target state="translated">Datei</target></trans-unit>
+			<trans-unit id="description.description" approved="yes">
+				<source>description</source> <target state="translated">Beschreibung</target></trans-unit>
+			<trans-unit id="extension.description" approved="yes">
+				<source>extension</source> <target state="translated">Dateiendung</target></trans-unit>
+			<trans-unit id="caption.description" approved="yes">
+				<source>caption</source> <target state="translated">Untertitel</target></trans-unit>
+			<trans-unit id="width.description" approved="yes">
+				<source>width</source> <target state="translated">Breite</target></trans-unit>
+			<trans-unit id="height.description" approved="yes">
+				<source>height</source> <target state="translated">Höhe</target></trans-unit>
+			<trans-unit id="duration.description" approved="yes">
+				<source>duration</source> <target state="translated">Dauer</target></trans-unit>
+			<trans-unit id="download_name.description" approved="yes">
+				<source>downloadName</source> <target state="translated">Download Name</target></trans-unit>
+			<trans-unit id="frontend_user.description" approved="yes">
+				<source>Frontend User who owns this asset</source> <target state="translated">Benutzer, dem dieses Asset gehört.</target></trans-unit>
+		</body>
+	</file>
+</xliff>

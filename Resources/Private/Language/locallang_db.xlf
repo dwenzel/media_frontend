@@ -1,55 +1,79 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2013-09-22T14:20:56Z" product-name="media_frontend">
-		<header/>
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-10-07T15:23:03Z">
+		<header>
+			<generator>LFEditor</generator>
+		</header>
 		<body>
-
-			<trans-unit id="tx_mediafrontend_domain_model_asset">
-				<source>Asset</source>
-			</trans-unit>
-			<trans-unit id="tx_mediafrontend_domain_model_asset.title">
-				<source>Title</source>
-			</trans-unit>
-			<trans-unit id="tx_mediafrontend_domain_model_asset.description">
-				<source>Description</source>
-			</trans-unit>
-			<trans-unit id="tx_mediafrontend_domain_model_asset.extension">
-				<source>Extension</source>
-			</trans-unit>
-			<trans-unit id="tx_mediafrontend_domain_model_asset.caption">
-				<source>Caption</source>
-			</trans-unit>
-			<trans-unit id="tx_mediafrontend_domain_model_asset.width">
-				<source>Width</source>
-			</trans-unit>
-			<trans-unit id="tx_mediafrontend_domain_model_asset.height">
-				<source>Height</source>
-			</trans-unit>
-			<trans-unit id="tx_mediafrontend_domain_model_asset.duration">
-				<source>Duration</source>
-			</trans-unit>
-			<trans-unit id="tx_mediafrontend_domain_model_asset.download_name">
-				<source>Download Name</source>
-			</trans-unit>
-			<trans-unit id="tx_mediafrontend_domain_model_asset.frontend_user">
-				<source>Frontend User</source>
-			</trans-unit>
-			
-			<trans-unit id="sys_file.tx_extbase_type.Tx_MediaFrontend_Asset">
-				<source>Frontend Media Asset</source>
-			</trans-unit>
-			
-			<trans-unit id="tx_mediafrontend_domain_model_filecollection">
-				<source>File Collection</source>
-			</trans-unit>
-			<trans-unit id="tx_mediafrontend_domain_model_filecollection.frontend_user">
-				<source>Frontend User</source>
-			</trans-unit>
-			
-			<trans-unit id="sys_file_collection.tx_extbase_type.Tx_MediaFrontend_FileCollection">
-				<source>Frontend Media FileCollection</source>
-			</trans-unit>
-			
+		<trans-unit id="tx_mediafrontend_domain_model_asset" xml:space="preserve">
+			<source>Asset</source>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_asset.caption" xml:space="preserve">
+			<source>Caption</source>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_asset.description" xml:space="preserve">
+			<source>Description</source>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_asset.download_name" xml:space="preserve">
+			<source>Download Name</source>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_asset.duration" xml:space="preserve">
+			<source>Duration</source>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_asset.extension" xml:space="preserve">
+			<source>Extension</source>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_asset.file" xml:space="preserve">
+			<source>File</source>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_asset.frontend_user" xml:space="preserve">
+			<source>Frontend User</source>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_asset.height" xml:space="preserve">
+			<source>Height</source>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_asset.status" xml:space="preserve">
+			<source>Status</source>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_asset.title" xml:space="preserve">
+			<source>Title</source>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_asset.width" xml:space="preserve">
+			<source>Width</source>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_filecollection" xml:space="preserve">
+			<source>File Collection</source>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_filecollection.assets" xml:space="preserve">
+			<source>Assets</source>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_filecollection.description" xml:space="preserve">
+			<source>Description</source>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_filecollection.frontend_user" xml:space="preserve">
+			<source>Frontend User</source>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_filecollection.image" xml:space="preserve">
+			<source>Image</source>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_filecollection.status" xml:space="preserve">
+			<source>Status</source>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_filecollection.title" xml:space="preserve">
+			<source>Title</source>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_status.0" xml:space="preserve">
+			<source>new</source>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_status.1" xml:space="preserve">
+			<source>uploaded</source>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_status.2" xml:space="preserve">
+			<source>public</source>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_status.3" xml:space="preserve">
+			<source>private</source>
+		</trans-unit>
 		</body>
 	</file>
 </xliff>

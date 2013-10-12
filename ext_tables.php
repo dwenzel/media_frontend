@@ -9,22 +9,17 @@ if (!defined('TYPO3_MODE')) {
 	'Media'
 );
 
+$pluginSignature = str_replace('_','',$_EXTKEY) . '_media';
+$TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_media.xml');
+
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Frontend Media');
 
-/** 
- * this is the code created by extension builder. It has been commented out
- * since it breaks the display of sys_file and sys_file_collection in BE
- * changes to the TCA will be made in the corresponding file in Configuration/TCA/ instead.
- * Kept here only for reference.
- * Please note, that the extension managers configuration was set to keep this
- * file without changes (in Configuration/ExtensionBuilder/settings.yaml)
- * */
-/*
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('sys_file', 'EXT:media_frontend/Resources/Private/Language/locallang_csh_sys_file.xlf');
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('sys_file');
-$TCA['sys_file'] = array(
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_mediafrontend_domain_model_asset', 'EXT:media_frontend/Resources/Private/Language/locallang_csh_tx_mediafrontend_domain_model_asset.xlf');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_mediafrontend_domain_model_asset');
+$TCA['tx_mediafrontend_domain_model_asset'] = array(
 	'ctrl' => array(
-		'title'	=> 'LLL:EXT:media_frontend/Resources/Private/Language/locallang_db.xlf:sys_file',
+		'title'	=> 'LLL:EXT:media_frontend/Resources/Private/Language/locallang_db.xlf:tx_mediafrontend_domain_model_asset',
 		'label' => 'title',
 		'tstamp' => 'tstamp',
 		'crdate' => 'crdate',
@@ -43,18 +38,18 @@ $TCA['sys_file'] = array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'searchFields' => 'title,description,extension,caption,width,height,duration,download_name,frontend_user,',
+		'searchFields' => 'title,status,file,description,extension,caption,width,height,duration,download_name,frontend_user,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Asset.php',
-		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/sys_file.gif'
+		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_mediafrontend_domain_model_asset.gif'
 	),
 );
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('sys_file_collection', 'EXT:media_frontend/Resources/Private/Language/locallang_csh_sys_file_collection.xlf');
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('sys_file_collection');
-$TCA['sys_file_collection'] = array(
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_mediafrontend_domain_model_filecollection', 'EXT:media_frontend/Resources/Private/Language/locallang_csh_tx_mediafrontend_domain_model_filecollection.xlf');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_mediafrontend_domain_model_filecollection');
+$TCA['tx_mediafrontend_domain_model_filecollection'] = array(
 	'ctrl' => array(
-		'title'	=> 'LLL:EXT:media_frontend/Resources/Private/Language/locallang_db.xlf:sys_file_collection',
-		'label' => 'frontend_user',
+		'title'	=> 'LLL:EXT:media_frontend/Resources/Private/Language/locallang_db.xlf:tx_mediafrontend_domain_model_filecollection',
+		'label' => 'title',
 		'tstamp' => 'tstamp',
 		'crdate' => 'crdate',
 		'cruser_id' => 'cruser_id',
@@ -72,10 +67,10 @@ $TCA['sys_file_collection'] = array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'searchFields' => 'frontend_user,',
+		'searchFields' => 'title,status,image,description,frontend_user,assets,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/FileCollection.php',
-		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/sys_file_collection.gif'
+		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_mediafrontend_domain_model_filecollection.gif'
 	),
 );
-*/
+
 ?>

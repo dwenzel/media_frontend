@@ -32,15 +32,8 @@ namespace Webfox\MediaFrontend\Controller;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class AssetController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
-
-	/**
-	 * assetRepository
-	 *
-	 * @var \Webfox\MediaFrontend\Domain\Repository\AssetRepository
-	 * @inject
-	 */
-	protected $assetRepository;
+//class AssetController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+class AssetController extends AbstractController {
 
 	/**
 	 * action list
@@ -80,9 +73,28 @@ class AssetController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	 * @return void
 	 */
 	public function createAction(\Webfox\MediaFrontend\Domain\Model\Asset $newAsset) {
-		$this->assetRepository->add($newAsset);
-		$this->flashMessageContainer->add('Your new Asset was created.');
-		$this->redirect('list');
+		// get frontend user
+		$user = $GLOBALS['TSFE']->fe_user->user;
+		$feUser = $this->frontendUserRepository->findByUid($user['uid']);
+		if ($feUser){
+		    $newAsset->setFrontendUser($feUser);
+		}
+		$storedFile = $this->uploadFile($newAsset->getFile());
+		if ($storedFile) {
+			$newAsset->setFile($storedFile);
+			$newAsset->updateMetaData();
+			$this->assetRepository->add($newAsset);
+			$this->persistenceManager->persistAll();
+			$this->assetRepository->createFileReferences($newAsset, $storedFile);
+			
+			$this->flashMessageContainer->add('Your new Asset was created.');
+			$this->redirect('list');
+		}
+		//@todo return localized error messages (would be probably best
+		//implemented in upload manager class
+		
+		$this->redirect('new');
+
 	}
 
 	/**
@@ -102,6 +114,15 @@ class AssetController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	 * @return void
 	 */
 	public function updateAction(\Webfox\MediaFrontend\Domain\Model\Asset $asset) {
+		$storedFile = $this->uploadFile($asset->getFile());
+	 	//\TYPO3\CMS\Core\Utility\DebugUtility::debugInPopupWindow($storedFile->toArray(), 'update:	storedFile');
+		if($storedFile){
+		    $asset->setFile($storedFile);
+		    $this->assetRepository->createFileReferences($asset, $storedFile);
+			//$this->assetRepository->updateFileReference($storedFile,'tx_mediafrontend_domain_model_asset', 'files', $asset->getUid());
+		} else {
+		    $asset->setFile(1);
+		}
 		$this->assetRepository->update($asset);
 		$this->flashMessageContainer->add('Your Asset was updated.');
 		$this->redirect('list');
@@ -119,23 +140,6 @@ class AssetController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		$this->redirect('list');
 	}
 
-	/**
-	 * action upload
-	 *
-	 * @return void
-	 */
-	public function uploadAction() {
-
-	}
-
-	/**
-	 * action download
-	 *
-	 * @return void
-	 */
-	public function downloadAction() {
-
-	}
-
 }
 ?>
+

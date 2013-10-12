@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2013-10-10T10:31:26Z">
+		<header>
+			<generator>LFEditor</generator>
+		</header>
+		<body>
+		<trans-unit id="flexforms_additional.backPid" approved="yes" xml:space="preserve">
+			<source>Back Page (pid)</source>
+			<target>Zurück-Seite (pid)</target>
+		</trans-unit>
+		<trans-unit id="flexforms_additional.detailPid" approved="yes" xml:space="preserve">
+			<source>Detail Page (pid)</source>
+			<target>Detailseite</target>
+		</trans-unit>
+		<trans-unit id="flexforms_additional.limit" approved="yes" xml:space="preserve">
+			<source>Limit</source>
+			<target>Limit</target>
+		</trans-unit>
+		<trans-unit id="flexforms_additional.listPid" approved="yes" xml:space="preserve">
+			<source>List Page (pid)</source>
+			<target>Listenseite (pid)</target>
+		</trans-unit>
+		<trans-unit id="flexforms_tab.additional" approved="yes" xml:space="preserve">
+			<source>Additional</source>
+			<target>Zusätzlich</target>
+		</trans-unit>
+		</body>
+	</file>
+</xliff>

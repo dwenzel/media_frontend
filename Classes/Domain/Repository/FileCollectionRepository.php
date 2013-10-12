@@ -34,5 +34,28 @@ namespace Webfox\MediaFrontend\Domain\Repository;
  */
 class FileCollectionRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
+	/**
+ 	* Create File References
+ 	* Manualy updating references for File Abstraction
+ 	* Layer.
+ 	* @param \Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection
+ 	* @param \array $tempFile An array containing values for newly uploaded file
+ 	*/
+	public function createFileReferences($fileCollection, $tempFile){
+		$newRefFields = array(
+			'pid' => $fileCollection->getPid(),
+			'tablenames' => 'tx_mediafrontend_domain_model_filecollection',
+			'uid_foreign' => $fileCollection->getUid(),
+			'uid_local' => $tempFile->getUid(),
+			'table_local' => 'sys_file',
+			'fieldname' => 'image',
+			'crdate' => $GLOBALS['EXEC_TIME'],
+			'tstamp' => $GLOBALS['EXEC_TIME']
+		);
+		$GLOBALS['TYPO3_DB']->exec_INSERTquery('sys_file_reference', $newRefFields);
+		//@todo validate new reference
+		$fileCollection->setImage(1);
+		$this->persistenceManager->update($fileCollection);
+	}
 }
 ?>

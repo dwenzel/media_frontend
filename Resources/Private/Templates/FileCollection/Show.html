@@ -1,3 +1,4 @@
+{namespace t3r=Webfox\T3rating\ViewHelpers}
 <f:layout name="Default" />
 
 This Template is responsible for displaying a single view for a domain object
@@ -12,10 +13,54 @@ in /Configuration/ExtensionBuilder/settings.yaml:
 Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
 <f:section name="main">
-<h1>Single View for FileCollection</h1>
-
+<h3>Single View for FileCollection</h3>
+<f:if condition="{settings.debug}">
+	<f:debug title="fileCollection">{fileCollection}</f:debug>
+	<f:debug title="selectedAsset">{selectedAsset}</f:debug>
+	<f:debug title="settings">{settings}</f:debug>
+</f:if>
 <f:flashMessages />
+<t3r:ifIsChoice 
+	tableName="tx_mediafrontend_domain_model_filecollection"
+	recordUid="{fileCollection.uid}"
+	votingUid="{settings.votingUid}">
+	<f:then>
+		is choice!
+		<f:debug title="choice">{t3r:choice(tableName: 'tx_mediafrontend_domain_model_filecollection', recordUid:'{fileCollection.uid}')}</f:debug>
+		<t3r:ifCanUserVote 
+			choice="{t3r:choice(tableName: 'tx_mediafrontend_domain_model_filecollection', recordUid:'{fileCollection.uid}')}"
+			votingUid="{settings.votingUid}"
+		>
+			<f:then>
+				user can vote
+				<f:link.action 
+					extensionName="t3rating"
+					pluginName="Voting"
+					controller="Voting"
+					action="vote"
+					arguments="{
+					voting: '{t3r:voting(uid: \'{settings.votingUid}\')}', 
+					choice: '{t3r:choice(tableName: \'tx_mediafrontend_domain_model_filecollection\', recordUid:\'{fileCollection.uid}\')}' }"
+				>vote
+				</f:link.action>
+            </f:then>
+			<f:else>
+				user can not vote
+            </f:else>
+		</t3r:ifCanUserVote> 
+		
+	</f:then>
+	<f:else>
+		is not choice!
+	</f:else>
+</t3r:ifIsChoice>	
 <f:render partial="FileCollection/Properties" arguments="{fileCollection:fileCollection}" />
+<f:if condition="{selectedAsset}">
+	<f:render partial="Asset/Properties" arguments="{asset: selectedAsset}" />
+</f:if>
+<h4>Assets in this File Collection</h4>
+<f:render partial="FileCollection/AssetList" arguments="{fileCollection: fileCollection, selectedAsset: selectedAsset}" />
 <f:link.action action="list">Back to list</f:link.action><br />
 <f:link.action action="new">New FileCollection</f:link.action>
+<f:link.action action="newAsset" arguments="{fileCollection:fileCollection}">New Asset</f:link.action>
 </f:section>

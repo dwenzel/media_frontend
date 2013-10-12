@@ -17,7 +17,10 @@ Otherwise your changes will be overwritten the next time you save the extension 
 <f:flashMessages />
 
 <f:render partial="FormErrors" arguments="{object:FileCollection}"/>
-
+<f:if condition="{settings.debug}">
+    <f:debug title="fileCollection">{fileCollection}</f:debug>
+    <f:debug title="newAsset">{newAsset}</f:debug>
+</f:if>
 <f:form action="update" name="fileCollection" object="{fileCollection}" >
 <f:render partial="FileCollection/FormFields" arguments="{fileCollection:fileCollection}" />
 	<f:form.submit value="Save" />
