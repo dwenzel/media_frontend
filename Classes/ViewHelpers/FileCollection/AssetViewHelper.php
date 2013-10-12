@@ -37,14 +37,6 @@ namespace Webfox\MediaFrontend\ViewHelpers\FileCollection;
 class AssetViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
-	 * Voting repository
-	 *
-	 * @var \Webfox\T3rating\Domain\Repository\ChoiceRepository
-	 * @inject
-	 */
-	protected $choiceRepository;
-
-	/**
 	 * Initialize arguments
 	 */
 	public function initializeArguments() {
@@ -52,6 +44,7 @@ class AssetViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelpe
 		$this->registerArgument('fileCollection', '\Webfox\MediaFrontend\Domain\Model\FileCollection', 'A File Collection. Required argument', TRUE);
 		$this->registerArgument('random', 'boolean', 'Get a random asset. Optional argument.');
 		$this->registerArgument('type', 'string', 'Select only assets of a given type. Optional argument. Allowed: image, video, audio, text, application.');
+		$this->registerArgument('status', 'integer', 'Select only assets with a given status. Optional argument.');
 	}
 
 	/**
@@ -64,8 +57,9 @@ class AssetViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelpe
 		$asset = NULL;
 		$type = $this->arguments['type'];
 		$random = $this->arguments['random'];
+		$status = $this->arguments['status'];
 
-		//var_dump('type: ' . $type . ' random: ' . $random . '<br />');
+		//var_dump('type: ' . $type . ' random: ' . $random . ' status: ' . $status.  '<br />');
 		if ($random OR $type) {
 			$assetsArray = $fileCollection->getAssets()->toArray();
 			$assetCount = count($assetsArray);
@@ -98,16 +92,28 @@ class AssetViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelpe
 			
 			if ($requestedType >= 0 AND $assetCount) {
 				$tempArray = array();
-				foreach ($assetsArray as $asset) {
-					if ($asset->getFile() AND
-									$asset->getFile()->getOriginalResource()->getType()
+				foreach ($assetsArray as $tmpAsset) {
+					if ($tmpAsset->getFile() AND
+									$tmpAsset->getFile()->getOriginalResource()->getType()
 									== $requestedType) {
-						$tempArray[] = $asset;
+						$tempArray[] = $tmpAsset;
 					}
 				}
 				$assetsArray = $tempArray;
 				$assetCount = count($assetsArray);
 			}
+		}
+
+		if ($status) {
+				$tempArray = array();
+				foreach ($assetsArray as $tmpAsset) {
+					if ($tmpAsset->getStatus() == $status) {
+						//echo('asset: ' . $tmpAsset->getUid() . ' Status: '. $tmpAsset->getStatus(). ' status: ' . $status);
+						$tempArray[] = $tmpAsset;
+					}
+				}
+				$assetsArray = $tempArray;
+				$assetCount = count($assetsArray);
 		}
 
 		if ($assetCount == 1) return $assetsArray[0];
