@@ -48,7 +48,12 @@ class FileCollectionController extends AbstractController {
 	 * @return void
 	 */
 	public function listAction() {
-		$fileCollections = $this->fileCollectionRepository->findAll();
+		$status = $this->settings['fileCollections']['status']['public'];
+		if($status) {
+			$fileCollections = $this->fileCollectionRepository->findByStatus($status);
+		} else {
+			$fileCollections = $this->fileCollectionRepository->findAll();
+		}
 		$this->view->assign('fileCollections', $fileCollections);
 	}
 
