@@ -32,7 +32,7 @@ namespace Webfox\MediaFrontend\Domain\Model;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Asset extends \TYPO3\CMS\Core\Resource\File {
+class Asset extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * title
@@ -40,6 +40,20 @@ class Asset extends \TYPO3\CMS\Core\Resource\File {
 	 * @var \string
 	 */
 	protected $title;
+
+	/**
+	 * status
+	 *
+	 * @var \string
+	 */
+	protected $status;
+
+	/**
+	 * file
+	 *
+	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
+	 */
+	protected $file;
 
 	/**
 	 * description
@@ -97,45 +111,7 @@ class Asset extends \TYPO3\CMS\Core\Resource\File {
 	 * @lazy
 	 */
 	protected $frontendUser;
-
-	/**
-	 * @var \TYPO3\CMS\Extbase\Object\ObjectManager
-	 */
-	protected $objectManager;
-
-	/** 
-	 * Constructor
-	 *
-	 * @param array $assetData
-	 * @param \TYPO3\CMS\Core\Resource\ResourceStorage $storage
-	 * @return \TYPO3\CMS\Media\Domain\Model\Asset
-	 */
-	public function __construct(array $assetData = array(), $storage = NULL) {
-	    parent::__construct($assetData, $storage);
-
-	    // We are not in Extbase Context
-	    $this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager');
-	}
-
-	/**
-	 * Returns the frontendUser
-	 *
-	 * @return \TYPO3\CMS\Extbase\Domain\Model\FrontendUser $frontendUser
-	 */
-	public function getFrontendUser() {
-		return $this->frontendUser;
-	}
-
-	/**
-	 * Sets the frontendUser
-	 *
-	 * @param \TYPO3\CMS\Extbase\Domain\Model\FrontendUser $frontendUser
-	 * @return void
-	 */
-	public function setFrontendUser(\TYPO3\CMS\Extbase\Domain\Model\FrontendUser $frontendUser) {
-		$this->frontendUser = $frontendUser;
-	}
-
+	
 	/**
 	 * Returns the title
 	 *
@@ -153,6 +129,44 @@ class Asset extends \TYPO3\CMS\Core\Resource\File {
 	 */
 	public function setTitle($title) {
 		$this->title = $title;
+	}
+
+	/**
+	 * Returns the status
+	 *
+	 * @return \string $status
+	 */
+	public function getStatus() {
+		return $this->status;
+	}
+
+	/**
+	 * Sets the status
+	 *
+	 * @param \string $status
+	 * @return void
+	 */
+	public function setStatus($status) {
+		$this->status = $status;
+	}
+
+	/**
+	 * Returns the file
+	 *
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference> $file
+	 */
+	public function getFile() {
+		return $this->file;
+	}
+
+	/**
+	 * Sets the file
+	 *
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference> $file
+	 * @return void
+	 */
+	public function setFile($file) {
+		$this->file = $file;
 	}
 
 	/**
@@ -288,5 +302,42 @@ class Asset extends \TYPO3\CMS\Core\Resource\File {
 		$this->downloadName = $downloadName;
 	}
 
+	/**
+	 * Returns the frontendUser
+	 *
+	 * @return \TYPO3\CMS\Extbase\Domain\Model\FrontendUser $frontendUser
+	 */
+	public function getFrontendUser() {
+		return $this->frontendUser;
+	}
+
+	/**
+	 * Sets the frontendUser
+	 *
+	 * @param \TYPO3\CMS\Extbase\Domain\Model\FrontendUser $frontendUser
+	 * @return void
+	 */
+	public function setFrontendUser(\TYPO3\CMS\Extbase\Domain\Model\FrontendUser $frontendUser) {
+		$this->frontendUser = $frontendUser;
+	}
+
+	/**
+	 * Update Meta Data of File
+	 */
+	public function updateMetaData() {
+	    if ($this->file) {
+		$properties = $this->file->getProperties();
+		$this->extension = $properties['extension'];
+		$this->width = $properties['width'];
+		$this->height = $properties['height'];
+		if ($this->title == '') {
+		    $this->title = $properties['name'];
+		}
+	    } else {
+		$this->extension = '';
+		$this->width = '';
+		$this->height = '';
+	    }
+	}
 }
 ?>

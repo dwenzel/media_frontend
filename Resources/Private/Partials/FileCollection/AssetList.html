@@ -1,0 +1,18 @@
+<ul class="assetList">
+	<f:for each="{fileCollection.assets}" as="asset">
+		<li>
+			<f:link.action action="show" arguments="{fileCollection:
+fileCollection, selectedAsset : asset}">
+				<f:image 
+					src="{asset.file.originalResource.uid}" 
+					width="{settings.assets.list.image.width}"
+					height="{settings.assets.list.image.height}"
+					treatIdAsReference="TRUE" 
+					alt=""
+					class="{f:if(condition: '{asset.uid}=={selectedAsset.uid}',
+then: 'selected')}"
+				/>
+			</f:link.action>
+		</li>
+	</f:for>
+</ul>

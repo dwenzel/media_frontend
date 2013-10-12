@@ -13,13 +13,17 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 <f:section name="main">
 <h1>New FileCollection</h1>
-
+<f:if condition="{settings.debug}">
+	<f:debug title="fileCollection">{fileCollection}</f:debug>
+</f:if>
 <f:flashMessages />
 
-<f:render partial="FormErrors" arguments="{object:FileCollection}"/>
+<f:render partial="FormErrors" arguments="{object:newAsset}"/>
 
-<f:form action="create"  enctype="multipart/form-data"  name="newFileCollection" object="{newFileCollection}">
-<f:render partial="FileCollection/FormFields" />
+<f:form action="createAsset"  enctype="multipart/form-data"  name="newAsset" object="{newAsset}" arguments="{fileCollection: fileCollection}">
+<f:comment><f:form.hidden name="fileCollection" value="{fileCollection}"
+/></f:comment>
+<f:render partial="Asset/FormFields" />
 	<f:form.submit value="Create new" />
 </f:form>
 </f:section>

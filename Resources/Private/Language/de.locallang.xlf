@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2013-10-07T16:03:41Z">
+		<header>
+			<generator>LFEditor</generator>
+		</header>
+		<body>
+		<trans-unit id="tx_mediafrontend_controller_filecollection.message_asset_added" approved="yes" xml:space="preserve">
+			<source>Your Asset was added.</source>
+			<target>Ihr Medium wurde hinzugefügt.</target>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_controller_filecollection.message_collection_updated" approved="yes" xml:space="preserve">
+			<source>Your Media Collection was updated.</source>
+			<target>Ihre Mediensammlung wurde aktualisiert.</target>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_controller_filecollection.message_filecollection_removed" approved="yes" xml:space="preserve">
+			<source>Your Media Collection was removed.</source>
+			<target>Ihre Mediensammlung wurde entfernt.</target>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_controller_filecollection.message_log_in_to_see_collections" approved="yes" xml:space="preserve">
+			<source>You must be logged in order to see your media collections.</source>
+			<target>Sie müssen angemeldet sein, um Ihre Medien sehen zu können.</target>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_controller_filecollection.message_new_collection_created" approved="yes" xml:space="preserve">
+			<source>Your new Media Collection was created.</source>
+			<target>Ihre neue Mediensammlung wurde erzeugt.</target>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_asset" approved="yes" xml:space="preserve">
+			<source>Asset</source>
+			<target>Medium</target>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_asset.caption" approved="yes" xml:space="preserve">
+			<source>Caption</source>
+			<target>Untertitel</target>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_asset.description" approved="yes" xml:space="preserve">
+			<source>Description</source>
+			<target>Beschreibung</target>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_asset.download_name" approved="yes" xml:space="preserve">
+			<source>Download Name</source>
+			<target>Download Name</target>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_asset.duration" approved="yes" xml:space="preserve">
+			<source>Duration</source>
+			<target>Dauer</target>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_asset.extension" approved="yes" xml:space="preserve">
+			<source>Extension</source>
+			<target>Dateiendung</target>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_asset.file" approved="yes" xml:space="preserve">
+			<source>File</source>
+			<target>Datei</target>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_asset.frontend_user" approved="yes" xml:space="preserve">
+			<source>Frontend User who owns this asset</source>
+			<target>Benutzer, dem dieses Asset gehört.</target>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_asset.height" approved="yes" xml:space="preserve">
+			<source>Height</source>
+			<target>Höhe</target>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_asset.status" approved="yes" xml:space="preserve">
+			<source>Status</source>
+			<target>Status</target>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_asset.title" approved="yes" xml:space="preserve">
+			<source>Title</source>
+			<target>Titel</target>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_asset.width" approved="yes" xml:space="preserve">
+			<source>Width</source>
+			<target>Breite</target>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_filecollection" approved="yes" xml:space="preserve">
+			<source>Collection of Frontend Files.</source>
+			<target>Sammlung von Dateien.</target>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_filecollection.assets" approved="yes" xml:space="preserve">
+			<source>Assets</source>
+			<target>Assets</target>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_filecollection.description" approved="yes" xml:space="preserve">
+			<source>Description</source>
+			<target>Beschreibung</target>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_filecollection.frontend_user" approved="yes" xml:space="preserve">
+			<source>Frontend User who owns this collection.</source>
+			<target>Benutzer, dem dieses Asset gehört.</target>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_filecollection.image" approved="yes" xml:space="preserve">
+			<source>Image</source>
+			<target>Bild</target>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_filecollection.status" approved="yes" xml:space="preserve">
+			<source>Status</source>
+			<target>Status</target>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_domain_model_filecollection.title" approved="yes" xml:space="preserve">
+			<source>Title</source>
+			<target>Titel</target>
+		</trans-unit>
+		</body>
+	</file>
+</xliff>

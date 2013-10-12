@@ -17,8 +17,8 @@ Otherwise your changes will be overwritten the next time you save the extension 
 <f:flashMessages />
 
 <f:render partial="FormErrors" arguments="{object:Asset}"/>
-
-<f:form action="create"  name="newAsset" object="{newAsset}">
+<f:debug title="newAsset">{newAsset}</f:debug>
+<f:form action="create"  enctype="multipart/form-data"  name="newAsset" object="{newAsset}">
 <f:render partial="Asset/FormFields" />
 	<f:form.submit value="Create new" />
 </f:form>

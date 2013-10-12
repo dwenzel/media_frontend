@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2013-10-07T15:20:34Z">
+		<header>
+			<generator>LFEditor</generator>
+		</header>
+		<body>
+		<trans-unit id="assets.description" approved="yes" xml:space="preserve">
+			<source>Assets</source>
+			<target>Assets</target>
+		</trans-unit>
+		<trans-unit id="description.description" approved="yes" xml:space="preserve">
+			<source>description</source>
+			<target>Beschreibung</target>
+		</trans-unit>
+		<trans-unit id="frontend_user.description" approved="yes" xml:space="preserve">
+			<source>Frontend User who owns this collection</source>
+			<target>Benutzer, dem diese Dateisammlung gehört.</target>
+		</trans-unit>
+		<trans-unit id="image.description" approved="yes" xml:space="preserve">
+			<source>image</source>
+			<target>Bild</target>
+		</trans-unit>
+		<trans-unit id="status.description" approved="yes" xml:space="preserve">
+			<source>status</source>
+			<target>Status</target>
+		</trans-unit>
+		<trans-unit id="title.description" approved="yes" xml:space="preserve">
+			<source>title</source>
+			<target>Titel</target>
+		</trans-unit>
+		</body>
+	</file>
+</xliff>

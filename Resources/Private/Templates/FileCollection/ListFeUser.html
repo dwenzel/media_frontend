@@ -32,10 +32,10 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 	<f:for each="{fileCollections}" as="fileCollection">
 		<tr>
-			<td><f:link.action action="show" pageUid="{settings.detailPid}" arguments="{fileCollection : fileCollection}"> {fileCollection.title}</f:link.action></td>
-			<td><f:link.action action="show" pageUid="{settings.detailPid}" arguments="{fileCollection : fileCollection}"> {fileCollection.status}</f:link.action></td>
+			<td><f:link.action action="show" arguments="{fileCollection : fileCollection}"> {fileCollection.title}</f:link.action></td>
+			<td><f:link.action action="show" arguments="{fileCollection : fileCollection}"> {fileCollection.status}</f:link.action></td>
 			<td>
-				<f:link.action action="show" pageUid="{settings.detailPid}" arguments="{fileCollection : fileCollection}"> 
+				<f:link.action action="show" arguments="{fileCollection : fileCollection}"> 
 					<f:image 
 						src="{fileCollection.image.uid}"
 						alt="{fileCollection.title}" 
