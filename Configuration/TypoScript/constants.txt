@@ -19,8 +19,15 @@ plugin.tx_mediafrontend {
 		storage = 1
 
 		assets {
-			# cat=plugin.tx_mediafrontend//a; type=integer; label= Public Status of Assets
-			status.public = 2
+			status {
+			    # cat=plugin.tx_mediafrontend//a; type=integer; label= Default Status of Assets
+			    default = 0
+			    # cat=plugin.tx_mediafrontend//a; type=integer; label= Public Status of Assets
+			    public = 2
+			}
+			# cat=plugin.tx_mediafrontend//a; type=integer; label= Max File Size of Assets in Bytes (upload - please check your global settings in install tool and php.ini too)
+			    public = 2
+			maxFileSize = 2097152
 			list {
 				image {
 					width = 200m

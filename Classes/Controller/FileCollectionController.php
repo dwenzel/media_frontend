@@ -236,7 +236,7 @@ class FileCollectionController extends AbstractController {
 					$errors[] = 'error_empty_filename';
 				} elseif ($tmpFile['size'] == 0) {
 					$errors[] = 'error_file_size_zero';
-				} elseif ($tmpFile['size'] > $this->settings['maxFileSize'] ) {
+				} elseif ($tmpFile['size'] > $this->settings['assets']['maxFileSize'] ) {
 					$errors[] = 'error_file_too_big';
 				} elseif ($tmpFile['error'] != 0) {
 					$errors[] = 'errors_errors';
@@ -251,6 +251,7 @@ class FileCollectionController extends AbstractController {
 			}
 		    if ($storedFile) {
 				$newAsset->setFile($storedFile);
+				$newAsset->setStatus($this->settings['assets']['status']['default']);
 				$newAsset->updateMetaData();
 				$this->assetRepository->add($newAsset);
 				$this->persistenceManager->persistAll();

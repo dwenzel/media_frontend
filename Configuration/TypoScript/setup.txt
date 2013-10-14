@@ -15,7 +15,11 @@ plugin.tx_mediafrontend {
 		uploadFolder = {$plugin.tx_mediafrontend.settings.uploadFolder}
 		storage = {$plugin.tx_mediafrontend.settings.storage}
 		assets {
-			status.public = {$plugin.tx_mediafrontend.settings.assets.status.public}
+			status {
+			    default = {$plugin.tx_mediafrontend.settings.assets.status.default}
+			    public = {$plugin.tx_mediafrontend.settings.assets.status.public}
+			}
+			maxFileSize = {$plugin.tx_mediafrontend.settings.assets.maxFileSize}
 			list {
 				image {
 					width =	{$plugin.tx_mediafrontend.settings.assets.list.image.width}
