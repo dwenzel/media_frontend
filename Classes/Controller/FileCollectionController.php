@@ -113,6 +113,7 @@ class FileCollectionController extends AbstractController {
 				}
 			}
 		}
+		$this->view->assign('requestArguments', $this->requestArguments);
 		$this->view->assign('frontendUser', $this->frontendUser);
 		$this->view->assign('fileCollection', $fileCollection);
 		$this->view->assign('newAsset', $newAsset);
