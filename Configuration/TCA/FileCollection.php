@@ -134,9 +134,11 @@ $TCA['tx_mediafrontend_domain_model_filecollection'] = array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:media_frontend/Resources/Private/Language/locallang_db.xlf:tx_mediafrontend_domain_model_filecollection.description',
 			'config' => array(
-				'type' => 'input',
+				'type' => 'text',
+				'columns' => 30,
+				'rows' => 15,
 				'size' => 30,
-				'eval' => 'trim'
+				'eval' => 'trim',
 			),
 		),
 		'frontend_user' => array(
