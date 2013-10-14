@@ -65,6 +65,12 @@ class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	protected $persistenceManager;
 
 	/**
+	 * Request Arguments
+	 * @var \array
+	 */
+	protected $requestArguments = NULL;
+
+	/**
 	 * Initialize Action
 	 */
 	public function initializeAction() {
@@ -73,19 +79,31 @@ class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	    if ($user) {
 		    $this->frontendUser = $this->frontendUserRepository->findByUid($user['uid']);
 	    }
+		$originalRequestArguments = $this->request->getArguments();
+		$action = $originalRequestArguments['action'];
+		unset($originalRequestArguments['action']);
+		unset($originalRequestArguments['controller']);
+
+		$this->requestArguments = array(
+			'action' => $action ,
+			'pluginName' => $this->request->getPluginName(),
+			'controllerName' => $this->request->getControllerName(),
+			'extensionName' => $this->request->getControllerExtensionName(),
+			'arguments' => $originalRequestArguments,
+		);
 	    $this->persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
 	    if ($this->arguments->hasArgument('newAsset')) {
-		$this->arguments->getArgument('newAsset')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('file',
+			$this->arguments->getArgument('newAsset')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('file',
 			'array');
 	    }
 	    if ($this->arguments->hasArgument('asset')) {
-		$this->arguments->getArgument('asset')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('file', 'array');
+			$this->arguments->getArgument('asset')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('file', 'array');
 	    }
 	    if ($this->arguments->hasArgument('newFileCollection')) {
-		$this->arguments->getArgument('newFileCollection')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('image', 'array');
+			$this->arguments->getArgument('newFileCollection')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('image', 'array');
 	    }
 	    if ($this->arguments->hasArgument('fileCollection')) {
-		$this->arguments->getArgument('fileCollection')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('image', 'array');
+			$this->arguments->getArgument('fileCollection')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('image', 'array');
 	    }
 	}
 
