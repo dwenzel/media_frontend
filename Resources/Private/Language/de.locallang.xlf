@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2013-10-07T16:03:41Z">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2013-10-14T17:36:31Z">
 		<header>
 			<generator>LFEditor</generator>
 		</header>
 		<body>
+		<trans-unit id="tx_mediafrontend_controller_filecollection.error_empty_filename" approved="yes" xml:space="preserve">
+			<source>No File.</source>
+			<target>Keine Datei angegeben.</target>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_controller_filecollection.error_file_size_zero" approved="yes" xml:space="preserve">
+			<source>File size zero.</source>
+			<target>Die Datei ist leer.</target>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_controller_filecollection.error_file_too_big" approved="yes" xml:space="preserve">
+			<source>File is to big.</source>
+			<target>Die Datei ist zu groß.</target>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_controller_filecollection.errors_errors" approved="yes" xml:space="preserve">
+			<source>Error on upload.</source>
+			<target>Beim Hochladen sind Fehler aufgetreten.</target>
+		</trans-unit>
 		<trans-unit id="tx_mediafrontend_controller_filecollection.message_asset_added" approved="yes" xml:space="preserve">
 			<source>Your Asset was added.</source>
 			<target>Ihr Medium wurde hinzugefügt.</target>

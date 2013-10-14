@@ -227,19 +227,39 @@ class FileCollectionController extends AbstractController {
 	public function createAssetAction(\Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection, \Webfox\MediaFrontend\Domain\Model\Asset $newAsset = NULL) {
 		if($newAsset) {
 		    if ($this->frontendUser) {
-			$newAsset->setFrontendUser($this->frontendUser);
+				$newAsset->setFrontendUser($this->frontendUser);
 		    }
-		    $storedFile = $this->uploadFile($newAsset->getFile());
+			$tmpFile = $newAsset->getFile();
+			$errors = array();
+			if (is_array($tmpFile)) {
+				if ($tmpFile['name'] == '') {
+					$errors[] = 'error_empty_filename';
+				} elseif ($tmpFile['size'] == 0) {
+					$errors[] = 'error_file_size_zero';
+				} elseif ($tmpFile['size'] > $this->settings['maxFileSize'] ) {
+					$errors[] = 'error_file_too_big';
+				} elseif ($tmpFile['error'] != 0) {
+					$errors[] = 'errors_errors';
+				} 	
+			}
+			if (count($errors)) {
+				foreach($errors as $error) {
+					$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_mediafrontend_controller_filecollection.' . $error, 'media_frontend'));
+				}
+			} else {
+			    $storedFile = $this->uploadFile($newAsset->getFile());
+			}
 		    if ($storedFile) {
-			$newAsset->setFile($storedFile);
-			$newAsset->updateMetaData();
-			$this->assetRepository->add($newAsset);
-			$this->persistenceManager->persistAll();
-			$this->assetRepository->createFileReferences($newAsset,
-			$storedFile);
-		    }
-		    $fileCollection->addAsset($newAsset);
-			$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_mediafrontend_controller_filecollection.message_asset_added', 'media_frontend'));
+				$newAsset->setFile($storedFile);
+				$newAsset->updateMetaData();
+				$this->assetRepository->add($newAsset);
+				$this->persistenceManager->persistAll();
+				$this->assetRepository->createFileReferences($newAsset, $storedFile);
+		    	$fileCollection->addAsset($newAsset);
+				$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_mediafrontend_controller_filecollection.message_asset_added', 'media_frontend'));
+		    } 
+		} else {
+				$this->flashMessageContainer->add('unknown_error');
 		}
 
 		$this->fileCollectionRepository->update($fileCollection);

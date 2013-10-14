@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2013-10-07T16:03:41Z">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-10-14T17:36:31Z">
 		<header>
 			<generator>LFEditor</generator>
 		</header>
 		<body>
+		<trans-unit id="tx_mediafrontend_controller_filecollection.error_empty_filename" xml:space="preserve">
+			<source>No File.</source>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_controller_filecollection.error_file_size_zero" xml:space="preserve">
+			<source>File size zero.</source>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_controller_filecollection.error_file_too_big" xml:space="preserve">
+			<source>File is to big.</source>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend_controller_filecollection.errors_errors" xml:space="preserve">
+			<source>Error on upload.</source>
+		</trans-unit>
 		<trans-unit id="tx_mediafrontend_controller_filecollection.message_asset_added" xml:space="preserve">
 			<source>Your Asset was added.</source>
 		</trans-unit>
