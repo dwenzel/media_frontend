@@ -152,7 +152,6 @@ class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 		}
 		return;
 	}
-
 }
 ?>
 
