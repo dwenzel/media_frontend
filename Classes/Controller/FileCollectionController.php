@@ -113,6 +113,7 @@ class FileCollectionController extends AbstractController {
 				}
 			}
 		}
+		$this->view->assign('requestArguments', $this->requestArguments);
 		$this->view->assign('frontendUser', $this->frontendUser);
 		$this->view->assign('fileCollection', $fileCollection);
 		$this->view->assign('newAsset', $newAsset);
@@ -224,31 +225,38 @@ class FileCollectionController extends AbstractController {
 	 * @return void
 	 */
 	public function createAssetAction(\Webfox\MediaFrontend\Domain\Model\FileCollection $fileCollection, \Webfox\MediaFrontend\Domain\Model\Asset $newAsset = NULL) {
-		if($newAsset) {
-		    if ($this->frontendUser) {
-			$newAsset->setFrontendUser($this->frontendUser);
+	    if($newAsset) {
+		if ($this->frontendUser) $newAsset->setFrontendUser($this->frontendUser);
+		$errors = $this->validateFileUpload($newAsset->getFile());
+		if (count($errors)) {
+		    foreach($errors as $error) {
+			$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_mediafrontend_controller_filecollection.' . $error, 'media_frontend'));
+			$this->redirect('newAsset', NULL, NULL, array('fileCollection' => $fileCollection));
 		    }
+		} else {
 		    $storedFile = $this->uploadFile($newAsset->getFile());
-		    if ($storedFile) {
-			$newAsset->setFile($storedFile);
-			$newAsset->updateMetaData();
-			$this->assetRepository->add($newAsset);
-			$this->persistenceManager->persistAll();
-			$this->assetRepository->createFileReferences($newAsset,
-			$storedFile);
-		    }
-		    $fileCollection->addAsset($newAsset);
-			$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_mediafrontend_controller_filecollection.message_asset_added', 'media_frontend'));
 		}
-
-		$this->fileCollectionRepository->update($fileCollection);
-		$this->persistenceManager->persistAll();
-		
-		$pageUid = ($this->settings['detailPid'])? $this->settings['detailPid'] : NULL;
-	    if($this->settings['listFeUser']['firstOnly'] AND $this->settings['listFeUser']['redirectFirst']) {
-			$this->redirect('edit', NULL, NULL, array('fileCollection'=>$fileCollection));
+		if ($storedFile) {
+		    $newAsset->setFile($storedFile);
+		    $newAsset->setStatus($this->settings['assets']['status']['default']);
+		    $newAsset->updateMetaData();
+		    $this->assetRepository->add($newAsset);
+		    $this->persistenceManager->persistAll();
+		    $this->assetRepository->createFileReferences($newAsset, $storedFile);
+		    $fileCollection->addAsset($newAsset);
+		    $this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_mediafrontend_controller_filecollection.message_asset_added', 'media_frontend'));
+		}
+	    } else {
+		$this->flashMessageContainer->add('unknown_error');
 	    }
-		$this->redirect('show', NULL, NULL, array('fileCollection'=>$fileCollection), $pageUid);
+	    
+	    $this->fileCollectionRepository->update($fileCollection);
+	    $this->persistenceManager->persistAll();
+	    $pageUid = ($this->settings['detailPid'])? $this->settings['detailPid'] : NULL;
+	    if($this->settings['listFeUser']['firstOnly'] AND $this->settings['listFeUser']['redirectFirst']) {
+		$this->redirect('edit', NULL, NULL, array('fileCollection'=>$fileCollection));
+	    }
+	    $this->redirect('show', NULL, NULL, array('fileCollection'=>$fileCollection), $pageUid);
 	}
 
 	/**
@@ -261,6 +269,27 @@ class FileCollectionController extends AbstractController {
 		$this->fileCollectionRepository->remove($fileCollection);
 		$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_mediafrontend_controller_filecollection.message_filecollection_removed', 'media_frontend'));
 		$this->redirect('list');
+	}
+	
+	/**
+	* validate file function
+	* @param \array $file An array containing values of an upload file
+	* return \array An array containing error messages
+	*/
+	protected function validateFileUpload($file) {
+	    $errors = array();
+	    if (is_array($file)) {
+		if ($file['name'] == '') {
+		    $errors[] = 'error_empty_filename';
+		} elseif ($file['size'] == 0) {
+		    $errors[] = 'error_file_size_zero';
+		} elseif ($file['size'] > $this->settings['assets']['maxFileSize'] ) {
+		    $errors[] = 'error_file_too_big';
+		} elseif ($file['error'] != 0) {
+		    $errors[] = 'errors_errors';
+		} 	
+	    } 
+	    return $errors;
 	}
 
 }
