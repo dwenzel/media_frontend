@@ -34,7 +34,7 @@ namespace Webfox\MediaFrontend\ViewHelpers\FileCollection;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  * @author      Dirk Wenzel <wenzel@webfox01.de>
  */
-class GridViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper {
+class GridViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Initialize arguments
@@ -59,45 +59,111 @@ class GridViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
 		$rows = $this->arguments['rows'];
 		$columns = $this->arguments['columns'];
 		$gridItemsCount = $rows * $columns;
-		//echo('itemsCount: ' . $itemsCount . ' gridItemsCount: ' . $gridItemsCount) . '<br />';
-		if($itemsCount AND ($itemsCounts < $gridItemsCount) AND $this->arguments['fillUp']) {
+		
+		// fill up items array
+		if($itemsCount AND ($itemsCount < $gridItemsCount) AND $this->arguments['fillUp']) {
 			$tempArray = array();
+			$count = 0;
 			$repeat = floor($gridItemsCount / $itemsCount);
 			$remainder = $gridItemsCount % $itemsCount;
 			//echo('repeat: ' . $repeat . ' remainder: ' . $remainder . '<br />');
 			while($count < $repeat) {
 			    $tempArray = array_merge($tempArray, $items);
+				//echo('count: ' . $count . ' tempArryCount: ' . count($tempArray) );
 			    $count++;
 			}
 			if($remainder) {
 			    $i = 0;
 			    while($i < $remainder) {
-				$tempArray[] = $items[$i];
-				$i++;
+						$tempArray[] = $items[$i];
+						$i++;
 			    }
 			}
 			$items = $tempArray;
 		}
-		if($this->arguments['shuffle']) shuffle($items);
+	
+		// build empty grid
+		$grid = $this->buildGrid($rows, $columns);
 
-		$gridRows = array();
-		$rowCount = 0;
-		$iteration = 0;
-		while($rowCount < $rows) {
-		    $columnCount = 0;
-		    $gridColumns = array();
-		    while($columnCount < $columns) {
-			$gridColumns[] = $items[$iteration];
-			$columnCount++;
-			$iteration++;
-		    }
-		    
-		    $gridRows[] = $gridColumns;
-		    $rowCount++;
-		}
-		//echo('gridRowsCount: ' . count($gridRows));
-		return $gridRows;
+		// fill grid with content of items array and shuffle if required
+		$grid = $this->fillGrid($grid, $items, $this->arguments['shuffle']);
+
+		return $grid;
 	}
+
+	/** Build an empty grid with given dimensions
+	 *
+	 * @var \integer $rows number of rows in grid
+	 * @var \integer $columns number of columns in grid
+	 * @return \array A two dimensional array
+	 */
+	private function buildGrid($rows, $columns) {
+			$gridRows = array();
+			$rowCount = 0;
+			$iteration = 0;
+			while($rowCount < $rows) {
+					$columnCount = 0;
+					$gridColumns = array();
+					while($columnCount < $columns) {
+							$gridColumns[]= NULL;
+							$columnCount++;
+							$iteration++;
+					}
+					$gridRows[] = $gridColumns;
+					$rowCount++;
+			}
+			return $gridRows;
+	}
+
+	/** Fill Grid
+	 *
+	 * Fills a two dimensional array with the items 
+	 * of a one dimensional array. Optionally the items can be shuffled. I.e. 
+	 * they are placed at a random position in the grid.
+	 *
+	 * @var \array $grid A two dimensional array with no content (i.e. NULL)
+	 * @var \array $items a one dimensional array
+	 * @var \boolean $shuffle
+	 * @return \array A two dimensional grid
+	 */
+	private function fillGrid($grid, $items, $shuffle = FALSE) {
+		$rowCount = count($grid);
+		$columnCount = count($grid[0]);
+		$itemsCount = count($items);
+		$gridItemsCount = ($rowCount * $columnCount);
+		$limit = ($itemsCount <= $gridItemsCount)? $itemsCount : $gridItemsCount;
+		$count = 0;
+
+		if($shuffle) {
+			//scatter items
+			while($count < $limit) {
+				$rndRow = mt_rand(0, $rowCount-1);
+				$rndColumn = mt_rand(0, $columnCount-1);
+				if(! $grid[$rndRow][$rndColumn] AND $count < $limit) {
+						$grid[$rndRow][$rndColumn] = $items[$count];
+						$count++;
+				}		
+			}
+		}else {
+			$currRow = 0;
+			$currColumn = 0;
+			foreach ($grid as $row) {
+				foreach($row as $column) {
+					if($count < $limit) {
+						$grid[$currRow][$currColumn] = $items[$count];
+						$currColumn++;
+						$count++;
+					} else {
+						break;
+					}
+				}
+				$currColumn = 0;
+				$currRow++;
+			}
+		}		
+		return $grid;
+	}
+
 }
 
 ?>
