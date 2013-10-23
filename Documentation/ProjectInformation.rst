@@ -2,42 +2,32 @@
 Project Information
 =====================
 
-Give `general information`_ about the project:
+Frontend Media is in early alpha status and not yet recommended for
+usage in productive systems! 
 
-* When the project started and under what circumstances?
-* Quote possible sponsors.
-* How can people contribute to the project?
+Any feedback or contribution is welcome.
 
-.. _general information: http://forge.typo3.org/projects/typo3v4-official_extension_template
+It has been started as custom solution and is being developed by Dirk Wenzel and
+Michael Kasten from `Agentur Webfox+`_ in Berlin.
+
+.. _Agentur Webfox+: http://www.webfox01.de
 
 Releases
 -----------
+Currently the extension is not downloadable from TYPO3 Extension Repository
+(TER).
+The source code can be found on github_. Please check the dev
+branch for the latest version. 
 
-* Say where the user can download the `source code`_ of the project.
-* Explain where `stable versions`_ are released.
+.. _github: https://github.com/dwenzel/media_frontend
+
+See the `milestones section`_ for an overview of pending bugs and features.
+
+.. _milestones section: https://github.com/dwenzel/media_frontend/issues/milestones
 
 Bugs and Known Issues
 -----------------------------------
+Please report any bugs or feature requests at the `issues page`_ on github.
 
-Say where bugs can be reported / followed up. Is it a `Bug Tracker`_? Use this section for informing about any type of of problem that are not necessarily named in the bug tracker such as performance issues, ...
+.. _issues page: https://github.com/dwenzel/media_frontend/issues
 
-.. _Bug Tracker: http://forge.typo3.org/projects/typo3v4-official_extension_template/issues
-
-To Do
------------
-
-Give a link pointing to a roadmap_. Alternatively, you can dress up a list of things you want to add or fix in this chapter or give a visions what the extension could become with more development.
-
-.. _roadmap: http://forge.typo3.org/projects/typo3v4-official_extension_template/roadmap
-
-
-Change Log
------------
-
-It is recommended to provide the User with a URL pointing to a roadmap_. Forge gives the possibility to create a Roadmap very easily. Optionnally, the link could point to the `repository log`_.
-
-
-.. _source code: http://git.typo3.org/
-.. _stable versions: http://typo3.org/extensions/repository/
-.. _roadmap: http://forge.typo3.org/projects/typo3v4-official_extension_template/roadmap
-.. _repository log: http://git.typo3.org/TYPO3v4/Core.git?a=shortlog

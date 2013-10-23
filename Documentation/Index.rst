@@ -8,12 +8,12 @@
 .. include:: _IncludedDirectives.rst
 
 =================
-Extension Name
+Frontend Media
 =================
 
 :Extension name: Frontend Media
 :Extension key: media_frontend
-:Version: 0.0.1
+:Version: 0.2.1
 :Description: manuals covering TYPO3 extension "Frontend Media"
 :Language: en
 :Author: Dirk Wenzel
@@ -30,23 +30,21 @@ The content of this document is related to TYPO3, a GNU/GPL CMS/Framework availa
 	:maxdepth: 2
 
 	ProjectInformation
-	UserManual
-	AdministratorManual
-	TyposcriptReference
-	DeveloperCorner
-	RestructuredtextHelp
-
-.. STILL TO ADD IN THIS DOCUMENT
-	@todo: add section about how screenshots can be automated. Pointer to PhantomJS could be added.
-	@todo: explain how documentation can be rendered locally and remotely.
-	@todo: explain what files should be versionned and what not (_build, Makefile, conf.py, ...)
+.. not yet ready
+	@todo: UserManual
+	@todo: AdministratorManual
+	@todo: TyposcriptReference
+	@todo: DeveloperCorner
 
 .. include:: ../Readme.rst
 
 What does it do?
 =================
 
-In this chapter should be given a brief overview of the extension. What does it do? What problem does it solve? Who is interested in this? Basically, this section includes everything people need to know to decide whether they should go on with this extension.
+Frontend Media allows logged in visitors of the website to manage files through the frontend. They can be added, removed, altered and shared with other users. A plugin allows to show individual files or file collections.
+Each file belongs to the user who uploaded it. They can be released to the public through the backend. 
+
+Frontend Media stores its files in a folder under the fileadmin directory. It uses file storages introduced with TYPO3 version 6.0. to manage this folder. 
 
 .. figure:: Images/IntroductionPackage.png
 		:width: 500px
