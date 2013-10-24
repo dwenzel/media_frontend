@@ -277,12 +277,11 @@ class FileCollectionController extends AbstractController {
 	* @param \Webfox\MediaFrontend\Domain\Model\Dto\Search $search
 	* return void
 	*/
-	public function
-	    searchFormAction(\Webfox\MediaFrontend\Domain\Model\Dto\Search
+	public function searchFormAction(\Webfox\MediaFrontend\Domain\Model\Dto\Search
 		    $search = NULL ) {
 		if(is_null($search)) {
 			$search =
-			    $this->objectManager->get('\Webfox\MediaFrontend\Domain\Model\Dto\Search');
+			    $this->objectManager->get('Webfox\\MediaFrontend\\Domain\\Model\\Dto\\Search');
 		}
 
 		$this->view->assign('search', $search);
@@ -299,9 +298,9 @@ class FileCollectionController extends AbstractController {
 		    $search = NULL) {
 		//@todo create demand object from settings
 		$demand =
-		    $this->objectManager->get('\Webfox\MediaFrontend\Domain\Model\Dto\FileCollectionDemand');
+		    $this->objectManager->get('Webfox\\MediaFrontend\\Domain\\Model\\Dto\\FileCollectionDemand');
 		if(!is_null($search)) {
-		    $search->setFields($this->settings['search']['fileCollections']['fields'])
+		    $search->setFields($this->settings['search']['fileCollections']['fields']);
 		}
 		$demand->setSearch($search);
 		$this->view->assignMultiple(array(
