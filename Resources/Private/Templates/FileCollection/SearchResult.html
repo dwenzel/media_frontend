@@ -7,6 +7,13 @@
 	<div class="tx_mediafrontend search-result">
 		<f:if condition="{search}">
 			<f:if condition="{fileCollections}">
+				<f:for each="{fileCollections}"
+				as="fileCollection">
+					<f:render partial="FileCollection/List/Item"
+					arguments="{fileCollection:
+					'{fileCollection}', settings: '{settings}'}"
+					/>
+				</f:for>
 			</f:if>
 		</f:if>
 	</div>
