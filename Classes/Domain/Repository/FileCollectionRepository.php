@@ -84,7 +84,6 @@ class FileCollectionRepository extends AbstractDemandedRepository {
 				}
 			}
 			if(count($searchConstraints)) {
-				echo('search constraints found');
 				$constraints[] = $query->logicalOr($searchConstraints);
 			}
 		}
