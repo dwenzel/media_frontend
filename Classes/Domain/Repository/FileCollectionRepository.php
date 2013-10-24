@@ -62,23 +62,34 @@ class FileCollectionRepository extends AbstractDemandedRepository {
 	 * Returns an array of constraints created from a given demand object
 	 *
 	 * @param \TYPO3\CMS\Extbase\Persistence\QueryInterface $query
-	 * @param \Webfox\Domain\Model\Dto\DemandInterface $demand
+	 * @param \Webfox\MediaFrontend\Domain\Model\Dto\DemandInterface $demand
 	 * @return \array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\Constraint>
 	 */
-	protected function createConstraintsFromDemand($query, $demand) {
+	protected function createConstraintsFromDemand(\TYPO3\CMS\Extbase\Persistence\QueryInterface $query, \Webfox\MediaFrontend\Domain\Model\Dto\DemandInterface $demand) {
 		$constraints = array();
-		if ($demand->getSearch !== NULL) {
+		if ($demand->getSearch() !== NULL) {
+			$searchConstraints = array();
 			$search = $demand->getSearch();
 			$searchFields =
 			    \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',',
-				    $search->getSearchFields(), TRUE);
-			if (count($searchFields) === NULL) {
-			    throw new UnexpectedValueException('No search fields
+				    $search->getFields(), TRUE);
+			if (count($searchFields) === 0) {
+			    throw new \UnexpectedValueException('No search fields
 				    given', 1382608407);
 			}
+			$subject = $search->getSubject();
+			if(!empty($subject)) {
+				foreach($searchFields as $field) {
+					$searchConstraints[] =	$query->like($field, '%' . $subject . '%');
+				}
+			}
+			if(count($searchConstraints)) {
+				echo('search constraints found');
+				$constraints[] = $query->logicalOr($searchConstraints);
+			}
+		}
 
 		return $constraints;
-		}
 	}
 
 	/**
