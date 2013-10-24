@@ -1,0 +1,43 @@
+{namespace mfc=Webfox\MediaFrontend\ViewHelpers\FileCollection}
+
+<div class="list-item width-100 clearfix">
+	<f:link.action action="show" pageUid="{settings.detailPid}" arguments="{fileCollection : fileCollection}">
+		<div class="float-l width-50">
+			<h3 class="title">{fileCollection.title}</h3>
+			<div class="user">{fileCollection.frontendUser.name}</div>
+			<div class="description">{fileCollection.description}</div>
+		</div>
+		<div class="float-r width-50 image-wrap">
+			<f:if condition="{mfc:asset(fileCollection: '{fileCollection}' random: 'true', type: 'image', status: '{settings.assets.status.public}')}">
+				<f:then>
+					<f:comment>asset with file type image found</f:comment>
+					<f:alias map="{asset: '{mfc:asset(fileCollection: \'{fileCollection}\' random: \'true\', type: \'image\', status: \'{settings.assets.status.public}\')}'}">
+						<f:image 
+							src="{asset.file.uid}"
+							alt="{fileCollection.title} {asset.uid}" 
+							treatIdAsReference="TRUE"
+							width="{settings.fileCollections.list.image.width}"
+							height="{settings.fileCollections.list.image.height}"
+						/>
+					</f:alias>
+				</f:then>
+				<f:else>
+					<f:comment>If no image was found we assume to have a file collection with only one movie asset.
+						There should be a preview image for this movie in the same folder with the same file name + extension .jpg
+					</f:comment>
+					<f:for each="{fileCollection.assets}" as="asset" iteration="iteration">
+						<f:if condition="{iteration.total} == 1">
+							<f:if condition="{asset.file.originalResource.type} == 4" >
+								<f:image src="{asset.file.originalResource.publicUrl}.jpg"
+									alt="{fileCollection.title}"
+									width="{settings.fileCollection.list.image.width}"
+									height="{settings.fileCollection.list.image.height}"
+								/>
+							</f:if>
+						</f:if>
+					</f:for>
+				</f:else>
+			</f:if>
+		</div>
+	</f:link.action>
+</div>
