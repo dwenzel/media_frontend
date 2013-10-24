@@ -59,6 +59,13 @@ plugin.tx_mediafrontend {
 				}
 			}
 		}
+		search {
+			fileCollections {
+				fields = title,description
+			}
+			assets {
+				fields = title,description,caption
+		}
 	}
 }
 plugin.tx_mediafrontend._CSS_DEFAULT_STYLE (
