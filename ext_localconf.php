@@ -8,14 +8,14 @@ if (!defined('TYPO3_MODE')) {
 	'Media',
 	array(
 		'Asset' => 'list, show, new, create, edit, update',
-		'FileCollection' => 'list, show, new, create, edit, update, delete, newAsset, createAsset, listFeUser',
+		'FileCollection' => 'list, show, new, create, edit, update, delete, newAsset, createAsset, listFeUser, searchForm, searchResult',
 		
 	),
 	// non-cacheable actions
 	array(
 		'Asset' => 'create, update, delete, ',
 		'FileCollection' => 'create, update, delete, newAsset,
-		createAsset',
+		createAsset, searchForm, searchResult',
 		
 	)
 );
