@@ -270,7 +270,47 @@ class FileCollectionController extends AbstractController {
 		$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_mediafrontend_controller_filecollection.message_filecollection_removed', 'media_frontend'));
 		$this->redirect('list');
 	}
-	
+
+	/**
+	* Display the search form
+	* 
+	* @param \Webfox\MediaFrontend\Domain\Model\Dto\Search $search
+	* return void
+	*/
+	public function
+	    searchFormAction(\Webfox\MediaFrontend\Domain\Model\Dto\Search
+		    $search = NULL ) {
+		if(is_null($search)) {
+			$search =
+			    $this->objectManager->get('\Webfox\MediaFrontend\Domain\Model\Dto\Search');
+		}
+
+		$this->view->assign('search', $search);
+	}
+
+
+	/**
+	* Display the search result
+	*
+	* @param \Webfox\MediaFrontend\Domain\Model\Dto\Search $search 
+	* @return void
+	*/
+	public function searchResultAction(\Webfox\MediaFrontend\Domain\Model\Dto\Search
+		    $search = NULL) {
+		//@todo create demand object from settings
+		$demand =
+		    $this->objectManager->get('\Webfox\MediaFrontend\Domain\Model\Dto\FileCollectionDemand');
+		if(!is_null($search)) {
+		    $search->setFields($this->settings['search']['fileCollections']['fields'])
+		}
+		$demand->setSearch($search);
+		$this->view->assignMultiple(array(
+			'fileCollections' => $this->fileCollectionRepository->findDemanded($demand),
+			'search' => $search,
+			'demand' => $demand,
+		));
+	}
+
 	/**
 	* validate file function
 	* @param \array $file An array containing values of an upload file

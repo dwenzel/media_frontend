@@ -32,7 +32,7 @@ namespace Webfox\MediaFrontend\Domain\Repository;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class FileCollectionRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
+class FileCollectionRepository extends AbstractDemandedRepository {
 
 	/**
  	* Create File References
@@ -57,5 +57,44 @@ class FileCollectionRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 		$fileCollection->setImage(1);
 		$this->persistenceManager->update($fileCollection);
 	}
+
+	/**
+	 * Returns an array of constraints created from a given demand object
+	 *
+	 * @param \TYPO3\CMS\Extbase\Persistence\QueryInterface $query
+	 * @param \Webfox\Domain\Model\Dto\DemandInterface $demand
+	 * @return \array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\Constraint>
+	 */
+	protected function createConstraintsFromDemand($query, $demand) {
+		$constraints = array();
+		if ($demand->getSearch !== NULL) {
+			$search = $demand->getSearch();
+			$searchFields =
+			    \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',',
+				    $search->getSearchFields(), TRUE);
+			if (count($searchFields) === NULL) {
+			    throw new UnexpectedValueException('No search fields
+				    given', 1382608407);
+			}
+
+		return $constraints;
+		}
+	}
+
+	/**
+	 * Returns an array of orderings created from a given demand object.
+	 *
+	 * @param \Webfox\MediaFrontend\Domain\Model\Dto\DemandInterface $demand
+	 * @return array<\TYPO3\CMS\Extbase\Persistence\QOM\Constraint>
+	 */
+	protected function createOrderingsFromDemand(\Webfox\MediaFrontend\Domain\Model\Dto\DemandInterface $demand) {
+		$orderings = array();
+		//@todo not implemented yet
+		return $orderings;
+
+	}
+
+
+
 }
 ?>
