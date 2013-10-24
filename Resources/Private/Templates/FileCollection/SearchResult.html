@@ -1,0 +1,13 @@
+<f:layout name="Default" />
+<f:section name="main">
+	<f:if condition="{settings.debug}">
+		<f:debug title="search">{search}</f:debug>
+		<f:debug title="result">{fileCollections}</f:debug>
+	</f:if>
+	<div class="tx_mediafrontend search-result">
+		<f:if condition="{search}">
+			<f:if condition="{fileCollections}">
+			</f:if>
+		</f:if>
+	</div>
+</f:section>
