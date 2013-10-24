@@ -34,10 +34,10 @@ namespace Webfox\MediaFrontend\Domain\Repository;
  * @author Dirk Wenzel <wenzel@webfox01.de>
  */
 abstract class AbstractDemandedRepository
-	extends TYPO3\CMS\Extbase\Persistence\Repository {
+	extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 	/**
-	 * @var \TYPO3\CMS\Extbase\Persistence\Storage\BackendInterface
+	 * @var \TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface
 	 * @inject
 	 */
 	protected $storageBackend;
@@ -45,11 +45,9 @@ abstract class AbstractDemandedRepository
 	/**
 	 * Returns an array of constraints created from a given demand object.
 	 * 
-	 * @todo TYPO3 6.1 doesn't know a Class \TYPO3\CMS\Extbase\Persistence\QOM\Constraint
-	 * replace with \TYPO3\CMS\Extbase\Persistence\Generic\Qom\Constraint
 	 * @param \TYPO3\CMS\Extbase\Persistence\QueryInterface $query
 	 * @param \Webfox\MediaFrontend\Domain\Model\Dto\DemandInterface $demand
-	 * @return array<\TYPO3\CMS\Extbase\Persistence\QOM\Constraint>
+	 * @return \array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\Constraint>
 	 * @abstract
 	 */
 	abstract protected function createConstraintsFromDemand(\TYPO3\CMS\Extbase\Persistence\QueryInterface $query, \Webfox\MediaFrontend\Domain\Model\Dto\DemandInterface $demand);
