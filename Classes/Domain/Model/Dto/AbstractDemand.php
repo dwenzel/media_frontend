@@ -83,7 +83,7 @@ class AbstractDemand
 	 * @param \Webfox\Domain\Model\Dto\Search $search A search object
 	 * @return void
 	 */
-	public function setSeach($search) {
+	public function setSearch($search) {
 		$this->search = $search;
 	}
 
