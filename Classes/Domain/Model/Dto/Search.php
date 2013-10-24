@@ -1,5 +1,5 @@
 <?php
-namespace \Webfox\Domain\Model\Dto;
+namespace Webfox\MediaFrontend\Domain\Model\Dto;
 
 /***************************************************************
  *  Copyright notice
@@ -25,7 +25,7 @@ namespace \Webfox\Domain\Model\Dto;
  * @package TYPO3
  * @subpackage tx_media_frontend
  */
-class Search extends TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
+class Search extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Basic search word
