@@ -45,6 +45,7 @@ class AssetViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelpe
 		$this->registerArgument('random', 'boolean', 'Get a random asset. Optional argument.');
 		$this->registerArgument('type', 'string', 'Select only assets of a given type. Optional argument. Allowed: image, video, audio, text, application.');
 		$this->registerArgument('status', 'integer', 'Select only assets with a given status. Optional argument.');
+		$this->registerArgument('first', 'boolean', 'Select the first matching asset. Optional argument. If a type is given only the first of this type will be returned');
 	}
 
 	/**
@@ -119,9 +120,11 @@ class AssetViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelpe
 		if ($assetCount == 1) return $assetsArray[0];
 		
 		if($this->arguments['random'] AND $assetCount > 1) {
-			$rand = mt_rand(0, $assetCount - 1);
-			//var_dump('rand:  ' .  $rand);
-			$asset = $assetsArray[$rand];
+		    $rand = mt_rand(0, $assetCount - 1);
+		    $asset = $assetsArray[$rand];
+		}
+		if ($this->arguments['first'] AND $assetCount) {
+		    $asset =$assetsArray[0];
 		}
 	    return $asset;
 	}
