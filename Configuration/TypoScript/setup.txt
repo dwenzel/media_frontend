@@ -30,6 +30,19 @@ plugin.tx_mediafrontend {
 					width =	{$plugin.tx_mediafrontend.settings.assets.list.image.width}
 					height = {$plugin.tx_mediafrontend.settings.assets.list.image.height} 
 				}
+				# Paginate configuration.
+				paginate {
+					itemsPerPage ={$plugin.tx_mediafrontend.settings.list.paginate.itemsPerPage}
+					insertAbove = {$plugin.tx_mediafrontend.settings.list.paginate.insertAbove}
+					insertBelow = {$plugin.tx_mediafrontend.settings.list.paginate.insertBelow}
+					lessPages = {$plugin.tx_mediafrontend.settings.list.paginate.lessPages}
+					forcedNumberOfLinks = {$plugin.tx_mediafrontend.settings.list.paginate.forcedNumberOfLinks}
+					pagesBefore = {$plugin.tx_mediafrontend.settings.list.paginate.pagesBefore}
+					pagesAfter = {$plugin.tx_mediafrontend.settings.list.paginate.pagesAfter}
+					templatePath =
+					prevNextHeaderTags = {$plugin.tx_mediafrontend.settings.list.paginate.prevNextHeaderTags}
+				}
+
 			}
 			detail {
 				image {
