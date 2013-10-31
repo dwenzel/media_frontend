@@ -3,6 +3,11 @@ plugin.tx_mediafrontend {
 		templateRootPath = {$plugin.tx_mediafrontend.view.templateRootPath}
 		partialRootPath = {$plugin.tx_mediafrontend.view.partialRootPath}
 		layoutRootPath = {$plugin.tx_mediafrontend.view.layoutRootPath}
+		widget {
+			Webfox\MediaFrontend\ViewHelpers\Widget\PaginateViewHelper {
+				templateRootPath = {$plugin.tx_mediafrontend.view.templateRootPath}
+			}
+		}
 	}
 	persistence {
 		storagePid = {$plugin.tx_mediafrontend.persistence.storagePid}
