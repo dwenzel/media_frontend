@@ -1,6 +1,8 @@
 {namespace mf=Webfox\MediaFrontend\ViewHelpers}
-<f:debug title="configuration">{configuration}</f:debug>
-<f:debug title="pagination">{pagination}</f:debug>
+<f:if condition="{settings.debug}">
+	<f:debug title="configuration">{configuration}</f:debug>
+	<f:debug title="pagination">{pagination}</f:debug>
+</f:if>
 <f:if condition="{configuration.insertAbove}">
 	<f:render section="paginator" arguments="{pagination: pagination,configuration:configuration}" />
 </f:if>
@@ -24,7 +26,7 @@
 
 		<div class="page-navigation">
 			<p>
-				<f:translate key="paginate_overall" arguments="{0:pagination.current,1:pagination.numberOfPages}" />
+				<f:translate key="tx_mediafrontend.paginate_overall" arguments="{0:'{pagination.current}',1:'{pagination.numberOfPages}'}" />
 			</p>
 			<ul class="f3-widget-paginator">
 				<f:if condition="{pagination.previousPage}">
@@ -32,12 +34,12 @@
 						<f:if condition="{pagination.previousPage} > 1">
 							<f:then>
 								<f:widget.link arguments="{currentPage: pagination.previousPage}">
-									<f:translate key="paginate_previous" />
+									<f:translate key="tx_mediafrontend.paginate_previous" />
 								</f:widget.link>
 							</f:then>
 							<f:else>
 								<f:widget.link>
-									<f:translate key="paginate_previous" />
+									<f:translate key="tx_mediafrontend.paginate_previous" />
 								</f:widget.link>
 							</f:else>
 						</f:if>
@@ -71,7 +73,7 @@
 				<f:if condition="{pagination.nextPage}">
 					<li class="last next">
 						<f:widget.link arguments="{currentPage: pagination.nextPage}">
-							<f:translate key="paginate_next" />
+							<f:translate key="tx_mediafrontend.paginate_next" />
 						</f:widget.link>
 					</li>
 				</f:if>
