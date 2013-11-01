@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2013-10-14T17:36:31Z">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2013-11-01T11:03:49Z">
 		<header>
 			<generator>LFEditor</generator>
 		</header>
 		<body>
+		<trans-unit id="tx_mediafrontend.paginate_next" approved="yes" xml:space="preserve">
+			<source>next</source>
+			<target>weiter</target>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend.paginate_overall" approved="yes" xml:space="preserve">
+			<source>Page %s of %s.</source>
+			<target>Seite %s von %s</target>
+		</trans-unit>
+		<trans-unit id="tx_mediafrontend.paginate_previous" approved="yes" xml:space="preserve">
+			<source>previous</source>
+			<target>zurück</target>
+		</trans-unit>
 		<trans-unit id="tx_mediafrontend_controller_filecollection.error_empty_filename" approved="yes" xml:space="preserve">
 			<source>No File.</source>
 			<target>Keine Datei angegeben.</target>
