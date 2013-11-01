@@ -25,6 +25,14 @@
 										<numIndex index="0">Assets</numIndex>
 										<numIndex index="1">Asset->list;Asset->show;Asset->new;Asset->create;Asset->delete;Asset->edit;Asset->update</numIndex>
 									</numIndex>
+									<numIndex index="3">
+										<numIndex index="0">Search Form</numIndex>
+										<numIndex index="1">FileCollection->searchForm</numIndex>
+									</numIndex>
+									<numIndex index="4">
+										<numIndex index="0">Search Result</numIndex>
+										<numIndex index="1">FileCollection->searchResult</numIndex>
+									</numIndex>
 								</items>
 							</config>
 						</TCEforms>

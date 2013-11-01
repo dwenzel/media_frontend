@@ -1,10 +1,10 @@
 <?php
-namespace Webfox\MediaFrontend\Domain\Model;
+namespace Webfox\MediaFrontend\Domain\Model\Dto;
 
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Georg Ringer <typo3@ringerge.org>
+*  (c) 2013 Dirk Wenzel <wenzel@webfox01.de>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is

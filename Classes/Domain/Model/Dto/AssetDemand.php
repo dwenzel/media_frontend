@@ -25,14 +25,36 @@ namespace Webfox\MediaFrontend\Domain\Model\Dto;
  ***************************************************************/
 
 /**
- * File Collection Demand object which holds all information to get the correct
- * File Collection records.
+ * Asset Demand object which holds all information to get the correct
+ * Asset records.
  *
  * @package media_frontend
  */
-class FileCollectionDemand
-	extends AbstractDemand implements DemandInterface {
+class AssetDemand extends AbstractDemand implements DemandInterface {
 
+	/**
+	 * @var \integer
+	 */
+	protected $storage;
+
+	/**
+	 * Set storage
+	 *
+	 * @var \integer $storage A uid indicating the file storage
+	 * @return void
+	 */
+	public function setStorage($storage) {
+		$this->storage  = $storage;
+	}
+
+	/**
+	 * Get storage
+	 *
+	 * @return \integer
+	 */
+	public function getStorage() {
+	    return $this->storage;
+	}
 
 }
 
