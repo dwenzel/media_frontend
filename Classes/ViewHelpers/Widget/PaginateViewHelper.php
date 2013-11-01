@@ -64,8 +64,8 @@ class PaginateViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetView
 	 */
 	public function initializeArguments() {
 	    parent::initializeArguments();
-	    $this->registerArgument('itemsPerPage', 'integer', 'Required', 'TRUE');
-	    $this->registerArgument('insertAbove', 'boolean', 'Insert page browser above. Optional');
+	   // $this->registerArgument('itemsPerPage', 'integer', 'Required', 'TRUE');
+	    //$this->registerArgument('insertAbove', 'boolean', 'Insert page browser above. Optional');
 	}
 
 	/**
