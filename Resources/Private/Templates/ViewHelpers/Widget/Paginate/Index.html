@@ -1,5 +1,6 @@
 {namespace mf=Webfox\MediaFrontend\ViewHelpers}
-
+<f:debug title="configuration">{configuration}</f:debug>
+<f:debug title="pagination">{pagination}</f:debug>
 <f:if condition="{configuration.insertAbove}">
 	<f:render section="paginator" arguments="{pagination: pagination,configuration:configuration}" />
 </f:if>
